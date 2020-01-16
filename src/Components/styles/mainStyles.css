@@ -181,7 +181,7 @@ caption {
   grid-row: 2/10;
   border: 1px solid red;
   padding-left: 1.5vw;
-  padding-right: 1.5vw;
+
   overflow-x: scroll;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -189,33 +189,31 @@ caption {
 }
 .headersTable {
   background-color: #282828;
-  grid-column: 1/10;
+  grid-column: 1/11;
   grid-row: 1/9;
   overflow-x: scroll;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
-.bodyTables {
-  background-color: white !important;
-  grid-column: 4/10;
-  grid-row: 1/4;
-  overflow-x: scroll;
+.tabPane {
+  background-color: #282828 !important;
+  color: aqua;
 }
-.bodyComponent {
-  background-color: #282828;
-  grid-column: 1/10;
-  grid-row: 2/6;
-  border: 1px solid red;
-  padding-left: 1.5vw;
-  padding-right: 1.5vw;
-  overflow-x: scroll;
+.body {
+  display: grid;
+  grid-template-columns: repeat(10, 4vw);
+  grid-template-rows: repeat(6, 3vh);
 }
-.radio {
-  grid-column: 1/10;
+.radioButtons {
+  grid-column: 1/6;
+  grid-row: 1/6;
+}
+.another {
+  grid-column: 4/16;
+  grid-row: 1/7;
+  background-color: wheat;
+}
 
-  color: white !important;
-  background-color: white !important;
-}
 label {
   color: white;
 }
@@ -255,10 +253,6 @@ label {
   font-size: 0.85vw;
   color: #fff;
   font-style: italic;
-}
-.tabPane {
-  background-color: #282828 !important;
-  color: aqua;
 }
 
 .saveButton {

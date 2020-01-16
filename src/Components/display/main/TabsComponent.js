@@ -66,8 +66,9 @@ class TabsComponent extends Component {
       {
         menuItem: "Body",
         render: () => (
-          <Tab.Pane inverted attached={false} className="tabPane">
-            Hi
+          // Do Conditional rendering as per radio buttons
+          <Tab.Pane inverted attached={false}>
+            <BodyComponent></BodyComponent>
           </Tab.Pane>
         )
       },
