@@ -1,35 +1,25 @@
 import React, { Component } from "react";
-import QueryParamsComponent from "./QueryParamsComponent";
-import UrlComponent from "./UrlComponent";
 import TitleComponent from "./TitleComponent";
-import TabsExample from "./TabsExample";
-import InputComponents from "./InputComponents";
 import MethodComponent from "./MethodComponent";
-import TabsComponent from "./TabsComponent";
 
 class MainComponent extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
-
+  //Actually this is a waste component.See the risks of css grid and refactor accordingly
   render() {
     return (
       <div className="main">
         <TitleComponent></TitleComponent>
-        <MethodComponent></MethodComponent>
-
-        {/* <UrlComponent></UrlComponent> */}
-        {/* <InputComponents></InputComponents> */}
-        {/* <TitleComponent></TitleComponent>
-        <UrlComponent></UrlComponent>
-        <TabsExample></TabsExample> */}
-
-        {/* <QueryParamsComponent></QueryParamsComponent> */}
+        <MethodComponent
+          updateStateFromSubmit={this.props.updateStateFromSubmit}
+          handleSelect={this.props.handleSelect}
+          handleUrl={this.props.handleUrl}
+          method={this.props.method}
+          url={this.props.url}
+        ></MethodComponent>
       </div>
     );
   }
 }
-
 export default MainComponent;

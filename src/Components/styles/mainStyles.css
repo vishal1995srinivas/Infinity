@@ -80,13 +80,13 @@ caption {
 }
 
 .display {
-  background-color: grey;
+  background-color: #282828;
   grid-column: 1/11;
   grid-row: 2/15;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(15, 1fr);
-  grid-gap: 10px;
+  grid-gap: 1px;
   overflow-x: visible;
   overflow-y: visible;
 }
@@ -99,7 +99,7 @@ caption {
 .main {
   grid-column: 3/11;
   grid-row: 1/9;
-  background-color: hotpink;
+  background-color: #282828;
   overflow-x: visible;
   overflow-y: visible;
   display: grid;
@@ -109,12 +109,13 @@ caption {
   /* grid-template-rows: repeat(15, 1fr); */
 }
 .response {
-  background-color: cyan;
+  background-color: #282828;
   font-size: 2vh;
   grid-column: 3/11;
   grid-row: 9/16;
-  overflow-x: hidden;
+  overflow-x: visible;
   overflow-y: visible;
+  color: white;
 }
 .sidebar {
   background-color: coral;
@@ -170,7 +171,7 @@ caption {
   background-color: #282828;
   grid-column: 1/11;
   grid-row: 2/10;
-  border: 1px solid grey;
+
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(6, 1fr);
@@ -178,8 +179,8 @@ caption {
 .tabsComponent {
   background-color: #282828;
   grid-column: 1/11;
-  grid-row: 2/10;
-  border: 1px solid red;
+  grid-row: 2/11;
+
   padding-left: 1.5vw;
 
   overflow-x: scroll;
@@ -197,7 +198,7 @@ caption {
 }
 .tabPane {
   background-color: #282828 !important;
-  color: aqua;
+  color: white;
 }
 .body {
   display: grid;
@@ -211,7 +212,6 @@ caption {
 .another {
   grid-column: 4/16;
   grid-row: 1/7;
-  background-color: wheat;
 }
 
 label {
@@ -249,7 +249,7 @@ label {
   margin-top: 2.5vh;
   margin-bottom: 1vh;
   margin-left: 0.5vw;
-  border-color: honeydew;
+
   font-size: 0.85vw;
   color: #fff;
   font-style: italic;

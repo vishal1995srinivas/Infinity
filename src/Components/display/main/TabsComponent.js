@@ -36,7 +36,7 @@ class TabsComponent extends Component {
                           fluid
                           transparent
                           inverted
-                          placeholder="Content\type"
+                          placeholder="Content-Type"
                           value={keyValuePair.key}
                           onChange={event =>
                             this.handleHeadersKeyChange(event, index)
@@ -48,7 +48,7 @@ class TabsComponent extends Component {
                           fluid
                           transparent
                           inverted
-                          placeholder="Application/json"
+                          placeholder="application/json"
                           value={keyValuePair.value}
                           onChange={event =>
                             this.handleHeadersValueChange(event, index)
@@ -68,7 +68,19 @@ class TabsComponent extends Component {
         render: () => (
           // Do Conditional rendering as per radio buttons
           <Tab.Pane inverted attached={false}>
-            <BodyComponent></BodyComponent>
+            <BodyComponent
+              handleBodyFormKeyChange={this.props.handleBodyFormKeyChange}
+              handleBodyFormValueChange={this.props.handleBodyFormValueChange}
+              handleBodyFormUrlKeyChange={this.props.handleBodyFormUrlKeyChange}
+              handleBodyFormUrlValueChange={
+                this.props.handleBodyFormUrlValueChange
+              }
+              bodyFormData={this.props.bodyFormData}
+              bodyFormUrlData={this.props.bodyFormUrlData}
+              valueOfBody={this.props.valueOfBody}
+              handleChangeValueOfBody={this.props.handleChangeValueOfBody}
+              method={this.props.method}
+            ></BodyComponent>
           </Tab.Pane>
         )
       },
