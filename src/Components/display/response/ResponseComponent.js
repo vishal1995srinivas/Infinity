@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import ReactJson from "react-json-view";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 class ResponseComponent extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isLoading: "",
       urlString: "",
@@ -15,52 +16,76 @@ class ResponseComponent extends Component {
       bodyFormOrUrlData: [{}]
     };
   }
-  async fetchfunction() {
-    if (this.props.method == "GET") {
+  async playCollectionFunction(collectionToPlay) {
+    let result = await Promise.all(
+      collectionToPlay.requests.map(request => {
+        this.fetchfunction(
+          request.method,
+          request.headers,
+          request.url,
+          request.bodyFormOrUrlData
+        );
+      })
+    )
+      .then(data => {
+        this.props.ToggleToPlayOff();
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+        // this.setState({ JsonData: error.message, urlString: newUrl });
+      });
+  }
+  async fetchfunction(method, headers, url, bodyFormOrUrlData) {
+    if (method == "GET") {
       // console.log(headers);
       let myHeaders = new Headers();
-      this.props.headers.map(headers => {
+
+      headers.map(headers => {
         myHeaders.append(headers.key, headers.value);
       });
-      this.GetData(`${this.props.url}`, this.props.method, myHeaders)
+      let newUrl = url;
+      if (url.search("https://") == -1) {
+        newUrl = `https://${this.props.url}`;
+      }
+      this.GetData(`${newUrl}`, method, myHeaders)
         .then(data => {
           this.setState({
             JsonData: data,
-            urlString: this.props.url,
-            method: this.props.method,
-            headers: this.props.headers,
-            bodyFormOrUrlData: this.props.bodyFormOrUrlData
+            urlString: newUrl,
+            method: method,
+            headers: headers,
+            bodyFormOrUrlData: bodyFormOrUrlData
           });
           console.log(data); // JSON data parsed by `response.json()` call
         })
         .catch(error => {
-          console.log(error);
-          this.setState({ JsonData: error, urlString: this.props.url });
+          console.log(error.message);
+          this.setState({ JsonData: error.message, urlString: newUrl });
         });
     } else {
       let myHeaders = new Headers();
-      this.props.headers.map(headers => {
+      headers.map(headers => {
         myHeaders.append(headers.key, headers.value);
       });
-      this.fetchData(
-        `${this.props.url}`,
-        this.props.bodyFormOrUrlData,
-        this.props.method,
-        myHeaders
-      )
+      let newUrl = url;
+      if (url.search("https://") == -1) {
+        newUrl = `https://${url}`;
+      }
+      this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
         .then(data => {
           this.setState({
             JsonData: data,
-            urlString: this.props.url,
-            method: this.props.method,
-            headers: this.props.headers,
-            bodyFormOrUrlData: this.props.bodyFormOrUrlData
+            urlString: newUrl,
+            method: method,
+            headers: headers,
+            bodyFormOrUrlData: bodyFormOrUrlData
           });
           console.log(this.state.JsonData); // JSON data parsed by `response.json()` call
         })
         .catch(error => {
           console.log(error);
-          this.setState({ JsonData: error, urlString: this.props.url });
+          this.setState({ JsonData: error.message, urlString: this.props.url });
         });
     }
   }
@@ -93,7 +118,7 @@ class ResponseComponent extends Component {
   }
 
   render() {
-    console.log(this.props.bodyFormOrUrlData);
+    //console.log(this.props.bodyFormOrUrlData);
     const { url } = this.props;
     const {
       isLoading,
@@ -104,6 +129,9 @@ class ResponseComponent extends Component {
       headers,
       bodyFormOrUrlData
     } = this.state;
+    if (this.props.ToPlay !== null) {
+      let playTests = this.playCollectionFunction(this.props.ToPlay);
+    }
     if (url == "") {
       return <div className="response">Hit Send to fetch data</div>;
     } else if (
@@ -112,10 +140,15 @@ class ResponseComponent extends Component {
       headers !== this.props.headers ||
       bodyFormOrUrlData !== this.props.bodyFormOrUrlData
     ) {
-      let fetchData = this.fetchfunction();
+      let fetchData = this.fetchfunction(
+        this.props.method,
+        this.props.headers,
+        this.props.url,
+        this.props.bodyFormOrUrlData
+      );
       return (
         <div className="response">
-          <h1>Loading...</h1>
+          <Loader type="ThreeDots" color="black" height={100} width={100} />
         </div>
       );
     } else {
@@ -124,9 +157,6 @@ class ResponseComponent extends Component {
       return (
         <div className="response" align="left">
           <ReactJson src={JsonData} theme="monokai" />
-          {/* <pre>
-            <code>{str}</code>
-          </pre> */}
         </div>
       );
     }

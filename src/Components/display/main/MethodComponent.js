@@ -24,7 +24,8 @@ class MethodComponent extends Component {
     this.props.handleSelect(event, data);
   };
   handleCollectionSelect = (event, data) => {
-    this.setState({ method: data.value });
+    // this.setState({ method: data.value });
+    this.props.handleSaveToCollectionName(data.value);
     //console.log(data.value);
   };
   handleUrl = event => {
@@ -171,11 +172,14 @@ class MethodComponent extends Component {
       { key: "put", value: "PUT", text: "PUT" },
       { key: "delete", value: "DELETE", text: "DELETE" }
     ];
-    const collections = [
-      { key: "c1", text: "name1", value: "name1" },
-      { key: "c2", text: "name2", value: "name2" },
-      { key: "c3", text: "name3", value: "name3" }
-    ];
+    const collections = this.props.collections.map((collection, index) => {
+      return { key: index, text: collection.name, value: collection.name };
+    });
+    // const collections = [
+    //   { key: "c1", text: "name1", value: "name1" },
+    //   { key: "c2", text: "name2", value: "name2" },
+    //   { key: "c3", text: "name3", value: "name3" }
+    // ];
     return (
       //This has to be refactored-> create a new component for only method,url,submit and save buttons
       <div className="urlComponent">
@@ -220,6 +224,7 @@ class MethodComponent extends Component {
             options={collections}
             className="selectTag"
             onChange={this.handleCollectionSelect}
+            value={this.props.SaveToCollectionName}
           />
         </div>
         <div className="tabsComponent">

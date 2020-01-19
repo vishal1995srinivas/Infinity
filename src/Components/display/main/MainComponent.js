@@ -17,6 +17,9 @@ class MainComponent extends Component {
           handleUrl={this.props.handleUrl}
           method={this.props.method}
           url={this.props.url}
+          collections={this.props.collections}
+          handleSaveToCollectionName={this.props.handleSaveToCollectionName}
+          SaveToCollectionName={this.props.SaveToCollectionName}
         ></MethodComponent>
       </div>
     );
