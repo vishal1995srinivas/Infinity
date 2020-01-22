@@ -3,6 +3,7 @@ import { Tab } from "semantic-ui-react";
 import { Table } from "semantic-ui-react";
 import { Input, Button } from "semantic-ui-react";
 import BodyComponent from "./BodyComponent";
+import TestsComponent from "./TestsComponent";
 class TabsComponent extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +87,14 @@ class TabsComponent extends Component {
       },
       {
         menuItem: "Tests",
-        render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>
+        render: () => (
+          <Tab.Pane attached={false} className="tabPane">
+            <TestsComponent
+              objUpdate={this.props.objUpdate}
+              obj={this.props.obj}
+            ></TestsComponent>
+          </Tab.Pane>
+        )
       }
     ];
     return (

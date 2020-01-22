@@ -17,8 +17,10 @@ class MethodComponent extends Component {
       headers: [{ key: "", value: "" }],
       valueOfBody: "none",
       bodyFormData: [{ key: "", value: "" }],
-      bodyFormUrlData: [{ key: "", value: "" }]
+      bodyFormUrlData: [{ key: "", value: "" }],
+      obj: null
     };
+    this.objUpdate = this.objUpdate.bind(this);
   }
   handleSelect = (event, data) => {
     this.props.handleSelect(event, data);
@@ -72,24 +74,25 @@ class MethodComponent extends Component {
         bodyFormUrlData: [{ key: "", value: "" }]
       });
     } else if (valueOfBody === "form-data") {
-      let headers = [...this.state.headers];
-      headers = [
-        { key: "Content-Type", value: "multipart/form-data" },
-        headers
-      ];
+      // let headers = [...this.state.headers];
+
+      // headers = [
+      //   { key: "Content-Type", value: "multipart/form-data" },
+      //   headers
+      // ];
       this.setState({
-        headers: headers,
+        // headers: this.state.headers.push({ key: "Content-Type", value: "multipart/form-data" }),
         valueOfBody: valueOfBody,
         bodyFormUrlData: [{ key: "", value: "" }]
       });
     } else if (valueOfBody === "Form-url-encoded") {
-      let headers = [...this.state.headers];
-      headers = [
-        { key: "Content-Type", value: "application/x-www-form-urlencoded" },
-        headers
-      ];
+      // let headers = [...this.state.headers];
+      // headers = [
+      //   { key: "Content-Type", value: "application/x-www-form-urlencoded" },
+      //   headers
+      // ];
       this.setState({
-        headers: headers,
+        // headers: headers,
         valueOfBody: valueOfBody,
         bodyFormData: [{ key: "", value: "" }]
       });
@@ -97,63 +100,73 @@ class MethodComponent extends Component {
   };
   SubmitHandler = () => {
     if (this.props.url !== null || this.props.url !== "") {
+      let headers = [...this.state.headers];
+      let headersLength = headers.length;
+      let newHeaders = headers.slice(0, headersLength - 1);
       if (this.props.method == "GET") {
         console.log("Method is", this.props.method); // method
         console.log("URL is", this.props.url); // url
-        let headers = [...this.state.headers];
-        let headersLength = headers.length;
-        let newHeaders = headers.slice(0, headersLength - 1);
-        console.log("Headers are", newHeaders); //headers
+        //console.log("Headers are", newHeaders); //headers
         this.props.updateStateFromSubmit(
           this.props.method,
           this.props.url,
           newHeaders,
-          null //no body in get
+          null, //no body in get
+          this.state.obj
         );
       } else {
-        //console.log("Method is", this.props.method); // method
-        //console.log("URL is", this.props.url); // url
-        let headers = [...this.state.headers];
-        let headersLength = headers.length;
-        let newHeaders = headers.slice(0, headersLength - 1);
+        // let headers = [...this.state.headers];
+        // let headersLength = headers.length;
+        // let newHeaders = headers.slice(0, headersLength - 1);
 
         let bodyFormData = [...this.state.bodyFormData];
         let bodyFormDataLength = bodyFormData.length;
         let newBodyFormData = bodyFormData.slice(0, bodyFormDataLength - 1);
 
         if (this.state.valueOfBody == "form-data") {
+          // newHeaders.push({
+          //   key: "Content-Type",
+          //   value: "multipart/form-data"
+          // });
+          console.log("Headers are ", this.state.headers);
+          newHeaders.push({
+            key: "Content-Type",
+            value: "multipart/form-data"
+          });
           this.props.updateStateFromSubmit(
             this.props.method,
             this.props.url,
             newHeaders,
-            newBodyFormData //body in other than get
+            newBodyFormData, //body in other than get
+            this.state.obj
           );
         } else if (this.state.valueOfBody == "Form-url-encoded") {
-          let headers = [...this.state.headers];
-          let headersLength = headers.length;
-          let newHeaders = headers.slice(0, headersLength - 1);
-
+          newHeaders.push({
+            key: "Content-Type",
+            value: "application/x-www-form-urlencoded"
+          });
           let bodyFormUrlData = [...this.state.bodyFormUrlData];
           let bodyFormUrlDataLength = bodyFormUrlData.length;
           let newBodyFormUrlData = bodyFormUrlData.slice(
             0,
             bodyFormUrlDataLength - 1
           );
+          console.log("Headers are ", this.state.headers);
           this.props.updateStateFromSubmit(
             this.props.method,
             this.props.url,
             newHeaders,
-            newBodyFormUrlData //body in other than get
+            newBodyFormUrlData,
+            this.state.obj
           );
         } else {
-          let headers = [...this.state.headers];
-          let headersLength = headers.length;
-          let newHeaders = headers.slice(0, headersLength - 1);
+          console.log("Headers are ", this.state.headers);
           this.props.updateStateFromSubmit(
             this.props.method,
             this.props.url,
             newHeaders,
-            null //body in other than get
+            null,
+            this.state.obj
           );
         }
       }
@@ -161,10 +174,13 @@ class MethodComponent extends Component {
       alert("URL cannot be empty");
     }
   };
+  objUpdate(arg) {
+    if (arg.jsObject) {
+      this.setState({ obj: arg.jsObject });
+    }
+  }
   render() {
-    //console.log(this.props.method);
-    // console.log("this is body form", this.state.bodyFormData);
-    // console.log("This is body url", this.state.bodyFormUrlData);
+    console.log("this is headers", this.state.headers);
     const { method, url } = this.props;
     const options = [
       { key: "get", value: "GET", text: "GET" },
@@ -175,11 +191,6 @@ class MethodComponent extends Component {
     const collections = this.props.collections.map((collection, index) => {
       return { key: index, text: collection.name, value: collection.name };
     });
-    // const collections = [
-    //   { key: "c1", text: "name1", value: "name1" },
-    //   { key: "c2", text: "name2", value: "name2" },
-    //   { key: "c3", text: "name3", value: "name3" }
-    // ];
     return (
       //This has to be refactored-> create a new component for only method,url,submit and save buttons
       <div className="urlComponent">
@@ -241,6 +252,8 @@ class MethodComponent extends Component {
             bodyFormUrlData={this.state.bodyFormUrlData}
             valueOfBody={this.state.valueOfBody}
             handleChangeValueOfBody={this.handleChangeValueOfBody}
+            objUpdate={this.objUpdate}
+            obj={this.state.obj}
           ></TabsComponent>
         </div>
       </div>

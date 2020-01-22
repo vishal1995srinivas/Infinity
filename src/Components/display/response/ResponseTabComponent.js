@@ -35,7 +35,6 @@ class ResponseComponent extends Component {
       }
       this.GetData(`${newUrl}`, method, myHeaders)
         .then(data => {
-          console.log("This is inside Response", data);
           this.setState({
             JsonData: data,
             urlString: url,
@@ -61,7 +60,6 @@ class ResponseComponent extends Component {
       }
       this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
         .then(data => {
-          console.log("This is inside Response", data);
           this.setState({
             JsonData: data,
             urlString: url,
@@ -69,8 +67,7 @@ class ResponseComponent extends Component {
             headers: headers,
             bodyFormOrUrlData: bodyFormOrUrlData
           });
-          //this.props.updateResultJson(this.state.JsonData);
-          //console.log(this.state.JsonData); // JSON data parsed by `response.json()` call
+          console.log(this.state.JsonData); // JSON data parsed by `response.json()` call
         })
         .catch(error => {
           console.log(error);
@@ -106,7 +103,7 @@ class ResponseComponent extends Component {
     return await response.json(); // parses JSON response into native JavaScript objects
   }
   render() {
-    console.log(this.props.headers);
+    console.log(this.state);
     const { url } = this.props;
     const {
       isLoading,
@@ -143,6 +140,7 @@ class ResponseComponent extends Component {
         </div>
       );
     }
+    //return <div className="response">response</div>;
   }
 }
 export default ResponseComponent;

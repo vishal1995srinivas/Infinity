@@ -11,13 +11,10 @@ class BodyComponent extends Component {
     this.state = { value: "none" };
   }
   handleChange = (e, { value }) => {
-    // if (this.props.valueOfBody !== this.state.value) {
-    //   this.props.handleChangeValueOfBody(this.state.value);
-    // }
     this.props.handleChangeValueOfBody(value);
     this.setState({ value });
   };
-  //this.props.handleChangeValueOfBody(value);
+
   render() {
     if (this.props.method !== "GET") {
       const { value } = this.state;

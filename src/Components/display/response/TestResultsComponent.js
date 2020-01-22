@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import ReactJson from "react-json-view";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import CollectionsResponseComponent from "./CollectionsResponseComponent";
+import _ from "lodash";
 
-class ResponseComponent extends Component {
+var diff = require("deep-diff").diff;
+class TestResultsComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +47,7 @@ class ResponseComponent extends Component {
         })
         .catch(error => {
           console.log(error.message);
-          this.setState({ JsonData: error.message, urlString: newUrl });
+          this.setState({ error: error, urlString: newUrl });
         });
     } else {
       if (headers.length > 0) {
@@ -74,7 +75,7 @@ class ResponseComponent extends Component {
         })
         .catch(error => {
           console.log(error);
-          this.setState({ JsonData: error.message, urlString: this.props.url });
+          this.setState({ error: error, urlString: this.props.url });
         });
     }
   }
@@ -106,8 +107,13 @@ class ResponseComponent extends Component {
     return await response.json(); // parses JSON response into native JavaScript objects
   }
   render() {
-    console.log(this.props.headers);
-    const { url } = this.props;
+    //console.log(object);
+    console.log(
+      "This is inside testResults",
+      this.state.JsonData,
+      this.props.testCase
+    );
+    const { url, testCase } = this.props;
     const {
       isLoading,
       error,
@@ -117,8 +123,8 @@ class ResponseComponent extends Component {
       headers,
       bodyFormOrUrlData
     } = this.state;
-    if (url == "") {
-      return <div className="response">Hit Send to fetch data</div>;
+    if (testCase == null) {
+      return <div className="response">No Test Cases Found</div>;
     } else if (
       urlString !== url ||
       method !== this.props.method ||
@@ -137,12 +143,22 @@ class ResponseComponent extends Component {
         </div>
       );
     } else if (this.state.JsonData) {
-      return (
-        <div className="response" align="left">
-          <ReactJson src={JsonData} theme="monokai" />
-        </div>
-      );
+      // if (this.props.testCase) {
+      var changes = diff(this.props.testCase, this.state.JsonData);
+      if (changes) {
+        console.log(changes);
+        return (
+          <div className="response" align="left">
+            <ReactJson src={changes} theme="monokai" />
+          </div>
+        );
+      } else {
+        return <div className="response">Success</div>;
+      }
+    } else {
+      return <div className="response">{this.state.error}</div>;
     }
   }
 }
-export default ResponseComponent;
+
+export default TestResultsComponent;
