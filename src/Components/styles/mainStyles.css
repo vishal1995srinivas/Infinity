@@ -65,7 +65,7 @@ caption {
   font-size: 40px;
   height: 100vh;
   width: 100vw;
-  background: white;
+  background: #282828;
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -74,7 +74,9 @@ caption {
   grid-template-rows: repeat(15, 1fr);
 }
 .header {
-  background-color: gray;
+  padding-top: 1.5vh;
+  color: white;
+  background-color: #1b1c1d;
   grid-column: 1/11;
   grid-row: 1/2;
 }
@@ -92,7 +94,9 @@ caption {
 }
 
 .footer {
-  background-color: darkgray;
+  padding-top: 1.5vh;
+  color: white;
+  background-color: #1b1c1d;
   grid-column: 1/11;
   grid-row: 15/16;
 }

@@ -48,7 +48,11 @@ class TestExampleResponse extends Component {
             </div>
           );
         } else {
-          temp.push(<div className="response">Success</div>);
+          temp.push(
+            <div className="response">
+              {this.props.requests[i].url}: Success
+            </div>
+          );
         }
         // temp.push({ result });
         if (i == this.props.ToPlay.requests.length - 1) {
