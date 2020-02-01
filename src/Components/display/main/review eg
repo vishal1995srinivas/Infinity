@@ -74,3 +74,11 @@ collections: [
         'requests': ['req_1_id', 'req_2_id']
     }
 ]
+To Do Tasks
+-> react-alerts -done
+-> test cases each by each.----------completed in main ->tab name has to be changed to Collection Test Results (results)
+-> title change
+-> play button on press to loading.
+-> Show errors in fetch---important and timeout -- done but timeout pending
+-------------Collections name should not be same------completed
+------------headers by default application/json is added

@@ -4,9 +4,11 @@ import SidebarComponent from "./sidebar/SidebarComponent";
 import ResponseComponent from "./response/ResponseComponent";
 import NewResponseComponent from "./response/NewResponseComponent";
 import ResponseTabComponent from "./response/ResponseTabComponent";
+import { withAlert } from "react-alert";
 class DisplayComponent extends Component {
   constructor(props) {
     super(props);
+    const alert = this.props.alert;
     this.state = {
       method: "GET",
       url: "",
@@ -63,7 +65,7 @@ class DisplayComponent extends Component {
                 bodyFormOrUrlData: this.state.bodyFormOrUrlData,
                 testCase: testJson
               });
-              alert(
+              this.props.alert.success(
                 `Successfully saved to ${this.state.SaveToCollectionName} Collection`
               );
             }
@@ -80,10 +82,19 @@ class DisplayComponent extends Component {
           testCase: testJson
         });
       } else {
-        alert("Headers are empty");
+        this.setState({
+          ToResponseMethod: method,
+          ToResponseUrl: url,
+          ToResponseHeaders: [
+            { key: "Content-Type", value: "application/json" }
+          ],
+          ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
+          ToSideBarHistory: this.state.ToSideBarHistory,
+          testCase: testJson
+        });
       }
     } else {
-      alert("URL is empty.");
+      this.props.alert.error("URL is empty.");
     }
   };
   handleSaveToCollectionName = value => {
@@ -103,15 +114,28 @@ class DisplayComponent extends Component {
     this.setState({ collectionName: value });
   };
   handleCreateCollection = event => {
-    let newCollection = [
-      ...this.state.collections,
-      {
-        name: this.state.collectionName,
-        requests: []
+    let collectionExist = false;
+    if (this.state.collectionName !== "") {
+      this.state.collections.map(collection => {
+        if (collection.name == this.state.collectionName) {
+          this.props.alert.error(`${this.state.collectionName} already exists`);
+          collectionExist = true;
+        }
+      });
+      if (collectionExist == false) {
+        let newCollection = [
+          ...this.state.collections,
+          {
+            name: this.state.collectionName,
+            requests: []
+          }
+        ];
+        this.setState({ collections: newCollection, collectionName: "" });
+        this.props.alert.success("Collection Created successfully"); //React-alert to be added
       }
-    ];
-    this.setState({ collections: newCollection, collectionName: "" });
-    alert("Collection Created"); //React-alert to be added
+    } else {
+      this.props.alert.error("Collection Name cannot be empty");
+    }
   };
   handleDeleteCollection = (event, index) => {
     let newCollections = [...this.state.collections];
@@ -125,9 +149,6 @@ class DisplayComponent extends Component {
     this.setState({ ToPlay: null });
   };
   render() {
-    //console.log("This is inside headers", this.state.headers);
-    // console.log(this.state.SaveToCollectionName);
-    //console.log(this.state.testCase);
     return (
       <div className="display">
         <MainComponent
@@ -164,4 +185,4 @@ class DisplayComponent extends Component {
   }
 }
 
-export default DisplayComponent;
+export default withAlert()(DisplayComponent);

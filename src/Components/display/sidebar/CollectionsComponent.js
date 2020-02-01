@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withAlert } from "react-alert";
 import {
   Accordion,
   Icon,
@@ -11,6 +12,7 @@ import {
 class CollectionsComponent extends Component {
   constructor(props) {
     super(props);
+    const alert = this.props.alert;
 
     this.state = {
       activeIndex: 0,
@@ -195,16 +197,6 @@ class CollectionsComponent extends Component {
             onClick={this.handleCreateCollection}
           />
           <div className="buttonCreate"></div>
-
-          {/* <div className="createCollection">
-            <Input
-              inverted
-              placeholder="New Collection Name"
-              size="mini"
-              value=""
-            />
-          </div> */}
-
           {result}
         </div>
       );
@@ -236,18 +228,4 @@ class CollectionsComponent extends Component {
   }
 }
 
-export default CollectionsComponent;
-// collections: [
-//     {
-//       name: "Sample",
-//       requests: [
-//         {
-//           method: "",
-//           method: "GET",
-//           url: "https://jsonplaceholder.typicode.com/posts",
-//           headers: [{ key: "Content/Type", value: "application/json" }],
-//           bodyFormOrUrlData: [{ key: "", value: "" }]
-//         }
-//       ]
-//     }
-//   ]
+export default withAlert()(CollectionsComponent);

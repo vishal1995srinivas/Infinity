@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withAlert } from "react-alert";
 
 import {
   Button,
@@ -12,7 +13,7 @@ import TabsComponent from "./TabsComponent";
 class MethodComponent extends Component {
   constructor(props) {
     super(props);
-
+    const alert = this.props.alert;
     this.state = {
       headers: [{ key: "", value: "" }],
       valueOfBody: "none",
@@ -21,7 +22,9 @@ class MethodComponent extends Component {
       obj: null
     };
     this.objUpdate = this.objUpdate.bind(this);
+    this.SubmitHandler = this.SubmitHandler.bind(this);
   }
+
   handleSelect = (event, data) => {
     this.props.handleSelect(event, data);
   };
@@ -106,7 +109,7 @@ class MethodComponent extends Component {
       if (this.props.method == "GET") {
         console.log("Method is", this.props.method); // method
         console.log("URL is", this.props.url); // url
-        //console.log("Headers are", newHeaders); //headers
+
         this.props.updateStateFromSubmit(
           this.props.method,
           this.props.url,
@@ -115,19 +118,10 @@ class MethodComponent extends Component {
           this.state.obj
         );
       } else {
-        // let headers = [...this.state.headers];
-        // let headersLength = headers.length;
-        // let newHeaders = headers.slice(0, headersLength - 1);
-
         let bodyFormData = [...this.state.bodyFormData];
         let bodyFormDataLength = bodyFormData.length;
         let newBodyFormData = bodyFormData.slice(0, bodyFormDataLength - 1);
-
         if (this.state.valueOfBody == "form-data") {
-          // newHeaders.push({
-          //   key: "Content-Type",
-          //   value: "multipart/form-data"
-          // });
           console.log("Headers are ", this.state.headers);
           newHeaders.push({
             key: "Content-Type",
@@ -171,7 +165,7 @@ class MethodComponent extends Component {
         }
       }
     } else {
-      alert("URL cannot be empty");
+      this.props.alert.error("URL cannot be empty");
     }
   };
   objUpdate(arg) {
@@ -260,4 +254,4 @@ class MethodComponent extends Component {
     );
   }
 }
-export default MethodComponent;
+export default withAlert()(MethodComponent);

@@ -14,7 +14,6 @@ class CollectionsResponseComponent extends Component {
       collectionsRequestsLength: null
     };
   }
-
   async displayCollectionsJson() {
     let temp = [];
     for (let i = 0; i < this.props.ToPlay.requests.length; i++) {

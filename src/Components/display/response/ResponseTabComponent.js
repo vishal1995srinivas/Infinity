@@ -45,7 +45,18 @@ class ResponseComponent extends Component {
         })
         .catch(error => {
           console.log(error.message);
-          this.setState({ JsonData: error.message, urlString: newUrl });
+          let errorJson = {
+            Error: `${error}, Message : ${error.message}`
+          };
+          this.setState({
+            JsonData: errorJson,
+            urlString: newUrl,
+            error: true,
+            urlString: url,
+            method: method,
+            headers: headers,
+            bodyFormOrUrlData: bodyFormOrUrlData
+          });
         });
     } else {
       if (headers.length > 0) {
@@ -71,7 +82,17 @@ class ResponseComponent extends Component {
         })
         .catch(error => {
           console.log(error);
-          this.setState({ JsonData: error.message, urlString: this.props.url });
+
+          let errorJson = {
+            Error: `${error}, Message : ${error.message}`
+          };
+          this.setState({
+            JsonData: errorJson,
+            urlString: url,
+            method: method,
+            headers: headers,
+            bodyFormOrUrlData: bodyFormOrUrlData
+          });
         });
     }
   }
@@ -129,7 +150,7 @@ class ResponseComponent extends Component {
         this.props.bodyFormOrUrlData
       );
       return (
-        <div className="response">
+        <div>
           <Loader type="ThreeDots" color="black" height={100} width={100} />
         </div>
       );

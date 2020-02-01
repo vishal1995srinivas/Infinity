@@ -5,6 +5,7 @@ import CollectionsResponseComponent from "./CollectionsResponseComponent";
 import TestsComponent from "./TestsComponent";
 import TestResultsComponent from "./TestResultsComponent";
 import TestExampleResponse from "./TestExampleResponse";
+import Display from "./testCollection/Display";
 
 class NewResponseComponent extends Component {
   constructor(props) {
@@ -18,7 +19,24 @@ class NewResponseComponent extends Component {
     this.setState({ json: Resultjson });
   };
   render() {
-    console.log(this.props.ToPlay);
+    let collectionsTab = null;
+    if (this.props.ToPlay == null) {
+      collectionsTab = {};
+    } else {
+      collectionsTab = {
+        menuItem: { key: "collections", icon: "users", content: "Collections" },
+        render: () => (
+          <div>
+            <Tab.Pane className="tabPane">
+              <Display
+                requests={this.props.ToPlay.requests}
+                collectionName={this.props.ToPlay.name}
+              ></Display>
+            </Tab.Pane>
+          </div>
+        )
+      };
+    }
     const panes = [
       {
         menuItem: { key: "response", icon: "users", content: "Response" },
@@ -35,19 +53,7 @@ class NewResponseComponent extends Component {
           </div>
         )
       },
-      {
-        menuItem: { key: "collections", icon: "users", content: "Collections" },
-        render: () => (
-          <div>
-            <Tab.Pane className="tabPane">
-              <CollectionsResponseComponent
-                ToPlay={this.props.ToPlay}
-                ToggleToPlayOff={this.props.ToggleToPlayOff}
-              ></CollectionsResponseComponent>
-            </Tab.Pane>
-          </div>
-        )
-      },
+      collectionsTab,
       {
         menuItem: { key: "tests", icon: "users", content: "Tests" },
         render: () => (

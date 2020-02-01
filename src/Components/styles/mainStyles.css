@@ -119,6 +119,7 @@ caption {
   grid-row: 9/16;
   overflow-x: scroll;
   color: white;
+  align: left;
 }
 
 .sidebar {
