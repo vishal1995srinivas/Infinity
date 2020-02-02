@@ -20,90 +20,93 @@ class HistoryComponent extends Component {
   };
   render() {
     console.log("This is to sidebar history", this.props.ToSideBarHistory);
+
     if (this.props.ToSideBarHistory.length > 0) {
-      let labels = this.props.ToSideBarHistory.map((requests, index) => {
-        if (requests.method == "GET") {
-          return (
-            <div className="label" key={index}>
-              <Label
-                as="a"
-                color="green"
-                size="mini"
-                onClick={e => {
-                  this.handleLabelSelect(
-                    e,
-                    `${requests.url}`,
-                    `${requests.method}`
-                  );
-                }}
-              >
-                {requests.url}
-                <Label.Detail>{requests.method}</Label.Detail>
-              </Label>
-            </div>
-          );
-        } else if (requests.method == "POST") {
-          return (
-            <div className="label" key={index}>
-              <Label
-                as="a"
-                color="yellow"
-                size="mini"
-                onClick={e => {
-                  this.handleLabelSelect(
-                    e,
-                    `${requests.url}`,
-                    `${requests.method}`
-                  );
-                }}
-              >
-                {requests.url}
-                <Label.Detail>{requests.method}</Label.Detail>
-              </Label>
-            </div>
-          );
-        } else if (requests.method == "PUT") {
-          return (
-            <div key={index} className="label">
-              <Label
-                as="a"
-                color="blue"
-                size="mini"
-                onClick={e => {
-                  this.handleLabelSelect(
-                    e,
-                    `${requests.url}`,
-                    `${requests.method}`
-                  );
-                }}
-              >
-                {requests.url}
-                <Label.Detail>{requests.method}</Label.Detail>
-              </Label>
-            </div>
-          );
-        } else if (requests.method == "DELETE") {
-          return (
-            <div className="label" key={index}>
-              <Label
-                as="a"
-                color="red"
-                size="mini"
-                onClick={e => {
-                  this.handleLabelSelect(
-                    e,
-                    `${requests.url}`,
-                    `${requests.method}`
-                  );
-                }}
-              >
-                {requests.url}
-                <Label.Detail>{requests.method}</Label.Detail>
-              </Label>
-            </div>
-          );
+      let labels = this.props.ToSideBarHistory.reverse().map(
+        (requests, index) => {
+          if (requests.method == "GET") {
+            return (
+              <div className="label" key={index}>
+                <Label
+                  as="a"
+                  color="green"
+                  size="mini"
+                  onClick={e => {
+                    this.handleLabelSelect(
+                      e,
+                      `${requests.url}`,
+                      `${requests.method}`
+                    );
+                  }}
+                >
+                  {requests.url}
+                  <Label.Detail>{requests.method}</Label.Detail>
+                </Label>
+              </div>
+            );
+          } else if (requests.method == "POST") {
+            return (
+              <div className="label" key={index}>
+                <Label
+                  as="a"
+                  color="yellow"
+                  size="mini"
+                  onClick={e => {
+                    this.handleLabelSelect(
+                      e,
+                      `${requests.url}`,
+                      `${requests.method}`
+                    );
+                  }}
+                >
+                  {requests.url}
+                  <Label.Detail>{requests.method}</Label.Detail>
+                </Label>
+              </div>
+            );
+          } else if (requests.method == "PUT") {
+            return (
+              <div key={index} className="label">
+                <Label
+                  as="a"
+                  color="blue"
+                  size="mini"
+                  onClick={e => {
+                    this.handleLabelSelect(
+                      e,
+                      `${requests.url}`,
+                      `${requests.method}`
+                    );
+                  }}
+                >
+                  {requests.url}
+                  <Label.Detail>{requests.method}</Label.Detail>
+                </Label>
+              </div>
+            );
+          } else if (requests.method == "DELETE") {
+            return (
+              <div className="label" key={index}>
+                <Label
+                  as="a"
+                  color="red"
+                  size="mini"
+                  onClick={e => {
+                    this.handleLabelSelect(
+                      e,
+                      `${requests.url}`,
+                      `${requests.method}`
+                    );
+                  }}
+                >
+                  {requests.url}
+                  <Label.Detail>{requests.method}</Label.Detail>
+                </Label>
+              </div>
+            );
+          }
         }
-      });
+      );
       return (
         <div className="history" align="left">
           {labels}

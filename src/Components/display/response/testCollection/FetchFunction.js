@@ -20,6 +20,10 @@ async function FetchFunction(method, headers, url, bodyFormOrUrlData) {
       return result;
     } catch (error) {
       console.log(error.message);
+      let errorJson = {
+        Error: `${error}, Message : ${error.message}`
+      };
+      return errorJson;
     }
   } else {
     if (headers.length > 0) {
@@ -42,6 +46,10 @@ async function FetchFunction(method, headers, url, bodyFormOrUrlData) {
       return result;
     } catch (error) {
       console.log(error.message);
+      let errorJson = {
+        Error: `${error}, Message : ${error.message}`
+      };
+      return errorJson;
     }
   }
 }

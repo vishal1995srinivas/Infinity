@@ -1,0 +1,102 @@
+
+
+* Request should be named - Untitled can be default, user can change.
+* React app title - Rename to <your app name>
+* Set default content-type to app/json
+* Add Raw body field / only support application/json for now.
+* Show loading near Send too
+* Create collection: Use Trello checklist format. Don't use alerts. Use normal HTML elements instead
+* request - send request on enter button clicked
+* history - latest on top
+* form fields must be in form tag
+* Make save button bigger
+* Request retries - Prevent infinite looping Retry only 3-4 times and then stop. Only Retry for GET requests. Else, show failure.
+
+__________________
+
+
+__________-__
+
+* Express, Node
+* Test Express API using <your app name>
+
+_______________
+
+* GitHub issue strategy
+* Use Trello API using <your app name>
+
+* PouchDB - https://pouchdb.com/
+
+
+* Electron App
+
+
+______________
+
+
+
+Code:
+
+* MainComponent - Rename to "Request"
+* Create a collections.js, `requests.js`, `api.js` etc (See comments below)
+* There must one source - no p1, p2, p3
+* Remove unused code
+* Naming - Give descriptive names - Rename Display, Main etc. Good names are Request, History, Collections, RequestHeaders etc...
+
+requests.js
+
+export function sendRequest(url, method, headers, body) {
+    return Promise()
+}
+
+
+api.js
+
+function createCollection() {
+    // use firebase
+}
+
+
+function addRequestToCollection() {
+
+}
+
+function addRequestToHistory() {
+
+}
+
+collections.js
+
+function testCollection(collection, onRequestTested) {
+    for (let request of collection) {
+        response = await sendRequest(request)
+        result = testRequest(req, response)
+        onRequestTested(result);
+    }
+}
+
+
+function TestComponent {
+
+    onClick() {
+        testCollection(collection, onRequestTested);
+    }
+
+    onRequestTested(req, res, result) {
+        setState()
+    }
+}
+
+
+RequestComponent {
+
+    onSend() {
+        requests.sendRequest(request)
+        addRequestToHistory(request)
+    }
+}
+
+
+```
+
+```

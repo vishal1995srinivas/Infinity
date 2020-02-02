@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import ReactJson from "react-json-view";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import _ from "lodash";
-
+import CollectionsResponseComponent from "./CollectionsResponseComponent";
 var diff = require("deep-diff").diff;
-class TestResultsComponent extends Component {
+
+class Tests extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,18 +36,43 @@ class TestResultsComponent extends Component {
       }
       this.GetData(`${newUrl}`, method, myHeaders)
         .then(data => {
-          console.log("This is inside Response", data);
+          let changes = diff(this.props.testCase, data);
+          if (changes) {
+            this.setState({
+              JsonData: changes,
+              urlString: url,
+              method: method,
+              headers: headers,
+              bodyFormOrUrlData: bodyFormOrUrlData
+            });
+          } else {
+            let successJson = {
+              TestCase: "Matched",
+              Operation: "Success"
+            };
+            this.setState({
+              JsonData: successJson,
+              urlString: url,
+              method: method,
+              headers: headers,
+              bodyFormOrUrlData: bodyFormOrUrlData
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error.message);
+          let errorJson = {
+            Error: `${error}, Message : ${error.message}`
+          };
           this.setState({
-            JsonData: data,
+            JsonData: errorJson,
+            urlString: newUrl,
+            error: true,
             urlString: url,
             method: method,
             headers: headers,
             bodyFormOrUrlData: bodyFormOrUrlData
           });
-        })
-        .catch(error => {
-          console.log(error.message);
-          this.setState({ error: error, urlString: newUrl });
         });
     } else {
       if (headers.length > 0) {
@@ -62,18 +87,42 @@ class TestResultsComponent extends Component {
       }
       this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
         .then(data => {
-          console.log("This is inside Response", data);
+          let changes = diff(this.props.testCase, data);
+          if (changes) {
+            this.setState({
+              JsonData: changes,
+              urlString: url,
+              method: method,
+              headers: headers,
+              bodyFormOrUrlData: bodyFormOrUrlData
+            });
+          } else {
+            let successJson = {
+              TestCase: "Matched",
+              Operation: "Success"
+            };
+            this.setState({
+              JsonData: successJson,
+              urlString: url,
+              method: method,
+              headers: headers,
+              bodyFormOrUrlData: bodyFormOrUrlData
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+
+          let errorJson = {
+            Error: `${error}, Message : ${error.message}`
+          };
           this.setState({
-            JsonData: data,
+            JsonData: errorJson,
             urlString: url,
             method: method,
             headers: headers,
             bodyFormOrUrlData: bodyFormOrUrlData
           });
-        })
-        .catch(error => {
-          console.log(error);
-          this.setState({ error: error, urlString: this.props.url });
         });
     }
   }
@@ -105,13 +154,8 @@ class TestResultsComponent extends Component {
     return await response.json(); // parses JSON response into native JavaScript objects
   }
   render() {
-    //console.log(object);
-    console.log(
-      "This is inside testResults",
-      this.state.JsonData,
-      this.props.testCase
-    );
-    const { url, testCase } = this.props;
+    console.log(this.state);
+    const { url } = this.props;
     const {
       isLoading,
       error,
@@ -121,9 +165,7 @@ class TestResultsComponent extends Component {
       headers,
       bodyFormOrUrlData
     } = this.state;
-    if (testCase == null) {
-      return <div className="response">No Test Cases Found</div>;
-    } else if (
+    if (
       urlString !== url ||
       method !== this.props.method ||
       headers !== this.props.headers ||
@@ -136,27 +178,18 @@ class TestResultsComponent extends Component {
         this.props.bodyFormOrUrlData
       );
       return (
-        <div className="response">
+        <div>
           <Loader type="ThreeDots" color="black" height={100} width={100} />
         </div>
       );
     } else if (this.state.JsonData) {
-      // if (this.props.testCase) {
-      var changes = diff(this.props.testCase, this.state.JsonData);
-      if (changes) {
-        console.log(changes);
-        return (
-          <div className="response" align="left">
-            <ReactJson src={changes} theme="monokai" />
-          </div>
-        );
-      } else {
-        return <div className="response">Success</div>;
-      }
-    } else {
-      return <div className="response">{this.state.error}</div>;
+      return (
+        <div className="response" align="left">
+          <ReactJson src={JsonData} theme="monokai" />
+        </div>
+      );
     }
+    //return <div className="response">response</div>;
   }
 }
-
-export default TestResultsComponent;
+export default Tests;

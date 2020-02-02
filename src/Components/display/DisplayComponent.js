@@ -46,6 +46,9 @@ class DisplayComponent extends Component {
       testCase: null
     };
   }
+  updateTestCaseToNull = () => {
+    this.setState({ testCase: null });
+  };
   updateStateFromSubmit = (
     method,
     url,
@@ -179,6 +182,7 @@ class DisplayComponent extends Component {
           ToPlay={this.state.ToPlay}
           ToggleToPlayOff={this.ToggleToPlayOff}
           testCase={this.state.testCase}
+          updateTestCaseToNull={this.updateTestCaseToNull}
         ></NewResponseComponent>
       </div>
     );

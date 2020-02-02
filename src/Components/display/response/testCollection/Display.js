@@ -9,22 +9,6 @@ class Display extends Component {
     this.HandleRequests = this.HandleRequests.bind(this);
     this.state = {
       result: [],
-      requests: [
-        {
-          url: "https://jsonplaceholder.typicode.com/posts",
-          method: "POST",
-          headers: [{ "Content-Type": "application/json" }],
-          bodyFormOrUrlData: { userId: 3 },
-          testCase: { userId: 3 }
-        },
-        {
-          url: "https://jsonplaceholder.typicode.com/posts",
-          method: "POST",
-          headers: [{ "Content-Type": "application/json" }],
-          bodyFormOrUrlData: { userId: 3 },
-          testCase: { id: 101 }
-        }
-      ],
       collectionName: null,
       collectionsRequestsLength: null
     };
