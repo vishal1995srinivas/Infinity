@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Response from "./Response";
 import ReactJson from "react-json-view";
 import responseInOne from "./responseInOne";
+import { Icon } from "semantic-ui-react";
 var diff = require("deep-diff").diff;
 class Display extends Component {
   constructor(props) {
@@ -33,7 +34,11 @@ class Display extends Component {
     let newResult = [];
     for (let request of this.props.ToPlay.requests) {
       console.log(request);
-      let loading = <div>{request.url} : loading</div>;
+      let loading = (
+        <div>
+          {request.url} : <Icon loading name="asterisk" inverted />
+        </div>
+      );
       newResult.push(loading);
     }
     this.setState(
