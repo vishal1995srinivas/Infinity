@@ -10,7 +10,6 @@ class AllResponse extends Component {
 
     this.state = {};
   }
-
   render() {
     if (this.props.sendSwitch == true) {
       if (this.props.testCase !== null) {
@@ -46,5 +45,4 @@ class AllResponse extends Component {
     }
   }
 }
-
 export default AllResponse;

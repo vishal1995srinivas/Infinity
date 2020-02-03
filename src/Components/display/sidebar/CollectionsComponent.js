@@ -178,50 +178,56 @@ class CollectionsComponent extends Component {
       });
       return (
         <div className="collections">
-          <div className="inputCollection">
-            <Input
-              transparent
-              fluid
-              inverted
-              icon="folder"
-              iconPosition="left"
-              placeholder="New Collection Name"
-              onChange={this.handleCollectionName}
-              value={this.props.collectionName}
-            />
-          </div>
-          <Button
-            basic
-            color="grey"
-            content="Click To Create"
-            onClick={this.handleCreateCollection}
-          />
-          <div className="buttonCreate"></div>
+          <form onSubmit={this.handleCreateCollection}>
+            <div className="inputCollection">
+              <Input
+                transparent
+                fluid
+                inverted
+                icon="folder"
+                iconPosition="left"
+                placeholder="New Collection Name + Enter"
+                onChange={this.handleCollectionName}
+                value={this.props.collectionName}
+              />
+            </div>
+            {/* <div className="buttonCreate">
+              <Button
+                basic
+                color="grey"
+                content="Click To Create"
+                onClick={this.handleCreateCollection}
+                type="submit"
+              />
+            </div> */}
+          </form>
           {result}
         </div>
       );
     } else {
       return (
         <div className="collections">
-          <div className="inputCollection">
-            <Input
-              transparent
-              fluid
-              inverted
-              icon="folder"
-              iconPosition="left"
-              placeholder="New Collection Name"
-              onChange={this.handleCollectionName}
-              value={this.props.collectionName}
-            />
-          </div>
-          <Button
-            basic
-            color="grey"
-            content="Click To Create"
-            onClick={this.handleCreateCollection}
-          />
-          <div className="buttonCreate"></div>
+          <form onSubmit={this.handleCreateCollection}>
+            <div className="inputCollection">
+              <Input
+                transparent
+                fluid
+                inverted
+                icon="folder"
+                iconPosition="left"
+                placeholder="New Collection Name + Enter"
+                onChange={this.handleCollectionName}
+                value={this.props.collectionName}
+              />
+            </div>
+
+            {/* <Button
+              basic
+              color="grey"
+              content="Click To Create"
+              onClick={this.handleCreateCollection}
+            /> */}
+          </form>
         </div>
       );
     }

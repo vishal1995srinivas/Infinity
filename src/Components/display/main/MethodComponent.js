@@ -221,14 +221,6 @@ class MethodComponent extends Component {
             className="selectTag"
             placeholder="Add To"
           />
-          {/* <Select
-            fluid
-            placeholder="Save"
-            options={collections}
-            className="selectTag"
-            onChange={this.handleCollectionSelect}
-            value={this.props.SaveToCollectionName}
-          /> */}
         </div>
 
         <div className="tabsComponent">

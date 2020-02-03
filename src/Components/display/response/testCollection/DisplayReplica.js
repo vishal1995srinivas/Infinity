@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Response from "./Response";
 import ReactJson from "react-json-view";
-import { Icon } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 import { withAlert } from "react-alert";
 var diff = require("deep-diff").diff;
 class Display extends Component {
@@ -106,7 +106,9 @@ class Display extends Component {
     ) {
       return (
         <div>
-          <button onClick={this.ClickHandler}>Click Here</button>
+          <Button onClick={this.ClickHandler} secondary>
+            Click Here to get Test Results
+          </Button>
         </div>
       );
     } else {

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import MainComponent from "./main/MainComponent";
 import SidebarComponent from "./sidebar/SidebarComponent";
-import ResponseComponent from "./response/ResponseComponent";
-import NewResponseComponent from "./response/NewResponseComponent";
-import ResponseTabComponent from "./response/ResponseTabComponent";
+
 import { withAlert } from "react-alert";
 import AllResponse from "./response/AllResponse";
 class DisplayComponent extends Component {
@@ -67,7 +65,10 @@ class DisplayComponent extends Component {
           sendSwitch: true
         });
       } else {
-        if (this.state.SaveToCollectionName !== null) {
+        if (
+          this.state.SaveToCollectionName !== null &&
+          this.state.SaveToCollectionName !== ""
+        ) {
           let newHeaders = [{ key: "Content-Type", value: "application/json" }];
           this.state.collections.map(collection => {
             if (collection.name == this.state.SaveToCollectionName) {
@@ -83,7 +84,20 @@ class DisplayComponent extends Component {
               );
             }
           });
+          this.state.ToSideBarHistory.push({ method: method, url: url });
+          this.setState({
+            ToSideBarHistory: this.state.ToSideBarHistory,
+            testCase: testJson,
+            sendSwitch: true,
+            ToResponseMethod: method,
+            ToResponseUrl: url,
+            ToResponseHeaders: [
+              { key: "Content-Type", value: "application/json" }
+            ],
+            ToResponseBodyFormOrUrlData: bodyFormOrUrlData
+          });
         } else {
+          this.state.ToSideBarHistory.push({ method: method, url: url });
           this.setState({
             ToResponseMethod: method,
             ToResponseUrl: url,
@@ -134,7 +148,9 @@ class DisplayComponent extends Component {
           }
         ];
         this.setState({ collections: newCollection, collectionName: "" });
-        this.props.alert.success("Collection Created successfully"); //React-alert to be added
+        this.props.alert.success(
+          `Collection ${this.state.collectionName}  Created successfully`
+        );
       }
     } else {
       this.props.alert.error("Collection Name cannot be empty");
