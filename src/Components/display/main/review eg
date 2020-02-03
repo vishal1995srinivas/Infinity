@@ -3,9 +3,9 @@
 * Set default content-type to app/json--completed
 * Show loading near Send too--pending
 * Create collection: Use Trello checklist format. Don't use alerts. Use normal HTML elements instead--done with warnings
-* request - send request on enter button clicked--penidng
+* request - send request on enter button clicked--penidng---form fields must be in form tag
 * history - latest on top--pending
-* form fields must be in form tag
+* 
 
 
 * GitHub issue strategy
@@ -41,9 +41,6 @@ function addRequestToCollection() {
 function addRequestToHistory() {
 
 }
-
-
-
 RequestComponent {
 
     onSend() {
@@ -76,15 +73,16 @@ collections: [
 To Do Tasks
 -> react-alerts -done
 -> test cases each by each.----------completed 
--> title change
--> play button on press to loading.--problem is reponse component loads only on onclick tab ,loading indicator will be loading until then
+-> title change-------pending
+-> play button on press to loading.--tabs have been removed so no problem
 -> Show errors in fetch---important and timeout -- done but timeout pending
 -------------Collections name should not be same------completed
 ------------headers by default application/json is added
 
-show tabs on condn
+show tabs on condn --removed tabs instead response component loads on condn
 history sort--done
 
-on send --- setState toPlay to null
+on send --- setState toPlay to null ----done by adding sendSwitch
 
-collection name cannot be removed
+collection name cannot be removed-----pending
+---if no testcase the json will be printed------completed

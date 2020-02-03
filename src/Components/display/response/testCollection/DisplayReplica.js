@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Response from "./Response";
 import ReactJson from "react-json-view";
-import responseInOne from "./responseInOne";
 import { Icon } from "semantic-ui-react";
+import { withAlert } from "react-alert";
 var diff = require("deep-diff").diff;
 class Display extends Component {
   constructor(props) {
     super(props);
+    const alert = this.props.alert;
     this.ClickHandler = this.ClickHandler.bind(this);
     this.state = {
       result: [],
@@ -52,23 +53,48 @@ class Display extends Component {
 
     async function HandleRequests() {
       for (let i = 0; i < this.props.ToPlay.requests.length; i++) {
-        let result = await Response(this.props.ToPlay.requests[i]);
-        let changes = diff(result, this.props.ToPlay.requests[i].testCase);
-        if (changes) {
-          console.log(changes);
+        try {
+          let result = await Response(this.props.ToPlay.requests[i]);
+          if (this.props.ToPlay.requests[i].testCase !== null) {
+            let changes = diff(result, this.props.ToPlay.requests[i].testCase);
+            if (changes) {
+              console.log(changes);
+              newResult[i] = (
+                <div className="response" align="left">
+                  <ReactJson src={changes} theme="monokai" />
+                </div>
+              );
+            } else {
+              let successJson = {
+                TestCase: "Matched",
+                Operation: "Success"
+              };
+              newResult[i] = (
+                <div className="response" align="left">
+                  <ReactJson src={successJson} theme="monokai" />
+                </div>
+              );
+            }
+            this.setState({ result: newResult });
+          } else {
+            newResult[i] = (
+              <div className="response" align="left">
+                <ReactJson src={result} theme="monokai" />
+              </div>
+            );
+            this.setState({ result: newResult });
+          }
+        } catch (error) {
+          console.log(error);
+          let errorJson = {
+            Error: `${error}, Message : ${error.message}`
+          };
           newResult[i] = (
             <div className="response" align="left">
-              <ReactJson src={changes} theme="monokai" />
-            </div>
-          );
-        } else {
-          newResult[i] = (
-            <div className="response">
-              {this.state.requests[i].url}: Test Case Matched Successfully
+              <ReactJson src={errorJson} theme="monokai" />
             </div>
           );
         }
-        this.setState({ result: newResult });
       }
     }
   }
@@ -95,4 +121,4 @@ class Display extends Component {
     }
   }
 }
-export default Display;
+export default withAlert()(Display);

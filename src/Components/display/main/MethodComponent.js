@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withAlert } from "react-alert";
-
 import {
   Button,
   Select,
@@ -120,7 +119,7 @@ class MethodComponent extends Component {
             this.props.method,
             this.props.url,
             newHeaders,
-            newBodyFormData, //body in other than get
+            newBodyFormData,
             this.state.obj
           );
         } else if (this.state.valueOfBody == "Form-url-encoded") {
@@ -171,8 +170,11 @@ class MethodComponent extends Component {
     const collections = this.props.collections.map((collection, index) => {
       return { key: index, text: collection.name, value: collection.name };
     });
+    if (this.props.loading == true) {
+    }
     return (
       //This has to be refactored-> create a new component for only method,url,submit and save buttons
+
       <div className="urlComponent">
         <div className="method">
           <Select
@@ -209,15 +211,26 @@ class MethodComponent extends Component {
           </Button>
         </div>
         <div className="saveButton">
-          <Select
+          <Dropdown
+            clearable
+            options={collections}
+            selection
+            onChange={this.handleCollectionSelect}
+            value={this.props.SaveToCollectionName}
+            fluid
+            className="selectTag"
+            placeholder="Add To"
+          />
+          {/* <Select
             fluid
             placeholder="Save"
             options={collections}
             className="selectTag"
             onChange={this.handleCollectionSelect}
             value={this.props.SaveToCollectionName}
-          />
+          /> */}
         </div>
+
         <div className="tabsComponent">
           <TabsComponent
             headers={this.state.headers}

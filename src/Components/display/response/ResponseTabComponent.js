@@ -135,7 +135,12 @@ class ResponseComponent extends Component {
       bodyFormOrUrlData
     } = this.state;
     if (url == "") {
-      return <div className="response">Hit Send to fetch data</div>;
+      return (
+        <div className="response">
+          {/* Image here */}
+          Hit Send to fetch data
+        </div>
+      );
     } else if (
       urlString !== url ||
       method !== this.props.method ||

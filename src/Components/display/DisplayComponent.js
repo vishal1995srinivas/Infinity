@@ -21,27 +21,7 @@ class DisplayComponent extends Component {
       ToResponseBodyFormOrUrlData: [{ key: "", value: "" }],
       ToSideBarHistory: [],
       collectionName: "",
-      collections: [
-        // {
-        //   name: "Sample",
-        //   requests: [
-        //     {
-        //       method: "POST",
-        //       url: "https://jsonplaceholder.typicode.com/posts",
-        //       headers: [{ key: "Content/Type", value: "application/json" }],
-        //       bodyFormOrUrlData: [{ key: "userId", value: "3" }],
-        //       testCase: { id: 101 }
-        //     },
-        //     {
-        //       method: "POST",
-        //       url: "https://jsonplaceholder.typicode.com/posts",
-        //       headers: [{ key: "Content/Type", value: "application/json" }],
-        //       bodyFormOrUrlData: [{ key: "userId", value: "3" }],
-        //       testCase: { name: 3 }
-        //     }
-        //   ]
-        // }
-      ],
+      collections: [],
       SaveToCollectionName: null,
       ToPlay: null,
       testCase: null,
