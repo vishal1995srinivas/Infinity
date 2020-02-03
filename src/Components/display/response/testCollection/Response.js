@@ -3,13 +3,23 @@ import FetchFunction from "./FetchFunction";
 
 async function Response(request) {
   try {
-    let result = await FetchFunction(
-      request.method,
-      request.headers,
-      request.url,
-      request.bodyFormOrUrlData
-    );
-    return result;
+    if (request.method == "GET") {
+      let result = await FetchFunction(
+        request.method,
+        request.headers,
+        request.url,
+        null
+      );
+      return result;
+    } else {
+      let result = await FetchFunction(
+        request.method,
+        request.headers,
+        request.url,
+        request.bodyFormOrUrlData
+      );
+      return result;
+    }
   } catch (error) {
     console.log(error);
   }

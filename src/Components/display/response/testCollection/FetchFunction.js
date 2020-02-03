@@ -4,6 +4,7 @@ import GetData from "./GetData";
 
 async function FetchFunction(method, headers, url, bodyFormOrUrlData) {
   let myHeaders = null;
+  console.log(headers);
   if (method == "GET") {
     if (headers.length > 0) {
       myHeaders = new Headers();
@@ -13,7 +14,7 @@ async function FetchFunction(method, headers, url, bodyFormOrUrlData) {
     }
     let newUrl = url;
     if (url.search("https://") == -1) {
-      newUrl = `https://${this.props.url}`;
+      newUrl = `https://${url}`;
     }
     try {
       let result = await GetData(`${newUrl}`, method, myHeaders);

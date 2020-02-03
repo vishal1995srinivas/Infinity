@@ -19,8 +19,6 @@ class HistoryComponent extends Component {
     this.props.handleHistoryClick(url, method);
   };
   render() {
-    console.log("This is to sidebar history", this.props.ToSideBarHistory);
-
     if (this.props.ToSideBarHistory.length > 0) {
       let labels = this.props.ToSideBarHistory.reverse().map(
         (requests, index) => {

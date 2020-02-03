@@ -124,7 +124,6 @@ class ResponseComponent extends Component {
     return await response.json(); // parses JSON response into native JavaScript objects
   }
   render() {
-    console.log(this.state);
     const { url } = this.props;
     const {
       isLoading,

@@ -5,6 +5,7 @@ import ResponseComponent from "./response/ResponseComponent";
 import NewResponseComponent from "./response/NewResponseComponent";
 import ResponseTabComponent from "./response/ResponseTabComponent";
 import { withAlert } from "react-alert";
+import AllResponse from "./response/AllResponse";
 class DisplayComponent extends Component {
   constructor(props) {
     super(props);
@@ -21,29 +22,30 @@ class DisplayComponent extends Component {
       ToSideBarHistory: [],
       collectionName: "",
       collections: [
-        {
-          name: "Sample",
-          requests: [
-            {
-              method: "POST",
-              url: "https://jsonplaceholder.typicode.com/posts",
-              headers: [{ key: "Content/Type", value: "application/json" }],
-              bodyFormOrUrlData: [{ key: "userId", value: "3" }],
-              testCase: { id: 101 }
-            },
-            {
-              method: "POST",
-              url: "https://jsonplaceholder.typicode.com/posts",
-              headers: [{ key: "Content/Type", value: "application/json" }],
-              bodyFormOrUrlData: [{ key: "userId", value: "3" }],
-              testCase: { name: 3 }
-            }
-          ]
-        }
+        // {
+        //   name: "Sample",
+        //   requests: [
+        //     {
+        //       method: "POST",
+        //       url: "https://jsonplaceholder.typicode.com/posts",
+        //       headers: [{ key: "Content/Type", value: "application/json" }],
+        //       bodyFormOrUrlData: [{ key: "userId", value: "3" }],
+        //       testCase: { id: 101 }
+        //     },
+        //     {
+        //       method: "POST",
+        //       url: "https://jsonplaceholder.typicode.com/posts",
+        //       headers: [{ key: "Content/Type", value: "application/json" }],
+        //       bodyFormOrUrlData: [{ key: "userId", value: "3" }],
+        //       testCase: { name: 3 }
+        //     }
+        //   ]
+        // }
       ],
       SaveToCollectionName: null,
       ToPlay: null,
-      testCase: null
+      testCase: null,
+      sendSwitch: true
     };
   }
   updateTestCaseToNull = () => {
@@ -62,10 +64,10 @@ class DisplayComponent extends Component {
           this.state.collections.map(collection => {
             if (collection.name == this.state.SaveToCollectionName) {
               collection.requests.push({
-                method: this.state.method,
-                url: this.state.url,
-                headers: this.state.headers,
-                bodyFormOrUrlData: this.state.bodyFormOrUrlData,
+                method: method,
+                url: url,
+                headers: headers,
+                bodyFormOrUrlData: bodyFormOrUrlData,
                 testCase: testJson
               });
               this.props.alert.success(
@@ -75,26 +77,45 @@ class DisplayComponent extends Component {
           });
         }
         this.state.ToSideBarHistory.push({ method: method, url: url });
-        console.log("This is inside update state from submit", headers);
         this.setState({
           ToResponseMethod: method,
           ToResponseUrl: url,
           ToResponseHeaders: headers,
           ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
           ToSideBarHistory: this.state.ToSideBarHistory,
-          testCase: testJson
+          testCase: testJson,
+          sendSwitch: true
         });
       } else {
-        this.setState({
-          ToResponseMethod: method,
-          ToResponseUrl: url,
-          ToResponseHeaders: [
-            { key: "Content-Type", value: "application/json" }
-          ],
-          ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
-          ToSideBarHistory: this.state.ToSideBarHistory,
-          testCase: testJson
-        });
+        if (this.state.SaveToCollectionName !== null) {
+          let newHeaders = [{ key: "Content-Type", value: "application/json" }];
+          this.state.collections.map(collection => {
+            if (collection.name == this.state.SaveToCollectionName) {
+              collection.requests.push({
+                method: method,
+                url: url,
+                headers: newHeaders,
+                bodyFormOrUrlData: bodyFormOrUrlData,
+                testCase: testJson
+              });
+              this.props.alert.success(
+                `Successfully saved to ${this.state.SaveToCollectionName} Collection`
+              );
+            }
+          });
+        } else {
+          this.setState({
+            ToResponseMethod: method,
+            ToResponseUrl: url,
+            ToResponseHeaders: [
+              { key: "Content-Type", value: "application/json" }
+            ],
+            ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
+            ToSideBarHistory: this.state.ToSideBarHistory,
+            testCase: testJson,
+            sendSwitch: true
+          });
+        }
       }
     } else {
       this.props.alert.error("URL is empty.");
@@ -105,7 +126,6 @@ class DisplayComponent extends Component {
   };
   handleSelect = (event, data) => {
     this.setState({ method: data.value });
-    console.log(data.value);
   };
   handleUrl = event => {
     this.setState({ url: event.target.value });
@@ -144,9 +164,10 @@ class DisplayComponent extends Component {
     let newCollections = [...this.state.collections];
     newCollections.splice(index, 1);
     this.setState({ collections: newCollections });
+    this.props.alert.success("Collection Deleted Successfully");
   };
   handlePlayCollection = index => {
-    this.setState({ ToPlay: this.state.collections[index] });
+    this.setState({ ToPlay: this.state.collections[index], sendSwitch: false });
   };
   ToggleToPlayOff = () => {
     this.setState({ ToPlay: null });
@@ -174,7 +195,8 @@ class DisplayComponent extends Component {
           handleDeleteCollection={this.handleDeleteCollection}
           handlePlayCollection={this.handlePlayCollection}
         ></SidebarComponent>
-        <NewResponseComponent
+        <AllResponse
+          sendSwitch={this.state.sendSwitch}
           method={this.state.ToResponseMethod}
           url={this.state.ToResponseUrl}
           headers={this.state.ToResponseHeaders}
@@ -183,7 +205,7 @@ class DisplayComponent extends Component {
           ToggleToPlayOff={this.ToggleToPlayOff}
           testCase={this.state.testCase}
           updateTestCaseToNull={this.updateTestCaseToNull}
-        ></NewResponseComponent>
+        ></AllResponse>
       </div>
     );
   }

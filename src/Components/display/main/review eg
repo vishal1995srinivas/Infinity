@@ -75,11 +75,16 @@ collections: [
 ]
 To Do Tasks
 -> react-alerts -done
--> test cases each by each.----------completed in main ->tab name has to be changed to Collection Test Results (results)
+-> test cases each by each.----------completed 
 -> title change
 -> play button on press to loading.--problem is reponse component loads only on onclick tab ,loading indicator will be loading until then
 -> Show errors in fetch---important and timeout -- done but timeout pending
 -------------Collections name should not be same------completed
 ------------headers by default application/json is added
+
 show tabs on condn
 history sort--done
+
+on send --- setState toPlay to null
+
+collection name cannot be removed

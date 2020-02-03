@@ -24,6 +24,10 @@ class MethodComponent extends Component {
     this.objUpdate = this.objUpdate.bind(this);
     this.SubmitHandler = this.SubmitHandler.bind(this);
   }
+  objSetToNull = () => {
+    this.setState({ obj: null });
+    this.props.alert.success("Test Case cleared in memory");
+  };
 
   handleSelect = (event, data) => {
     this.props.handleSelect(event, data);
@@ -77,23 +81,12 @@ class MethodComponent extends Component {
         bodyFormUrlData: [{ key: "", value: "" }]
       });
     } else if (valueOfBody === "form-data") {
-      // let headers = [...this.state.headers];
-
-      // headers = [
-      //   { key: "Content-Type", value: "multipart/form-data" },
-      //   headers
-      // ];
       this.setState({
         // headers: this.state.headers.push({ key: "Content-Type", value: "multipart/form-data" }),
         valueOfBody: valueOfBody,
         bodyFormUrlData: [{ key: "", value: "" }]
       });
     } else if (valueOfBody === "Form-url-encoded") {
-      // let headers = [...this.state.headers];
-      // headers = [
-      //   { key: "Content-Type", value: "application/x-www-form-urlencoded" },
-      //   headers
-      // ];
       this.setState({
         // headers: headers,
         valueOfBody: valueOfBody,
@@ -107,14 +100,11 @@ class MethodComponent extends Component {
       let headersLength = headers.length;
       let newHeaders = headers.slice(0, headersLength - 1);
       if (this.props.method == "GET") {
-        console.log("Method is", this.props.method); // method
-        console.log("URL is", this.props.url); // url
-
         this.props.updateStateFromSubmit(
           this.props.method,
           this.props.url,
           newHeaders,
-          null, //no body in get
+          null,
           this.state.obj
         );
       } else {
@@ -122,7 +112,6 @@ class MethodComponent extends Component {
         let bodyFormDataLength = bodyFormData.length;
         let newBodyFormData = bodyFormData.slice(0, bodyFormDataLength - 1);
         if (this.state.valueOfBody == "form-data") {
-          console.log("Headers are ", this.state.headers);
           newHeaders.push({
             key: "Content-Type",
             value: "multipart/form-data"
@@ -145,7 +134,6 @@ class MethodComponent extends Component {
             0,
             bodyFormUrlDataLength - 1
           );
-          console.log("Headers are ", this.state.headers);
           this.props.updateStateFromSubmit(
             this.props.method,
             this.props.url,
@@ -154,7 +142,6 @@ class MethodComponent extends Component {
             this.state.obj
           );
         } else {
-          console.log("Headers are ", this.state.headers);
           this.props.updateStateFromSubmit(
             this.props.method,
             this.props.url,
@@ -174,7 +161,6 @@ class MethodComponent extends Component {
     }
   }
   render() {
-    console.log("this is headers", this.state.headers);
     const { method, url } = this.props;
     const options = [
       { key: "get", value: "GET", text: "GET" },
@@ -248,6 +234,7 @@ class MethodComponent extends Component {
             handleChangeValueOfBody={this.handleChangeValueOfBody}
             objUpdate={this.objUpdate}
             obj={this.state.obj}
+            objSetToNull={this.objSetToNull}
           ></TabsComponent>
         </div>
       </div>

@@ -9,6 +9,22 @@ class Display extends Component {
     this.HandleRequests = this.HandleRequests.bind(this);
     this.state = {
       result: [],
+      requests: [
+        {
+          url: "https://jsonplaceholder.typicode.com/posts",
+          method: "POST",
+          headers: [{ key: "Content-Type", value: "application/json" }],
+          bodyFormOrUrlData: { userId: 3 },
+          testCase: { userId: 3 }
+        },
+        {
+          url: "https://jsonplaceholder.typicode.com/posts",
+          method: "POST",
+          headers: [{ key: "Content-Type", value: "application/json" }],
+          bodyFormOrUrlData: { userId: 3 },
+          testCase: { id: 101 }
+        }
+      ],
       collectionName: null,
       collectionsRequestsLength: null
     };
@@ -24,7 +40,7 @@ class Display extends Component {
       {
         result: newResult,
         collectionName: this.props.collectionName,
-        collectionsRequestsLength: this.props.requests.length
+        collectionsRequestsLength: this.props.ToPlay.requests.length
       },
       this.HandleRequests
     );
@@ -51,13 +67,15 @@ class Display extends Component {
     }
   }
   render() {
+    console.log(this.state.result);
     let loading = this.state.result.map((result, index) => {
       return <div key={index}>{result}</div>;
     });
-    if (this.props.requests !== null) {
+    if (this.props.ToPlay !== null) {
       if (
         this.state.collectionName !== this.props.collectionName &&
-        this.state.collectionsRequestsLength !== this.props.requests.length
+        this.state.collectionsRequestsLength !==
+          this.props.ToPlay.requests.length
       ) {
         return (
           <div>
