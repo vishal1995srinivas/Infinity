@@ -8,6 +8,7 @@ class DisplayComponent extends Component {
   constructor(props) {
     super(props);
     const alert = this.props.alert;
+    this.updateStateFromSubmit = this.updateStateFromSubmit.bind(this);
     this.state = {
       method: "GET",
       url: "",
@@ -23,9 +24,13 @@ class DisplayComponent extends Component {
       SaveToCollectionName: null,
       ToPlay: null,
       testCase: null,
-      sendSwitch: true
+      sendSwitch: true,
+      title: ""
     };
   }
+  handleTitle = event => {
+    this.setState({ title: event.target.value });
+  };
   updateTestCaseToNull = () => {
     this.setState({ testCase: null });
   };
@@ -42,6 +47,7 @@ class DisplayComponent extends Component {
           this.state.collections.map(collection => {
             if (collection.name == this.state.SaveToCollectionName) {
               collection.requests.push({
+                title: this.state.title,
                 method: method,
                 url: url,
                 headers: headers,
@@ -54,7 +60,11 @@ class DisplayComponent extends Component {
             }
           });
         }
-        this.state.ToSideBarHistory.push({ method: method, url: url });
+        this.state.ToSideBarHistory.push({
+          title: this.state.title,
+          method: method,
+          url: url
+        });
         this.setState({
           ToResponseMethod: method,
           ToResponseUrl: url,
@@ -73,6 +83,7 @@ class DisplayComponent extends Component {
           this.state.collections.map(collection => {
             if (collection.name == this.state.SaveToCollectionName) {
               collection.requests.push({
+                title: this.state.title,
                 method: method,
                 url: url,
                 headers: newHeaders,
@@ -84,7 +95,11 @@ class DisplayComponent extends Component {
               );
             }
           });
-          this.state.ToSideBarHistory.push({ method: method, url: url });
+          this.state.ToSideBarHistory.push({
+            title: this.state.title,
+            method: method,
+            url: url
+          });
           this.setState({
             ToSideBarHistory: this.state.ToSideBarHistory,
             testCase: testJson,
@@ -97,7 +112,11 @@ class DisplayComponent extends Component {
             ToResponseBodyFormOrUrlData: bodyFormOrUrlData
           });
         } else {
-          this.state.ToSideBarHistory.push({ method: method, url: url });
+          this.state.ToSideBarHistory.push({
+            title: this.state.title,
+            method: method,
+            url: url
+          });
           this.setState({
             ToResponseMethod: method,
             ToResponseUrl: url,
@@ -124,8 +143,8 @@ class DisplayComponent extends Component {
   handleUrl = event => {
     this.setState({ url: event.target.value });
   };
-  handleHistoryClick = (url, method) => {
-    this.setState({ method: method, url: url });
+  handleHistoryClick = (url, method, title) => {
+    this.setState({ method: method, url: url, title: title });
   };
   handleCollectionName = value => {
     this.setState({ collectionName: value });
@@ -149,7 +168,7 @@ class DisplayComponent extends Component {
         ];
         this.setState({ collections: newCollection, collectionName: "" });
         this.props.alert.success(
-          `Collection ${this.state.collectionName}  Created successfully`
+          `Collection ${this.state.collectionName} Created successfully`
         );
       }
     } else {
@@ -172,6 +191,8 @@ class DisplayComponent extends Component {
     return (
       <div className="display">
         <MainComponent
+          handleTitle={this.handleTitle}
+          title={this.state.title}
           updateStateFromSubmit={this.updateStateFromSubmit}
           handleSelect={this.handleSelect}
           handleUrl={this.handleUrl}
@@ -182,6 +203,7 @@ class DisplayComponent extends Component {
           SaveToCollectionName={this.SaveToCollectionName}
         ></MainComponent>
         <SidebarComponent
+          title={this.state.title}
           ToSideBarHistory={this.state.ToSideBarHistory}
           handleHistoryClick={this.handleHistoryClick}
           handleCollectionName={this.handleCollectionName}

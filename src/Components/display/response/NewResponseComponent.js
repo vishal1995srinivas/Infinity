@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Label, Menu, Tab } from "semantic-ui-react";
 import ResponseTabComponent from "./ResponseTabComponent";
-import CollectionsResponseComponent from "./CollectionsResponseComponent";
-import TestsComponent from "./TestsComponent";
-import TestResultsComponent from "./TestResultsComponent";
-import TestExampleResponse from "./TestExampleResponse";
+
 import Display from "./testCollection/Display";
 import Tests from "./Tests";
 

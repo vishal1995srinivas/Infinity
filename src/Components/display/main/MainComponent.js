@@ -10,7 +10,10 @@ class MainComponent extends Component {
   render() {
     return (
       <div className="main">
-        <TitleComponent></TitleComponent>
+        <TitleComponent
+          handleTitle={this.props.handleTitle}
+          title={this.props.title}
+        ></TitleComponent>
         <MethodComponent
           updateStateFromSubmit={this.props.updateStateFromSubmit}
           handleSelect={this.props.handleSelect}

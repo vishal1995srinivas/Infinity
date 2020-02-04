@@ -15,13 +15,19 @@ class HistoryComponent extends Component {
       ]
     }; //This is also a stateless component
   }
-  handleLabelSelect = (event, url, method) => {
-    this.props.handleHistoryClick(url, method);
+  handleLabelSelect = (event, url, method, title) => {
+    this.props.handleHistoryClick(url, method, title);
   };
   render() {
     if (this.props.ToSideBarHistory.length > 0) {
       let labels = this.props.ToSideBarHistory.reverse().map(
         (requests, index) => {
+          let title = null;
+          if (requests.title == "" || requests.title == null) {
+            title = requests.url;
+          } else {
+            title = requests.title;
+          }
           if (requests.method == "GET") {
             return (
               <div className="label" key={index}>
@@ -33,11 +39,12 @@ class HistoryComponent extends Component {
                     this.handleLabelSelect(
                       e,
                       `${requests.url}`,
-                      `${requests.method}`
+                      `${requests.method}`,
+                      `${title}`
                     );
                   }}
                 >
-                  {requests.url}
+                  {title}
                   <Label.Detail>{requests.method}</Label.Detail>
                 </Label>
               </div>
@@ -53,11 +60,12 @@ class HistoryComponent extends Component {
                     this.handleLabelSelect(
                       e,
                       `${requests.url}`,
-                      `${requests.method}`
+                      `${requests.method}`,
+                      `${title}`
                     );
                   }}
                 >
-                  {requests.url}
+                  {title}
                   <Label.Detail>{requests.method}</Label.Detail>
                 </Label>
               </div>
@@ -73,11 +81,12 @@ class HistoryComponent extends Component {
                     this.handleLabelSelect(
                       e,
                       `${requests.url}`,
-                      `${requests.method}`
+                      `${requests.method}`,
+                      `${title}`
                     );
                   }}
                 >
-                  {requests.url}
+                  {title}
                   <Label.Detail>{requests.method}</Label.Detail>
                 </Label>
               </div>
@@ -93,11 +102,12 @@ class HistoryComponent extends Component {
                     this.handleLabelSelect(
                       e,
                       `${requests.url}`,
-                      `${requests.method}`
+                      `${requests.method}`,
+                      `${title}`
                     );
                   }}
                 >
-                  {requests.url}
+                  {title}
                   <Label.Detail>{requests.method}</Label.Detail>
                 </Label>
               </div>

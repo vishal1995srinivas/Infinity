@@ -102,7 +102,7 @@ caption {
 }
 .main {
   grid-column: 3/11;
-  grid-row: 1/8;
+  grid-row: 1/10;
   background-color: #1b1c1d;
   overflow-x: visible;
   overflow-y: hidden;
@@ -120,6 +120,9 @@ caption {
   grid-row: 8/16;
   overflow-x: scroll;
   color: white;
+}
+.responseContent {
+  padding-top: 6vh;
 }
 
 .sidebar {
@@ -170,6 +173,10 @@ caption {
 }
 .title {
   background-color: #282828;
+  font-size: 2vh;
+  padding-top: 1vh;
+  padding-left: 1vw;
+
   grid-column: 1/11;
   grid-row: 1/2;
   border: 1px solid grey;

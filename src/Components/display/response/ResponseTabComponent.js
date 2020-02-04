@@ -136,7 +136,7 @@ class ResponseComponent extends Component {
     } = this.state;
     if (url == "") {
       return (
-        <div className="response">
+        <div className="responseContent">
           {/* Image here */}
           Hit Send to fetch data
         </div>
@@ -160,7 +160,7 @@ class ResponseComponent extends Component {
       );
     } else if (this.state.JsonData) {
       return (
-        <div className="response" align="left">
+        <div className="responseContent" align="left">
           <ReactJson src={JsonData} theme="monokai" />
         </div>
       );

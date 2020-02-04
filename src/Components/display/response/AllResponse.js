@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Tests from "./Tests";
 import ResponseTabComponent from "./ResponseTabComponent";
-import Display from "./testCollection/Display";
+
 import DisplayReplica from "./testCollection/DisplayReplica";
 
 class AllResponse extends Component {
