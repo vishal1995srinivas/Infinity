@@ -1,23 +1,31 @@
 import React, { Component } from "react";
 import JSONInput from "react-json-editor-ajrm";
-import locale from "react-json-editor-ajrm/locale/en";
+
+import { Icon } from "semantic-ui-react";
 class TestsComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      obj: { name: "Bob" }
+      obj: null
     };
     this.objUpdate = this.objUpdate.bind(this);
+    this.clearButton = this.clearButton.bind(this);
   }
   objUpdate(arg) {
     this.props.objUpdate(arg);
   }
+  clearButton() {
+    this.props.objSetToNull();
+  }
   render() {
-    //console.log(this.state.obj);
     return (
       <div align="left" className="testsComponent">
+        <p>
+          <Icon onClick={this.clearButton} link name="close" />
+        </p>
         <JSONInput
+          value={this.state.obj}
           className="testsComponent"
           id="123"
           placeholder={this.props.obj}

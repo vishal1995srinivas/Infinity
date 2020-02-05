@@ -17,6 +17,7 @@ class SidebarComponent extends Component {
         render: () => (
           <Tab.Pane attached={false} className="tabPane">
             <HistoryComponent
+              title={this.props.title}
               ToSideBarHistory={this.props.ToSideBarHistory}
               handleHistoryClick={this.props.handleHistoryClick}
             ></HistoryComponent>

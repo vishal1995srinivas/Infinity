@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Label, Menu, Tab } from "semantic-ui-react";
 import ResponseTabComponent from "./ResponseTabComponent";
-import CollectionsResponseComponent from "./CollectionsResponseComponent";
-import TestsComponent from "./TestsComponent";
-import TestResultsComponent from "./TestResultsComponent";
-import TestExampleResponse from "./TestExampleResponse";
+
 import Display from "./testCollection/Display";
+import Tests from "./Tests";
 
 class NewResponseComponent extends Component {
   constructor(props) {
@@ -20,6 +18,7 @@ class NewResponseComponent extends Component {
   };
   render() {
     let collectionsTab = null;
+    let TestsTab = null;
     if (this.props.ToPlay == null) {
       collectionsTab = {};
     } else {
@@ -29,6 +28,7 @@ class NewResponseComponent extends Component {
           <div>
             <Tab.Pane className="tabPane">
               <Display
+                ToPlay={this.props.ToPlay}
                 requests={this.props.ToPlay.requests}
                 collectionName={this.props.ToPlay.name}
               ></Display>
@@ -36,6 +36,27 @@ class NewResponseComponent extends Component {
           </div>
         )
       };
+    }
+    if (this.props.testCase !== null) {
+      TestsTab = {
+        menuItem: { key: "tests", icon: "users", content: "Tests" },
+        render: () => (
+          <div>
+            <Tab.Pane className="tabPane">
+              <Tests
+                updateTestCaseToNull={this.props.updateTestCaseToNull}
+                testCase={this.props.testCase}
+                method={this.props.method}
+                url={this.props.url}
+                headers={this.props.headers}
+                bodyFormOrUrlData={this.props.bodyFormOrUrlData}
+              ></Tests>
+            </Tab.Pane>
+          </div>
+        )
+      };
+    } else {
+      TestsTab = {};
     }
     const panes = [
       {
@@ -54,23 +75,7 @@ class NewResponseComponent extends Component {
         )
       },
       collectionsTab,
-      {
-        menuItem: { key: "tests", icon: "users", content: "Tests" },
-        render: () => (
-          <div>
-            <Tab.Pane className="tabPane">
-              <TestExampleResponse
-                testCase={this.props.testCase}
-                method={this.props.method}
-                url={this.props.url}
-                headers={this.props.headers}
-                bodyFormOrUrlData={this.props.bodyFormOrUrlData}
-                ToPlay={this.props.ToPlay}
-              ></TestExampleResponse>
-            </Tab.Pane>
-          </div>
-        )
-      }
+      TestsTab
     ];
     return (
       <div className="response">

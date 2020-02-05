@@ -90,6 +90,7 @@ class TabsComponent extends Component {
         render: () => (
           <Tab.Pane attached={false} className="tabPane">
             <TestsComponent
+              objSetToNull={this.props.objSetToNull}
               objUpdate={this.props.objUpdate}
               obj={this.props.obj}
             ></TestsComponent>
