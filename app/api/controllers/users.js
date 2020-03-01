@@ -19,7 +19,7 @@ module.exports = {
 				next(err);
 			} else {
 				if (userInfo != null && bcrypt.compareSync(req.body.password, userInfo.password)) {
-					const token = jwt.sign({ id: userInfo._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+					const token = jwt.sign({ id: userInfo._id }, req.app.get('secretKey'), { expiresIn: '5h' });
 
 					res.json({ status: 'success', message: 'user found!!!', data: { user: userInfo, token: token } });
 				} else {
