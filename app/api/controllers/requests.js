@@ -1,68 +1,79 @@
 const requestsModel = require('../models/requests');
 
-module.exports = {
-	// getById: function(req, res, next) {
-	// 	console.log(req.body);
-	// 	movieModel.findById(req.params.movieId, function(err, movieInfo) {
-	// 		if (err) {
-	// 			next(err);
-	// 		} else {
-	// 			res.json({ status: 'success', message: 'Movie found!!!', data: { movies: movieInfo } });
-	// 		}
-	// 	});
-	// },
-	getAll: function(req, res, next) {
-		let requestsList = [];
-		let id = req.query.userId;
-		console.log(id);
-		requestsModel.find(req.query, function(err, requests) {
-			if (err) {
-				next(err);
-			} else {
-				for (let request of requests) {
-					console.log(request);
-					requestsList.push(request);
-				}
-				res.json({
-					status: 'success',
-					message: 'Requests list found and here it is!!!',
-					data: { requests: requestsList }
-				});
-			}
-		});
-	},
-	// updateById: function(req, res, next) {
-	// 	movieModel.findByIdAndUpdate(req.params.movieId, { name: req.body.name }, function(err, movieInfo) {
-	// 		if (err) next(err);
-	// 		else {
-	// 			res.json({ status: 'success', message: 'Movie updated successfully!!!', data: null });
-	// 		}
-	// 	});
-	// },
-	// deleteById: function(req, res, next) {
-	// 	movieModel.findByIdAndRemove(req.params.movieId, function(err, movieInfo) {
-	// 		if (err) next(err);
-	// 		else {
-	// 			res.json({ status: 'success', message: 'Movie deleted successfully!!!', data: null });
-	// 		}
-	// 	});
-	// },
+const { body } = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
 
-	create: function(req, res, next) {
-		requestsModel.create(
-			{
-				userId: req.body.userId,
-				url: req.body.url,
-				method: req.body.method,
-				title: req.body.title,
-				headers: req.body.headers,
-				data: req.body.data,
-				testJson: req.body.testJson
-			},
-			function(err, result) {
-				if (err) next(err);
-				else res.json({ status: 'success', message: 'Request added successfully!!!', data: null });
+module.exports = {
+	getAll: function(req, res, next) {
+		try {
+			const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+
+			if (!errors.isEmpty()) {
+				res.status(422).json({ errors: errors.array() });
+				return;
 			}
-		);
+			let requestsList = [];
+			let id = req.query.userId;
+			console.log(id);
+			requestsModel.find(req.query, function(err, requests) {
+				if (err) {
+					next(err);
+				} else {
+					for (let request of requests) {
+						console.log(request);
+						requestsList.push(request);
+					}
+					res.json({
+						status: 'success',
+						message: 'Requests list found and here it is!!!',
+						data: { requests: requestsList }
+					});
+				}
+			});
+		} catch (err) {
+			return next(err);
+		}
+	}, //Check this
+	create: function(req, res, next) {
+		try {
+			const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+
+			if (!errors.isEmpty()) {
+				res.status(422).json({ errors: errors.array() });
+				return;
+			}
+			requestsModel.create(
+				{
+					userId: req.body.userId,
+					url: req.body.url,
+					method: req.body.method,
+					title: req.body.title,
+					headers: req.body.headers,
+					data: req.body.data,
+					testJson: req.body.testJson
+				},
+				function(err, result) {
+					if (err) next(err);
+					else res.json({ status: 'success', message: 'Request added successfully!!!', data: result });
+				}
+			);
+		} catch (err) {
+			return next(err);
+		}
+	},
+	validate: (method) => {
+		switch (method) {
+			case 'create': {
+				return [
+					body('userId', 'Invalid / No userId').exists().isString(),
+					body('url', 'No url Found').exists(),
+					body('method', 'No method Found').exists().isString(),
+					body('headers', 'No headers Found').exists(),
+					body('title', 'No title Found').exists(), //it can be null but it shud be present
+					body('data', 'No data Found').exists(),
+					body('testJson', 'No testJson Found .It can be null').exists()
+				];
+			}
+		}
 	}
 };

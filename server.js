@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
-const movies = require('./routes/movies');
+const expressValidator = require('express-validator');
+
 const requests = require('./routes/requests');
 const collections = require('./routes/collections');
 
@@ -18,6 +19,7 @@ app.set('secretKey', 'nodeRestApi'); // jwt secret token
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cors());
 app.get('/', function(req, res) {
 	res.json({ tutorial: 'Build REST API with node.js' });
@@ -25,7 +27,7 @@ app.get('/', function(req, res) {
 // public route
 app.use('/users', users);
 // private route
-app.use('/movies', validateUser, movies);
+
 app.use('/api/v1/requests', validateUser, requests);
 app.use('/api/v1/collections', validateUser, collections);
 app.get('/favicon.ico', function(req, res) {
