@@ -1,6 +1,8 @@
 const express = require('express');
 const logger = require('morgan');
 const movies = require('./routes/movies');
+const requests = require('./routes/requests');
+const collections = require('./routes/collections');
 
 const users = require('./routes/users');
 const bodyParser = require('body-parser');
@@ -15,7 +17,7 @@ app.set('secretKey', 'nodeRestApi'); // jwt secret token
 // connection to mongodb
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.get('/', function(req, res) {
 	res.json({ tutorial: 'Build REST API with node.js' });
@@ -24,6 +26,8 @@ app.get('/', function(req, res) {
 app.use('/users', users);
 // private route
 app.use('/movies', validateUser, movies);
+app.use('/api/v1/requests', validateUser, requests);
+app.use('/api/v1/collections', validateUser, collections);
 app.get('/favicon.ico', function(req, res) {
 	res.sendStatus(204);
 });
@@ -50,7 +54,6 @@ app.use(function(req, res, next) {
 // handle errors
 app.use(function(err, req, res, next) {
 	console.log(err);
-
 	if (err.status === 404) res.status(404).json({ message: 'Not found' });
 	else res.status(500).json({ message: 'Something looks wrong :( !!!' });
 });
