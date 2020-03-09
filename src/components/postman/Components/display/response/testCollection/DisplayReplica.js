@@ -34,9 +34,15 @@ class Display extends Component {
 		for (let request of this.props.ToPlay.requests) {
 			console.log(request);
 			if (request !== null) {
+				let title = null;
+				if (request.title == '' || request.title == null) {
+					title = request.url;
+				} else {
+					title = request.title;
+				}
 				let loading = (
 					<div>
-						{request.url} : <Icon loading name="asterisk" inverted />
+						{title} : <Icon loading name="asterisk" inverted />
 					</div>
 				);
 				newResult.push(loading);
@@ -50,13 +56,36 @@ class Display extends Component {
 			},
 			HandleRequests
 		);
-
 		async function HandleRequests() {
 			for (let i = 0; i < this.props.ToPlay.requests.length; i++) {
 				try {
 					if (this.props.ToPlay.requests[i] !== null) {
 						let result = await Response(this.props.ToPlay.requests[i]);
 						if (this.props.ToPlay.requests[i].testCase !== null) {
+							/************************* */
+							let output = jsonDiff.diffString(this.props.ToPlay.requests[i].testCase, result);
+							console.log(output);
+							// if (output == '') {
+							// 	let successJson = {
+							// 		TestCase: 'Matched',
+							// 		Operation: 'Success'
+							// 	};
+							// 	newResult[i] = (
+							// 		<div className="response" align="left">
+							// 			{successJson}
+							// 			{/* <ReactJson src={successJson} theme="monokai" /> */}
+							// 		</div>
+							// 	);
+							// } else {
+							// 	newResult[i] = (
+							// 		<div className="response" align="left">
+							// 			{JSON.stringify(output)}
+							// 			{/* <ReactJson src={output} theme="monokai" /> */}
+							// 		</div>
+							// 	);
+							// }
+							// this.setState({ result: newResult });
+							/************************** */
 							// let difference = jsonDiff.diff(result, this.props.ToPlay.requests[i].testCase);
 							// console.log(difference);
 							// newResult[i] = <div>{difference}</div>;
@@ -73,27 +102,27 @@ class Display extends Component {
 							// );
 							// this.setState({ result: newResult });
 							/********************************************* */
-							let changes = diff(result, this.props.ToPlay.requests[i].testCase);
-							if (changes) {
-								console.log(changes);
-								newResult[i] = (
-									<div className="response" align="left">
-										<ReactJson src={changes} theme="monokai" />
-									</div>
-								);
-								this.setState({ result: newResult });
-							} else {
-								let successJson = {
-									TestCase: 'Matched',
-									Operation: 'Success'
-								};
-								newResult[i] = (
-									<div className="response" align="left">
-										<ReactJson src={successJson} theme="monokai" />
-									</div>
-								);
-								this.setState({ result: newResult });
-							}
+							// let changes = diff(result, this.props.ToPlay.requests[i].testCase);
+							// if (changes) {
+							// 	console.log(changes);
+							// 	newResult[i] = (
+							// 		<div className="response" align="left">
+							// 			<ReactJson src={changes} theme="monokai" />
+							// 		</div>
+							// 	);
+							// 	this.setState({ result: newResult });
+							// } else {
+							// 	let successJson = {
+							// 		TestCase: 'Matched',
+							// 		Operation: 'Success'
+							// 	};
+							// 	newResult[i] = (
+							// 		<div className="response" align="left">
+							// 			<ReactJson src={successJson} theme="monokai" />
+							// 		</div>
+							// 	);
+							// 	this.setState({ result: newResult });
+							// }
 						} else {
 							newResult[i] = (
 								<div className="response" align="left">
@@ -117,7 +146,6 @@ class Display extends Component {
 			}
 		}
 	}
-
 	render() {
 		console.log(this.props.ToPlay);
 		if (
