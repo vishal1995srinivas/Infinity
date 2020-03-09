@@ -119,6 +119,7 @@ caption {
 	grid-column: 3/11;
 	grid-row: 9/16;
 	overflow-x: scroll;
+	overflow-y: scroll;
 	color: white;
 }
 
@@ -129,12 +130,20 @@ caption {
 	grid-row: 1/16;
 	overflow-x: scroll;
 }
+.example {
+	color: white;
+	float: left;
+}
+.exampleMethod {
+	float: right;
+}
 .history {
 	background-color: #282828;
 	color: white;
 }
 .label {
 	padding-top: 10px;
+	color: white;
 }
 .iconPlay {
 	float: right;

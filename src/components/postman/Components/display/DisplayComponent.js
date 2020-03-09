@@ -32,7 +32,8 @@ class DisplayComponent extends Component {
 			ToPlay: null,
 			testCase: null,
 			sendSwitch: true,
-			title: ''
+			title: '',
+			historyLoading: true
 		};
 	}
 	handleTitle = (event) => {
@@ -303,7 +304,7 @@ class DisplayComponent extends Component {
 
 		let collections = await getCollections(userId, userToken);
 
-		this.setState({ ToSideBarHistory: topHistory, collections: collections });
+		this.setState({ ToSideBarHistory: topHistory, collections: collections, historyLoading: false });
 	}
 
 	render() {
@@ -323,6 +324,7 @@ class DisplayComponent extends Component {
 					SaveToCollectionName={this.SaveToCollectionName}
 				/>
 				<SidebarComponent
+					historyLoading={this.state.historyLoading}
 					title={this.state.title}
 					ToSideBarHistory={this.state.ToSideBarHistory}
 					handleHistoryClick={this.handleHistoryClick}
