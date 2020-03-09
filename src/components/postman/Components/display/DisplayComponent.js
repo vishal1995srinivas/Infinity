@@ -8,6 +8,9 @@ import getHistory from '../db/getHistory';
 import { getJwt } from '../../../../helpers/jwt';
 import getCollections from '../db/getCollections';
 import createCollection from '../db/createCollection';
+import DeleteCollectionById from '../db/deleteCollectionById';
+import addRequestToCollection from '../db/addRequestToCollection';
+import createRequest from '../db/createRequest';
 class DisplayComponent extends Component {
 	constructor(props) {
 		super(props);
@@ -38,12 +41,12 @@ class DisplayComponent extends Component {
 	updateTestCaseToNull = () => {
 		this.setState({ testCase: null });
 	};
-	updateStateFromSubmit = (method, url, headers, bodyFormOrUrlData, testJson) => {
+	updateStateFromSubmit = async (method, url, headers, bodyFormOrUrlData, testJson) => {
 		if (url !== '') {
 			if (headers.length > 0) {
 				if (this.state.SaveToCollectionName !== null) {
-					this.state.collections.map((collection) => {
-						if (collection.name == this.state.SaveToCollectionName) {
+					this.state.collections.map(async (collection) => {
+						if (collection.collectionName == this.state.SaveToCollectionName) {
 							collection.requests.push({
 								title: this.state.title,
 								method: method,
@@ -52,17 +55,60 @@ class DisplayComponent extends Component {
 								bodyFormOrUrlData: bodyFormOrUrlData,
 								testCase: testJson
 							});
+							/************************************** */
+							const jwt = getJwt();
+							let userId = jwt.userId;
+							let userToken = jwt.userToken;
+							let request = {
+								userId: `${userId}`,
+								url: url,
+								method: method,
+								title: this.state.title,
+								headers: headers,
+								data: bodyFormOrUrlData,
+								collectionName: this.state.SaveToCollectionName,
+								testJson: testJson
+							};
+							let addRequest = await addRequestToCollection(request, userToken);
+							console.log(addRequest);
 							this.props.alert.success(
 								`Successfully saved to ${this.state.SaveToCollectionName} Collection`
 							);
+							/************************************************************** */
+							this.state.ToSideBarHistory.push({
+								title: this.state.title,
+								method: method,
+								url: url
+							});
 						}
 					});
 				}
-				this.state.ToSideBarHistory.push({
-					title: this.state.title,
-					method: method,
-					url: url
-				});
+				// this.state.ToSideBarHistory.push({
+				// 	title: this.state.title,
+				// 	method: method,
+				// 	url: url
+				// });
+				// /******************************************* */
+				// const jwt = getJwt();
+				// let userId = jwt.userId;
+				// let userToken = jwt.userToken;
+				// let request = {
+				// 	userId: `${userId}`,
+				// 	url: url,
+				// 	method: method,
+				// 	title: this.state.title,
+				// 	data: bodyFormOrUrlData,
+				// 	headers: headers,
+				// 	testJson: testJson
+				// };
+				// try {
+				// 	let requestAdded = await createRequest(userToken, request);
+				// 	console.log(requestAdded);
+				// 	this.props.alert.success(`Successfully saved to Requests`);
+				// } catch (error) {
+				// 	this.props.alert.error(`Error Saving to  Database`);
+				// }
+				// /********************************************************** */
 				this.setState({
 					ToResponseMethod: method,
 					ToResponseUrl: url,
@@ -75,19 +121,42 @@ class DisplayComponent extends Component {
 			} else {
 				if (this.state.SaveToCollectionName !== null && this.state.SaveToCollectionName !== '') {
 					let newHeaders = [ { key: 'Content-Type', value: 'application/json' } ];
-					this.state.collections.map((collection) => {
-						if (collection.name == this.state.SaveToCollectionName) {
-							collection.requests.push({
-								title: this.state.title,
-								method: method,
-								url: url,
-								headers: newHeaders,
-								bodyFormOrUrlData: bodyFormOrUrlData,
-								testCase: testJson
-							});
-							this.props.alert.success(
-								`Successfully saved to ${this.state.SaveToCollectionName} Collection`
-							);
+					this.state.collections.map(async (collection) => {
+						if (collection.collectionName == this.state.SaveToCollectionName) {
+							console.log(collection);
+							try {
+								collection.requests.push({
+									title: this.state.title,
+									method: method,
+									url: url,
+									headers: newHeaders,
+									bodyFormOrUrlData: bodyFormOrUrlData,
+									testCase: testJson
+								});
+								/*********************************** */
+								const jwt = getJwt();
+								let userId = jwt.userId;
+								let userToken = jwt.userToken;
+								let request = {
+									userId: `${userId}`,
+									url: url,
+									method: method,
+									title: this.state.title,
+									headers: newHeaders,
+									data: bodyFormOrUrlData,
+									collectionName: this.state.SaveToCollectionName,
+									testJson: this.state.testCase
+								};
+								let addRequest = await addRequestToCollection(request, userToken);
+								console.log(addRequest);
+								this.props.alert.success(
+									`Successfully saved to ${this.state.SaveToCollectionName} Collection`
+								);
+								/************************************************************** */
+							} catch (error) {
+								console.log(error);
+								this.props.alert.error('Error saving to database!');
+							}
 						}
 					});
 					this.state.ToSideBarHistory.push({
@@ -110,6 +179,29 @@ class DisplayComponent extends Component {
 						method: method,
 						url: url
 					});
+
+					/******************************************* */
+					const jwt = getJwt();
+					let userId = jwt.userId;
+					let userToken = jwt.userToken;
+					let request = {
+						userId: `${userId}`,
+						url: url,
+						method: method,
+						title: this.state.title,
+						data: bodyFormOrUrlData,
+						headers: headers,
+						testJson: testJson
+					};
+					try {
+						let requestAdded = await createRequest(userToken, request);
+						console.log(requestAdded);
+						this.props.alert.success(`Successfully saved to Requests`);
+					} catch (error) {
+						this.props.alert.error(`Error Saving to  Database`);
+					}
+					/*********************************************************** */
+
 					this.setState({
 						ToResponseMethod: method,
 						ToResponseUrl: url,
@@ -145,7 +237,7 @@ class DisplayComponent extends Component {
 
 		if (this.state.collectionName !== '') {
 			this.state.collections.map((collection) => {
-				if (collection.name == this.state.collectionName) {
+				if (collection.collectionName == this.state.collectionName) {
 					this.props.alert.error(`${this.state.collectionName} already exists`);
 					collectionExist = true;
 				}
@@ -173,11 +265,27 @@ class DisplayComponent extends Component {
 			this.props.alert.error('Collection Name cannot be empty');
 		}
 	};
-	handleDeleteCollection = (event, index) => {
-		let newCollections = [ ...this.state.collections ];
-		newCollections.splice(index, 1);
-		this.setState({ collections: newCollections });
-		this.props.alert.success('Collection Deleted Successfully');
+	handleDeleteCollection = async (event, index) => {
+		try {
+			/**Add delete flag dont remove from database in the next update*********** */
+			const jwt = getJwt();
+			let userToken = jwt.userToken;
+			let CollectionToBeDeleted = this.state.collections[index];
+			//console.log(CollectionToBeDeleted);
+			let idOfTheCollectionIs = CollectionToBeDeleted.id;
+			//console.log(idOfTheCollectionIs);
+			let deleteCollection = await DeleteCollectionById(userToken, idOfTheCollectionIs);
+
+			/******************************************************* */
+			let collectionAfterDelete = this.state.collections.filter((collection) => {
+				return collection.id !== idOfTheCollectionIs;
+			});
+			this.setState({ collections: collectionAfterDelete });
+			this.props.alert.success('Collection Deleted Successfully');
+		} catch (error) {
+			console.log(error);
+			this.props.alert.error('Collection cannot be deleted. Try again later!');
+		}
 	};
 	handlePlayCollection = (index) => {
 		this.setState({ ToPlay: this.state.collections[index], sendSwitch: false });
@@ -194,13 +302,12 @@ class DisplayComponent extends Component {
 		let topHistory = requestHistory.requests.reverse();
 
 		let collections = await getCollections(userId, userToken);
-		//console.log(collections.collection);
 
 		this.setState({ ToSideBarHistory: topHistory, collections: collections });
 	}
 
 	render() {
-		// console.log(this.state.sendSwitch);
+		//console.log(this.state.ToPlay);
 		return (
 			<div className="display">
 				<MainComponent

@@ -25,14 +25,13 @@ class CollectionsComponent extends Component {
 
     this.setState({ activeIndex: newIndex });
   };
-  handlePlay = (event, collectionId) => {
-console.log(collectionId)
-    // this.props.handlePlayCollection(index);
+  handlePlay = (event, index) => {
+// console.log(collectionId)
+    this.props.handlePlayCollection(index);
     //console.log(this.state.collections[index]);
   };
-  handleDelete = (event, collectionId) => {
-    console.log(collectionId)
-    // this.props.handleDeleteCollection(event, collectionId);
+  handleDelete = (event, index) => {
+     this.props.handleDeleteCollection(event, index);
   };
   handleCollectionName = event => {
     this.props.handleCollectionName(event.target.value);
@@ -43,8 +42,10 @@ console.log(collectionId)
 
   render() {
     const { activeIndex } = this.state;
+    //console.log(this.props.collections)
     if (this.props.collections.length > 0) {
       let result = this.props.collections.map((collections, index) => {
+        //console.log(collections);
         if (collections.requests.length > 0) {
           let labels = collections.requests.map((requests, index) => {
             if(requests !== null)
@@ -57,7 +58,7 @@ console.log(collectionId)
             }
             if (requests.method == "GET") {
               return (
-                <div className="label" key={requests._id}>
+                <div className="label" key={index}>
                   <Label as="a" color="green" size="mini">
                     {title}
                     <Label.Detail>{requests.method}</Label.Detail>
@@ -66,7 +67,7 @@ console.log(collectionId)
               );
             } else if (requests.method == "POST") {
               return (
-                <div className="label" key={requests._id}>
+                <div className="label" key={index}>
                   <Label as="a" color="yellow" size="mini">
                     {title}
                     <Label.Detail>{requests.method}</Label.Detail>
@@ -84,7 +85,7 @@ console.log(collectionId)
               );
             } else if (requests.method == "DELETE") {
               return (
-                <div className="label" key={requests._id}>
+                <div className="label" key={index}>
                   <Label as="a" color="red" size="mini">
                     {title}
                     <Label.Detail>{requests.method}</Label.Detail>
@@ -96,7 +97,7 @@ console.log(collectionId)
           });
         
           return (
-            <div className="collections" align="left" key={collections.id}>
+            <div className="collections" align="left" key={index}>
               <Segment inverted>
                 <Accordion fluid inverted>
                   <Accordion.Title
@@ -110,14 +111,14 @@ console.log(collectionId)
                       <Icon
                         className="iconPlay" //Create a separate classname in css as same as play
                         name="trash"
-                        onClick={event => this.handleDelete(event, collections.id)}
+                        onClick={event => this.handleDelete(event, index)}
                       ></Icon>
                     </a>
                     <a href="#">
                       <Icon
                         className="iconPlay"
                         name="play"
-                        onClick={event => this.handlePlay(event, collections.id)}
+                        onClick={event => this.handlePlay(event, index)}
                       ></Icon>
                     </a>
                   </Accordion.Title>
@@ -131,7 +132,7 @@ console.log(collectionId)
         }
         else {
           return (
-            <div className="collections" align="left" key={collections.id}>
+            <div className="collections" align="left" key={index}>
               <Segment inverted>
                 <Accordion fluid inverted>
                   <Accordion.Title
@@ -141,11 +142,12 @@ console.log(collectionId)
                   >
                     <Icon name="dropdown" />
                     {collections.collectionName}
+                   
                     <a href="#">
                       <Icon
                         className="iconPlay" //Create a separate classname in css as same as play
                         name="trash"
-                        onClick={event => this.handleDelete(event, collections.id)}
+                        onClick={event => this.handleDelete(event, index)}
                       ></Icon>
                     </a>
                   </Accordion.Title>

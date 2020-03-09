@@ -37,13 +37,15 @@ async function getDataById(url = '', token) {
 async function getCollections(userId, token) {
 	let url = `http://localhost:5000/api/v1/collections?userId=${userId}`;
 	let Collections = await getData(url, token);
-	let collections = [];
+	//console.log(Collections);
+	let TotalCollections = [];
 
 	if (Collections.data.collection.length > 0) {
 		for (let i = 0; i < Collections.data.collection.length; i++) {
+			//console.log(Collections.data.collection);
 			let collection = {
 				id: Collections.data.collection[i]._id,
-				title: Collections.data.collection[i].title,
+				collectionName: Collections.data.collection[i].collectionName,
 				requests: []
 			};
 			for (let j = 0; j < Collections.data.collection[i].requests.length; j++) {
@@ -54,10 +56,11 @@ async function getCollections(userId, token) {
 				collection.requests.push(request.data);
 			}
 
-			collections.push(collection);
+			TotalCollections.push(collection);
 		}
 	}
-	console.log(collections);
-	return collections;
+	//console.log(TotalCollections);
+
+	return TotalCollections;
 }
 export default getCollections;

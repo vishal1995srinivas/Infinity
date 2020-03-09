@@ -30,7 +30,7 @@ class HistoryComponent extends Component {
 				}
 				if (requests.method == 'GET') {
 					return (
-						<div className="label" key={requests._id}>
+						<div className="label" key={index}>
 							<Label
 								as="a"
 								color="green"

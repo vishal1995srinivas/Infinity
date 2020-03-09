@@ -117,7 +117,7 @@ caption {
 	font-size: 2vh;
 
 	grid-column: 3/11;
-	grid-row: 9/16;
+	grid-row: 10/16;
 	overflow-x: scroll;
 	color: white;
 }
@@ -145,6 +145,9 @@ caption {
 }
 .collections {
 	background-color: #282828;
+}
+.collectionName {
+	float: left;
 }
 .inputCollection {
 	color: white !important;
@@ -312,6 +315,8 @@ label {
 }
 .dropDown {
 	grid-column: 10/11;
+	float: left;
+
 	background-color: #282828;
 	margin-top: 2vh;
 	margin-right: 1.5vw;
