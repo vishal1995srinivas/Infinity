@@ -62,9 +62,12 @@ class Display extends Component {
 					if (this.props.ToPlay.requests[i] !== null) {
 						let result = await Response(this.props.ToPlay.requests[i]);
 						if (this.props.ToPlay.requests[i].testCase !== null) {
-							/************************* */
-							let output = jsonDiff.diffString(this.props.ToPlay.requests[i].testCase, result);
-							console.log(output);
+							/************************************************* */
+							// let output = jsonDiff.diffString(this.props.ToPlay.requests[i].testCase, result);
+							// console.log(output);
+							// newResult[i] = output;
+							// this.setState({ result: newResult });
+							/********************************************* */
 							// if (output == '') {
 							// 	let successJson = {
 							// 		TestCase: 'Matched',
@@ -102,27 +105,27 @@ class Display extends Component {
 							// );
 							// this.setState({ result: newResult });
 							/********************************************* */
-							// let changes = diff(result, this.props.ToPlay.requests[i].testCase);
-							// if (changes) {
-							// 	console.log(changes);
-							// 	newResult[i] = (
-							// 		<div className="response" align="left">
-							// 			<ReactJson src={changes} theme="monokai" />
-							// 		</div>
-							// 	);
-							// 	this.setState({ result: newResult });
-							// } else {
-							// 	let successJson = {
-							// 		TestCase: 'Matched',
-							// 		Operation: 'Success'
-							// 	};
-							// 	newResult[i] = (
-							// 		<div className="response" align="left">
-							// 			<ReactJson src={successJson} theme="monokai" />
-							// 		</div>
-							// 	);
-							// 	this.setState({ result: newResult });
-							// }
+							let changes = diff(result, this.props.ToPlay.requests[i].testCase);
+							if (changes) {
+								console.log(changes);
+								newResult[i] = (
+									<div className="response" align="left">
+										<ReactJson src={changes} theme="monokai" />
+									</div>
+								);
+								this.setState({ result: newResult });
+							} else {
+								let successJson = {
+									TestCase: 'Matched',
+									Operation: 'Success'
+								};
+								newResult[i] = (
+									<div className="response" align="left">
+										<ReactJson src={successJson} theme="monokai" />
+									</div>
+								);
+								this.setState({ result: newResult });
+							}
 						} else {
 							newResult[i] = (
 								<div className="response" align="left">

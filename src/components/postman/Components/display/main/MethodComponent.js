@@ -144,6 +144,8 @@ class MethodComponent extends Component {
 		}
 	}
 	render() {
+		let sendButton;
+		console.log(this.props.url);
 		const { method, url } = this.props;
 		const options = [
 			{ key: 'get', value: 'GET', text: 'GET' },
@@ -155,6 +157,21 @@ class MethodComponent extends Component {
 			return { key: collection._id, text: collection.collectionName, value: collection.collectionName };
 		});
 		if (this.props.loading == true) {
+		}
+		if (this.props.url == '') {
+			sendButton = (
+				<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler} disabled>
+					Send
+					<Icon name="send" />
+				</Button>
+			);
+		} else {
+			sendButton = (
+				<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler}>
+					Send
+					<Icon name="send" />
+				</Button>
+			);
 		}
 		return (
 			//This has to be refactored-> create a new component for only method,url,submit and save buttons
@@ -176,12 +193,7 @@ class MethodComponent extends Component {
 						onChange={this.handleUrl}
 					/>
 				</div>
-				<div className="sendButton">
-					<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler}>
-						Send
-						<Icon name="send" />
-					</Button>
-				</div>
+				<div className="sendButton">{sendButton}</div>
 				<div className="saveButton">
 					<Dropdown
 						clearable
