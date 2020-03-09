@@ -174,7 +174,11 @@ class HistoryComponent extends Component {
 				return <div className="history">No Requests yet!</div>;
 			}
 		} else {
-			return <div>{/* <Loader type="ThreeDots" color="black" height={100} width={100} /> */}</div>;
+			return (
+				<div>
+					<Loader type="ThreeDots" color="black" height={100} width={100} />
+				</div>
+			);
 		}
 	}
 }
