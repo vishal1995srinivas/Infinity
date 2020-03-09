@@ -144,7 +144,7 @@ class MethodComponent extends Component {
 		}
 	}
 	render() {
-		let sendButton;
+		let sendButton, saveButton;
 		console.log(this.props.url);
 		const { method, url } = this.props;
 		const options = [
@@ -165,12 +165,37 @@ class MethodComponent extends Component {
 					<Icon name="send" />
 				</Button>
 			);
+			saveButton = (
+				<Dropdown
+					clearable
+					options={collections}
+					selection
+					onChange={this.handleCollectionSelect}
+					value={this.props.SaveToCollectionName}
+					fluid
+					className="selectTag"
+					placeholder="Add To"
+					disabled
+				/>
+			);
 		} else {
 			sendButton = (
 				<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler}>
 					Send
 					<Icon name="send" />
 				</Button>
+			);
+			saveButton = (
+				<Dropdown
+					clearable
+					options={collections}
+					selection
+					onChange={this.handleCollectionSelect}
+					value={this.props.SaveToCollectionName}
+					fluid
+					className="selectTag"
+					placeholder="Add To"
+				/>
 			);
 		}
 		return (
@@ -194,18 +219,7 @@ class MethodComponent extends Component {
 					/>
 				</div>
 				<div className="sendButton">{sendButton}</div>
-				<div className="saveButton">
-					<Dropdown
-						clearable
-						options={collections}
-						selection
-						onChange={this.handleCollectionSelect}
-						value={this.props.SaveToCollectionName}
-						fluid
-						className="selectTag"
-						placeholder="Add To"
-					/>
-				</div>
+				<div className="saveButton">{saveButton}</div>
 
 				<div className="tabsComponent">
 					<TabsComponent
