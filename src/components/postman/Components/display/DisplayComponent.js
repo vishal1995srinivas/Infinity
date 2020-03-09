@@ -75,7 +75,7 @@ class DisplayComponent extends Component {
 								`Successfully saved to ${this.state.SaveToCollectionName} Collection`
 							);
 							/************************************************************** */
-							this.state.ToSideBarHistory.push({
+							this.state.ToSideBarHistory.unshift({
 								title: this.state.title,
 								method: method,
 								url: url
@@ -83,7 +83,7 @@ class DisplayComponent extends Component {
 						}
 					});
 				}
-				// this.state.ToSideBarHistory.push({
+				// this.state.ToSideBarHistory.unshift({
 				// 	title: this.state.title,
 				// 	method: method,
 				// 	url: url
@@ -159,7 +159,7 @@ class DisplayComponent extends Component {
 							}
 						}
 					});
-					this.state.ToSideBarHistory.push({
+					this.state.ToSideBarHistory.unshift({
 						title: this.state.title,
 						method: method,
 						url: url
@@ -174,7 +174,7 @@ class DisplayComponent extends Component {
 						ToResponseBodyFormOrUrlData: bodyFormOrUrlData
 					});
 				} else {
-					this.state.ToSideBarHistory.push({
+					this.state.ToSideBarHistory.unshift({
 						title: this.state.title,
 						method: method,
 						url: url
