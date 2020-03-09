@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withAlert } from 'react-alert';
 import { Button, Select, Input, Dropdown, Segment, Icon } from 'semantic-ui-react';
+
 import TabsComponent from './TabsComponent';
+var validUrl = require('valid-url');
 class MethodComponent extends Component {
 	constructor(props) {
 		super(props);
@@ -160,43 +162,49 @@ class MethodComponent extends Component {
 		}
 		if (this.props.url == '') {
 			sendButton = (
-				<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler} disabled>
-					Send
-					<Icon name="send" />
-				</Button>
+				<div />
+				// <Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler} disabled>
+				// 	Send
+				// 	<Icon name="send" />
+				// </Button>
 			);
 			saveButton = (
-				<Dropdown
-					clearable
-					options={collections}
-					selection
-					onChange={this.handleCollectionSelect}
-					value={this.props.SaveToCollectionName}
-					fluid
-					className="selectTag"
-					placeholder="Add To"
-					disabled
-				/>
+				<div />
+				// <Dropdown
+				// 	clearable
+				// 	options={collections}
+				// 	selection
+				// 	onChange={this.handleCollectionSelect}
+				// 	value={this.props.SaveToCollectionName}
+				// 	fluid
+				// 	className="selectTag"
+				// 	placeholder="Add To"
+				// 	disabled
+				// />
 			);
 		} else {
-			sendButton = (
-				<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler}>
-					Send
-					<Icon name="send" />
-				</Button>
-			);
-			saveButton = (
-				<Dropdown
-					clearable
-					options={collections}
-					selection
-					onChange={this.handleCollectionSelect}
-					value={this.props.SaveToCollectionName}
-					fluid
-					className="selectTag"
-					placeholder="Add To"
-				/>
-			);
+			if (validUrl.isUri(this.props.url)) {
+				console.log('Looks like an URI');
+
+				sendButton = (
+					<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler}>
+						Send
+						<Icon name="send" />
+					</Button>
+				);
+				saveButton = (
+					<Dropdown
+						clearable
+						options={collections}
+						selection
+						onChange={this.handleCollectionSelect}
+						value={this.props.SaveToCollectionName}
+						fluid
+						className="selectTag"
+						placeholder="Add To"
+					/>
+				);
+			}
 		}
 		return (
 			//This has to be refactored-> create a new component for only method,url,submit and save buttons

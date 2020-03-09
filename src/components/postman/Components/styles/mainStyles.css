@@ -102,7 +102,7 @@ caption {
 }
 .main {
 	grid-column: 3/11;
-	grid-row: 1/10;
+	grid-row: 1/9;
 	background-color: #1b1c1d;
 	overflow-x: visible;
 	overflow-y: hidden;
@@ -117,7 +117,7 @@ caption {
 	font-size: 2vh;
 
 	grid-column: 3/11;
-	grid-row: 10/16;
+	grid-row: 9/16;
 	overflow-x: scroll;
 	color: white;
 }
@@ -294,7 +294,7 @@ label {
 	margin-bottom: 1vh;
 	margin-left: 0.5vw;
 
-	font-size: 0.85vw;
+	font-size: 0.65vw;
 	color: #fff;
 	font-style: italic;
 }

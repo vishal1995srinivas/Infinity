@@ -108,30 +108,18 @@ class Display extends Component {
 							let changes = diff(result, this.props.ToPlay.requests[i].testCase);
 							if (changes) {
 								console.log(changes);
-								newResult[i] = (
-									<div className="response" align="left">
-										<ReactJson src={changes} theme="monokai" />
-									</div>
-								);
+								newResult[i] = <ReactJson src={changes} theme="monokai" />;
 								this.setState({ result: newResult });
 							} else {
 								let successJson = {
 									TestCase: 'Matched',
 									Operation: 'Success'
 								};
-								newResult[i] = (
-									<div className="response" align="left">
-										<ReactJson src={successJson} theme="monokai" />
-									</div>
-								);
+								newResult[i] = <ReactJson src={successJson} theme="monokai" />;
 								this.setState({ result: newResult });
 							}
 						} else {
-							newResult[i] = (
-								<div className="response" align="left">
-									<ReactJson src={result} theme="monokai" />
-								</div>
-							);
+							newResult[i] = <ReactJson src={result} theme="monokai" />;
 							this.setState({ result: newResult });
 						}
 					}
@@ -140,11 +128,7 @@ class Display extends Component {
 					let errorJson = {
 						Error: `${error}, Message : ${error.message}`
 					};
-					newResult[i] = (
-						<div className="response" align="left">
-							<ReactJson src={errorJson} theme="monokai" />
-						</div>
-					);
+					newResult[i] = <ReactJson src={errorJson} theme="monokai" />;
 				}
 			}
 		}
@@ -164,10 +148,14 @@ class Display extends Component {
 			);
 		} else {
 			let loading = this.state.result.map((result, index) => {
-				return <div key={index}>{result}</div>;
+				return (
+					<div key={index} align="left">
+						{result}
+					</div>
+				);
 			});
 			return (
-				<div className="response" align="left">
+				<div align="left">
 					<div>{loading}</div>
 				</div>
 			);

@@ -30,7 +30,8 @@
     "react-lodash": "^0.1.2",
     "react-materialize": "^3.5.8",
     "react-scripts": "3.3.0",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "valid-url": "^1.0.9"
   },
   "scripts": {
     "start": "react-scripts start",
