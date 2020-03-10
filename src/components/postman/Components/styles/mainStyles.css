@@ -137,6 +137,10 @@ caption {
 .exampleMethod {
 	float: right;
 }
+.instructions {
+	font-size: 1rem;
+	padding-left: 2vw;
+}
 .history {
 	background-color: #282828;
 	color: white;
@@ -294,8 +298,7 @@ label {
 }
 .sendButton {
 	background-color: #282828;
-	grid-column: 9/10;
-	grid-row: 1/2;
+
 	margin-top: 2.5vh;
 	margin-bottom: 1vh;
 	margin-left: 0.5vw;

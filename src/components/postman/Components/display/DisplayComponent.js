@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MainComponent from './main/MainComponent';
 import SidebarComponent from './sidebar/SidebarComponent';
-
 import { withAlert } from 'react-alert';
 import AllResponse from './response/AllResponse';
 import getHistory from '../db/getHistory';

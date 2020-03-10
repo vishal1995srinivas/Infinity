@@ -15,8 +15,8 @@ class HistoryComponent extends Component {
 				{ method: 'DELETE', url: 'www.facebook.com' }
 			]
 		}; //This is also a stateless component
-	}
-	handleLabelSelect = (event, url, method, title) => {
+	} //To be completed
+	handleLabelSelect = (event, url, method, title, data, headers, testJson) => {
 		this.props.handleHistoryClick(url, method, title);
 	};
 	render() {
@@ -25,6 +25,7 @@ class HistoryComponent extends Component {
 		if (this.props.historyLoading == false) {
 			if (this.props.ToSideBarHistory.length > 0) {
 				let labels = this.props.ToSideBarHistory.map((requests, index) => {
+					console.log(requests);
 					let title = null;
 					let Untitled = 'Untitled Request';
 					if (requests.title == '' || requests.title == null) {
@@ -42,7 +43,10 @@ class HistoryComponent extends Component {
 												e,
 												`${requests.url}`,
 												`${requests.method}`,
-												`${title}`
+												`${title}`,
+												`${requests.data}`,
+												`${requests.headers}`,
+												`${requests.testJson}`
 											);
 										}}
 									>
@@ -75,7 +79,10 @@ class HistoryComponent extends Component {
 												e,
 												`${requests.url}`,
 												`${requests.method}`,
-												`${title}`
+												`${title}`,
+												`${requests.data}`,
+												`${requests.headers}`,
+												`${requests.testJson}`
 											);
 										}}
 									>
@@ -108,7 +115,10 @@ class HistoryComponent extends Component {
 												e,
 												`${requests.url}`,
 												`${requests.method}`,
-												`${title}`
+												`${title}`,
+												`${requests.data}`,
+												`${requests.headers}`,
+												`${requests.testJson}`
 											);
 										}}
 									>
@@ -141,7 +151,10 @@ class HistoryComponent extends Component {
 												e,
 												`${requests.url}`,
 												`${requests.method}`,
-												`${title}`
+												`${title}`,
+												`${requests.data}`,
+												`${requests.headers}`,
+												`${requests.testJson}`
 											);
 										}}
 									>

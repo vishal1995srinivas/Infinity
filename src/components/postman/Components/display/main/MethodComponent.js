@@ -187,13 +187,22 @@ class MethodComponent extends Component {
 				console.log('Looks like an URI');
 
 				sendButton = (
-					<Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler}>
+					<Button
+						primary
+						icon
+						labelPosition="right"
+						className="submitBtn"
+						size="medium"
+						onClick={this.SubmitHandler}
+					>
 						Send
 						<Icon name="send" />
 					</Button>
 				);
 				saveButton = (
 					<Dropdown
+						search
+						simple
 						clearable
 						options={collections}
 						selection
