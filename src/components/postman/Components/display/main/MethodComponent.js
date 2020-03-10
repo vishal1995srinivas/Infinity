@@ -202,6 +202,7 @@ class MethodComponent extends Component {
 				saveButton = (
 					<Dropdown
 						search
+						scrolling
 						simple
 						clearable
 						options={collections}
