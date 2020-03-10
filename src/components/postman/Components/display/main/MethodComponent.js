@@ -203,7 +203,7 @@ class MethodComponent extends Component {
 					<Dropdown
 						search
 						scrolling
-						simple
+						closeOnEscape
 						clearable
 						options={collections}
 						selection
