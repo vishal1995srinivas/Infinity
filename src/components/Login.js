@@ -35,7 +35,7 @@ class Login extends Component {
 				];
 				localStorage.setItem('user-Details', JSON.stringify(userDetails));
 
-				this.props.history.push('/Protected');
+				this.props.history.push('/Postman');
 			})
 			.catch((err) => {
 				console.log(err);

@@ -21,6 +21,7 @@ class HistoryComponent extends Component {
 	};
 	render() {
 		//console.log(this.props.ToSideBarHistory);
+		//If the request name is too lengthy ,then it goes past the label. Fix this by (request.title ...)
 		if (this.props.historyLoading == false) {
 			if (this.props.ToSideBarHistory.length > 0) {
 				let labels = this.props.ToSideBarHistory.map((requests, index) => {

@@ -24,7 +24,7 @@ class App extends Component {
 					<Route path="/Auth" component={AuthenticatedComponent} />
 					<Route path="/" exact component={Home} />
 					<AuthenticatedComponent>
-						<Route path="/Protected" component={Protected} />
+						{/* <Route path="/Protected" component={Protected} /> */}
 						<Route path="/Postman" component={Postman} />
 					</AuthenticatedComponent>
 				</Switch>
