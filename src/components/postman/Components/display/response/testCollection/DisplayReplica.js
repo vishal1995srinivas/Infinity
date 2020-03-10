@@ -109,6 +109,7 @@ class Display extends Component {
 							if (changes) {
 								console.log(changes);
 								newResult[i] = <ReactJson src={changes} theme="monokai" />;
+
 								this.setState({ result: newResult });
 							} else {
 								let successJson = {
@@ -116,6 +117,7 @@ class Display extends Component {
 									Operation: 'Success'
 								};
 								newResult[i] = <ReactJson src={successJson} theme="monokai" />;
+								console.log(newResult);
 								this.setState({ result: newResult });
 							}
 						} else {

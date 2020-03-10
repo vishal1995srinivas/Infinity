@@ -19,7 +19,7 @@ async function getDataById(url = '', token) {
 async function DeleteCollectionById(token, collectionId) {
 	try {
 		let deleteCollection = await getDataById(`http://localhost:5000/api/v1/collections/${collectionId}`, token);
-		return deleteCollection;
+		console.log(deleteCollection);
 	} catch (error) {
 		return error;
 	}
