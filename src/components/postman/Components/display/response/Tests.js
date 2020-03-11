@@ -185,6 +185,7 @@ class Tests extends Component {
 							<li>A - indicates a change occurred within an array</li>
 						</ul>
 					</div>
+					<br />
 					<ReactJson src={JsonData} theme="monokai" />
 				</div>
 			);

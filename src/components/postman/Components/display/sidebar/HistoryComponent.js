@@ -25,7 +25,7 @@ class HistoryComponent extends Component {
 		if (this.props.historyLoading == false) {
 			if (this.props.ToSideBarHistory.length > 0) {
 				let labels = this.props.ToSideBarHistory.map((requests, index) => {
-					console.log(requests);
+					//console.log(requests);
 					let title = null;
 					let Untitled = 'Untitled Request';
 					if (requests.title == '' || requests.title == null) {

@@ -35,7 +35,7 @@ class AllResponse extends Component {
 				);
 			}
 		} else {
-			//console.log(this.props.ToPlay);
+			console.log(this.props.ToPlay);
 			return (
 				<div className="response">
 					<DisplayReplica ToPlay={this.props.ToPlay} />

@@ -59,71 +59,69 @@ class Display extends Component {
 		async function HandleRequests() {
 			for (let i = 0; i < this.props.ToPlay.requests.length; i++) {
 				try {
-					if (this.props.ToPlay.requests[i] !== null) {
-						let result = await Response(this.props.ToPlay.requests[i]);
-						if (this.props.ToPlay.requests[i].testCase !== null) {
-							/************************************************* */
-							// let output = jsonDiff.diffString(this.props.ToPlay.requests[i].testCase, result);
-							// console.log(output);
-							// newResult[i] = output;
-							// this.setState({ result: newResult });
-							/********************************************* */
-							// if (output == '') {
-							// 	let successJson = {
-							// 		TestCase: 'Matched',
-							// 		Operation: 'Success'
-							// 	};
-							// 	newResult[i] = (
-							// 		<div className="response" align="left">
-							// 			{successJson}
-							// 			{/* <ReactJson src={successJson} theme="monokai" /> */}
-							// 		</div>
-							// 	);
-							// } else {
-							// 	newResult[i] = (
-							// 		<div className="response" align="left">
-							// 			{JSON.stringify(output)}
-							// 			{/* <ReactJson src={output} theme="monokai" /> */}
-							// 		</div>
-							// 	);
-							// }
-							// this.setState({ result: newResult });
-							/************************** */
-							// let difference = jsonDiff.diff(result, this.props.ToPlay.requests[i].testCase);
-							// console.log(difference);
-							// newResult[i] = <div>{difference}</div>;
-							/********************************* */
-							// let StringifyingTestCase = JSON.stringify(this.props.ToPlay.requests[i].testCase);
-							// let StringifyingResult = JSON.stringify(result);
-							// newResult[i] = (
-							// 	<ReactDiffViewer
-							// 		oldValue={StringifyingTestCase}
-							// 		newValue={StringifyingResult}
-							// 		splitView={true}
-							// 		// renderContent={this.highlightSyntax}
-							// 	/>
-							// );
-							// this.setState({ result: newResult });
-							/********************************************* */
-							let changes = diff(result, this.props.ToPlay.requests[i].testCase);
-							if (changes) {
-								console.log(changes);
-								newResult[i] = <ReactJson src={changes} theme="monokai" />;
-
-								this.setState({ result: newResult });
-							} else {
-								let successJson = {
-									TestCase: 'Matched',
-									Operation: 'Success'
-								};
-								newResult[i] = <ReactJson src={successJson} theme="monokai" />;
-								console.log(newResult);
-								this.setState({ result: newResult });
-							}
+					console.log(this.props.ToPlay.requests[i]);
+					let result = await Response(this.props.ToPlay.requests[i]);
+					// console.log(result);
+					if (this.props.ToPlay.requests[i].testCase !== null) {
+						/************************************************* */
+						// let output = jsonDiff.diffString(this.props.ToPlay.requests[i].testCase, result);
+						// console.log(output);
+						// newResult[i] = output;
+						// this.setState({ result: newResult });
+						/********************************************* */
+						// if (output == '') {
+						// 	let successJson = {
+						// 		TestCase: 'Matched',
+						// 		Operation: 'Success'
+						// 	};
+						// 	newResult[i] = (
+						// 		<div className="response" align="left">
+						// 			{successJson}
+						// 			{/* <ReactJson src={successJson} theme="monokai" /> */}
+						// 		</div>
+						// 	);
+						// } else {
+						// 	newResult[i] = (
+						// 		<div className="response" align="left">
+						// 			{JSON.stringify(output)}
+						// 			{/* <ReactJson src={output} theme="monokai" /> */}
+						// 		</div>
+						// 	);
+						// }
+						// this.setState({ result: newResult });
+						/************************** */
+						// let difference = jsonDiff.diff(result, this.props.ToPlay.requests[i].testCase);
+						// console.log(difference);
+						// newResult[i] = <div>{difference}</div>;
+						/********************************* */
+						// let StringifyingTestCase = JSON.stringify(this.props.ToPlay.requests[i].testCase);
+						// let StringifyingResult = JSON.stringify(result);
+						// newResult[i] = (
+						// 	<ReactDiffViewer
+						// 		oldValue={StringifyingTestCase}
+						// 		newValue={StringifyingResult}
+						// 		splitView={true}
+						// 		// renderContent={this.highlightSyntax}
+						// 	/>
+						// );
+						// this.setState({ result: newResult });
+						/********************************************* */
+						let changes = diff(result, this.props.ToPlay.requests[i].testCase);
+						if (changes) {
+							console.log(changes);
+							newResult[i] = <ReactJson src={changes} theme="monokai" />;
 						} else {
-							newResult[i] = <ReactJson src={result} theme="monokai" />;
-							this.setState({ result: newResult });
+							let successJson = {
+								TestCase: 'Matched',
+								Operation: 'Success'
+							};
+							newResult[i] = <ReactJson src={successJson} theme="monokai" />;
+							console.log(newResult);
 						}
+						this.setState({ result: newResult });
+					} else {
+						newResult[i] = <ReactJson src={result} theme="monokai" />;
+						this.setState({ result: newResult });
 					}
 				} catch (error) {
 					console.log(error);
@@ -158,6 +156,15 @@ class Display extends Component {
 			});
 			return (
 				<div align="left">
+					<div className="instructions">
+						kind - indicates the kind of change; will be one of the following:<br />
+						<ul>
+							<li>N - indicates a newly added property/element</li>
+							<li>D - indicates a property/element was deleted</li>
+							<li>E - indicates a property/element was edited </li>
+							<li>A - indicates a change occurred within an array</li>
+						</ul>
+					</div>
 					<div>{loading}</div>
 				</div>
 			);
