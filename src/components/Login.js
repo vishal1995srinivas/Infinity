@@ -8,7 +8,8 @@ class Login extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			error: ''
 		};
 	}
 	onChange = (e) => {
@@ -39,6 +40,7 @@ class Login extends Component {
 			})
 			.catch((err) => {
 				console.log(err);
+				this.setState({ error: "Username doesn't exist" });
 			});
 	};
 	render() {
@@ -75,6 +77,7 @@ class Login extends Component {
 									value={this.state.password}
 								/>
 							</div>
+							<div>{this.state.error}</div>
 							<button type="submit" className="btn btn-primary btn-block">
 								Login
 							</button>
