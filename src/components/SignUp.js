@@ -101,6 +101,7 @@ class SignUp extends Component {
 		return (
 			<div>
 				<div className="form">
+					<div className="Loader">&#8734;</div>
 					<h2>Register</h2>
 
 					<div className="input">
