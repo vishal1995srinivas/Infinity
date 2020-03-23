@@ -20,8 +20,6 @@ class HistoryComponent extends Component {
 		this.props.handleHistoryClick(url, method, title);
 	};
 	render() {
-		//console.log(this.props.ToSideBarHistory);
-		//If the request name is too lengthy ,then it goes past the label. Fix this by (request.title ...)
 		if (this.props.historyLoading == false) {
 			if (this.props.ToSideBarHistory.length > 0) {
 				let labels = this.props.ToSideBarHistory.map((requests, index) => {
@@ -190,7 +188,8 @@ class HistoryComponent extends Component {
 		} else {
 			return (
 				<div>
-					<Loader type="ThreeDots" color="black" height={100} width={100} />
+					<div className="Loader">&#8734;</div>
+					{/* <Loader type="ThreeDots" color="black" height={100} width={100} /> */}
 				</div>
 			);
 		}

@@ -155,7 +155,8 @@ class ResponseComponent extends Component {
       );
       return (
         <div>
-          <Loader type="ThreeDots" color="black" height={100} width={100} />
+          <div className="Loader">&#8734;</div>
+          {/* <Loader type="ThreeDots" color="black" height={100} width={100} /> */}
         </div>
       );
     } else if (this.state.JsonData) {
