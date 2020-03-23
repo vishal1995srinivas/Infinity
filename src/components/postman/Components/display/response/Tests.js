@@ -197,32 +197,14 @@ class Tests extends Component {
 				console.log(this.state.JsonData);
 				return (
 					<div className="response" align="left">
-						{/* <div>
-							<pre>
-								<code>{this.state.JsonData}</code>
-							</pre>
-						</div> */}
 						<ReactJson src={JsonData} theme="monokai" sortKeys />
 					</div>
 				);
 			}
 
 			{
-				/* <div className="instructions">
-						kind - indicates the kind of change; will be one of the following:<br />
-						<ul>
-							<li>N - indicates a newly added property/element</li>
-							<li>D - indicates a property/element was deleted</li>
-							<li>E - indicates a property/element was edited </li>
-							<li>A - indicates a change occurred within an array</li>
-						</ul>
-					</div>
-					<br />
-					<ReactJson src={JsonData} theme="monokai" /> */
 			}
 		}
-
-		//return <div className="response">response</div>;
 	}
 }
 export default Tests;

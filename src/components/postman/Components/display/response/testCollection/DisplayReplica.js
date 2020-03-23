@@ -84,11 +84,14 @@ class Display extends Component {
 			this.state.collectionName !== this.props.ToPlay.name &&
 			this.state.collectionsRequestsLength !== this.props.ToPlay.requests.length
 		) {
+			this.ClickHandler();
 			return (
 				<div className="response">
-					<Button onClick={this.ClickHandler} secondary>
+					<div className="Loader">&#8734;</div>
+
+					{/* <Button onClick={this.ClickHandler} secondary>
 						Click Here to get Test Results
-					</Button>
+					</Button> */}
 				</div>
 			);
 		} else {
