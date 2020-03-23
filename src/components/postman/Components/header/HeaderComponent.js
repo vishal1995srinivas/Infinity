@@ -16,11 +16,11 @@ class HeaderComponent extends Component {
 		let username = jwt.userName;
 		return (
 			<div className="logo">
-				POSTMAN
+				<div className="AppName">&#8734;</div>
 				<div className="header">
-					<div className="title">Welcome {username} </div>
+					<div className="title">Welcome {username} 😎 </div>
 					<div className="logout" onClick={this.logOutHandler}>
-						<a href="/login">Logout</a>
+						<a href="/login">Logout ↪ </a>
 					</div>
 				</div>
 			</div>

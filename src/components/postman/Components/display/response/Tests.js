@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import ReactJson from 'react-json-view';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
-import CollectionsResponseComponent from './CollectionsResponseComponent';
-var diff = require('deep-diff').diff;
+import ReactDiffViewer from 'react-diff-viewer';
+import JsDiff from 'diff';
+import VisualDiff from 'react-visual-diff';
+import { diffString, diff } from 'json-diff';
+var Diff = require('diff');
+
+// var diff = require('deep-diff').diff;
+var jsondiffpatch = require('jsondiffpatch');
+require('colors');
 
 class Tests extends Component {
 	constructor(props) {
@@ -11,7 +18,7 @@ class Tests extends Component {
 		this.state = {
 			isLoading: '',
 			urlString: '',
-			error: '',
+			error: false,
 			JsonData: '',
 			headers: [ {} ],
 			method: '',
@@ -35,23 +42,25 @@ class Tests extends Component {
 				newUrl = `https://${this.props.url}`;
 			}
 			this.GetData(`${newUrl}`, method, myHeaders)
-				.then((data) => {
-					let changes = diff(this.props.testCase, data);
-					if (changes) {
-						this.setState({
-							JsonData: changes,
-							urlString: url,
-							method: method,
-							headers: headers,
-							bodyFormOrUrlData: bodyFormOrUrlData
-						});
-					} else {
+				.then(async (data) => {
+					//console.log(data);
+					//console.log(this.props.testCase);
+					let changes = diff(data, this.props.testCase);
+					if (changes == undefined) {
 						let successJson = {
 							TestCase: 'Perfectly Matched',
 							Operation: 'Success'
 						};
 						this.setState({
 							JsonData: successJson,
+							urlString: url,
+							method: method,
+							headers: headers,
+							bodyFormOrUrlData: bodyFormOrUrlData
+						});
+					} else {
+						this.setState({
+							JsonData: changes,
 							urlString: url,
 							method: method,
 							headers: headers,
@@ -87,22 +96,22 @@ class Tests extends Component {
 			}
 			this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
 				.then((data) => {
-					let changes = diff(this.props.testCase, data);
-					if (changes) {
+					let changes = diff(data, this.props.testCase);
+					if (changes == undefined) {
+						let successJson = {
+							TestCase: 'Perfectly Matched',
+							Operation: 'Success'
+						};
 						this.setState({
-							JsonData: changes,
+							JsonData: successJson,
 							urlString: url,
 							method: method,
 							headers: headers,
 							bodyFormOrUrlData: bodyFormOrUrlData
 						});
 					} else {
-						let successJson = {
-							TestCase: 'Matched',
-							Operation: 'Success'
-						};
 						this.setState({
-							JsonData: successJson,
+							JsonData: changes,
 							urlString: url,
 							method: method,
 							headers: headers,
@@ -118,6 +127,7 @@ class Tests extends Component {
 					};
 					this.setState({
 						JsonData: errorJson,
+						error: true,
 						urlString: url,
 						method: method,
 						headers: headers,
@@ -154,6 +164,8 @@ class Tests extends Component {
 		return await response.json(); // parses JSON response into native JavaScript objects
 	}
 	render() {
+		console.log(this.state.JsonData);
+
 		const { url } = this.props;
 		const { isLoading, error, JsonData, urlString, method, headers, bodyFormOrUrlData } = this.state;
 		if (
@@ -174,9 +186,28 @@ class Tests extends Component {
 				</div>
 			);
 		} else if (this.state.JsonData) {
-			return (
-				<div className="response" align="left">
-					<div className="instructions">
+			if (this.state.error) {
+				return (
+					<div className="response" align="left">
+						<ReactJson src={JsonData} theme="monokai" />
+					</div>
+				);
+			} else {
+				console.log(this.state.JsonData);
+				return (
+					<div className="response" align="left">
+						{/* <div>
+							<pre>
+								<code>{this.state.JsonData}</code>
+							</pre>
+						</div> */}
+						<ReactJson src={JsonData} theme="monokai" sortKeys />
+					</div>
+				);
+			}
+
+			{
+				/* <div className="instructions">
 						kind - indicates the kind of change; will be one of the following:<br />
 						<ul>
 							<li>N - indicates a newly added property/element</li>
@@ -186,10 +217,10 @@ class Tests extends Component {
 						</ul>
 					</div>
 					<br />
-					<ReactJson src={JsonData} theme="monokai" />
-				</div>
-			);
+					<ReactJson src={JsonData} theme="monokai" /> */
+			}
 		}
+
 		//return <div className="response">response</div>;
 	}
 }

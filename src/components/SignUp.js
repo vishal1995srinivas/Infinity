@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import './style.css';
 import axios from 'axios';
 import { FormErrors } from './FormErrors';
-import './Form.css';
-
-class Register extends Component {
-	constructor() {
-		super();
+class SignUp extends Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			email: '',
 			password: '',
@@ -20,7 +19,6 @@ class Register extends Component {
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-
 	handleUserInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
@@ -67,12 +65,8 @@ class Register extends Component {
 	errorClass(error) {
 		return error.length === 0 ? '' : 'has-error';
 	}
-	/*************************************************************************************** */
 	handleSubmit(event) {
-		console.log('sign-up handleSubmit, username: ');
-		console.log(this.state.name, this.state.email, this.state.password);
 		event.preventDefault();
-		//request to server to add a new username/password
 		this.setState({
 			isLoading: true
 		});
@@ -98,62 +92,84 @@ class Register extends Component {
 				console.log(error);
 			});
 	}
-	/************************************************************************************************** */
+	// handleLoginClick() {
+	// 	this.props.history.push('/login');
+	// }
+
 	render() {
+		//console.log(this.state.formErrors);
 		return (
-			<form className="demoForm" onSubmit={this.handleSubmit}>
-				<h2>Sign up</h2>
-				<div className="error">{this.state.error}</div>
-				<div className="panel panel-default">
-					<FormErrors formErrors={this.state.formErrors} />
+			<div>
+				<div className="form">
+					<h2>Register</h2>
+
+					<div className="input">
+						<div className="inputBox">
+							<label>Name</label>
+							<input
+								type="text"
+								name="name"
+								value={this.state.name}
+								onChange={this.handleUserInput}
+								required
+								placeholder="Sundar Pichai"
+								autoComplete="off"
+							/>
+						</div>
+						<div className={`inputBox ${this.errorClass(this.state.formErrors.email)}`}>
+							<label>Email</label>
+							<input
+								type="text"
+								value={this.state.email}
+								onChange={this.handleUserInput}
+								name="email"
+								placeholder="sundar@gmail.com"
+								required
+								autoComplete="off"
+							/>
+						</div>
+						<div className={`inputBox ${this.errorClass(this.state.formErrors.password)}`}>
+							<label>Password</label>
+							<input
+								type="password"
+								value={this.state.password}
+								onChange={this.handleUserInput}
+								name="password"
+								placeholder="*********"
+								required
+							/>
+						</div>
+						<div className="error">{this.state.error}</div>
+						<div className="panel panel-default">
+							<FormErrors formErrors={this.state.formErrors} />
+						</div>
+						{this.state.formValid ? (
+							<div>
+								{this.state.isLoading ? (
+									<div className="inputBox">
+										<input type="submit" value="Signing Up...." disabled />
+									</div>
+								) : (
+									<div className="inputBox">
+										<input
+											type="submit"
+											onClick={this.handleSubmit}
+											value="Sign Up"
+											disabled={!this.state.formValid}
+										/>
+									</div>
+								)}
+							</div>
+						) : (
+							<div />
+						)}
+					</div>
+					<p className="forget">
+						Already Registered ? <a href="/login">Login !</a>
+					</p>
 				</div>
-				<div className="Name">
-					<label htmlFor="name">Name</label>
-					<input
-						type="name"
-						className="form-control"
-						name="name"
-						placeholder="Name"
-						value={this.state.name}
-						onChange={this.handleUserInput}
-						required
-					/>
-				</div>
-				<div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
-					<label htmlFor="email">Email address</label>
-					<input
-						type="email"
-						required
-						className="form-control"
-						name="email"
-						placeholder="Email"
-						value={this.state.email}
-						onChange={this.handleUserInput}
-					/>
-				</div>
-				<div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
-					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						className="form-control"
-						name="password"
-						placeholder="Password"
-						value={this.state.password}
-						onChange={this.handleUserInput}
-					/>
-				</div>
-				{this.state.isLoading ? (
-					<button type="submit" className="btn btn-primary" disabled={true}>
-						Signing up...
-					</button>
-				) : (
-					<button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>
-						Sign up
-					</button>
-				)}
-			</form>
+			</div>
 		);
 	}
 }
-
-export default Register;
+export default SignUp;

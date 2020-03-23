@@ -184,7 +184,7 @@ class MethodComponent extends Component {
 			);
 		} else {
 			if (validUrl.isUri(this.props.url)) {
-				console.log('Looks like an URI');
+				//console.log('Looks like an URI');
 
 				sendButton = (
 					<Button
