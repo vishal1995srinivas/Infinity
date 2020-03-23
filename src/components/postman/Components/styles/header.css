@@ -93,7 +93,7 @@ caption {
 /*Neon*/
 .AppName {
 	text-align: center;
-	font-size: 50px;
+	font-size: 3rem;
 	/* margin: 20px 0 20px 0; */
 	text-decoration: none;
 	-webkit-transition: all 0.5s;
