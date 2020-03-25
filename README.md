@@ -35,14 +35,14 @@
   <h3 align="center">INFINITY</h3>
 
   <p align="center">
-    Inspired from POSTMAN
+    Inspired from 📮👨 
     <br />
     <a href="https://github.com/vishal1995srinivas/Infinity"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="herokuLinkhere.com">View Demo</a>
     ·
-    <a href="https://github.com/vishal1995srinivas/Infinity/issues">Infinityrt Bug</a>
+    <a href="https://github.com/vishal1995srinivas/Infinity/issues">Infinity Bugs</a>
     ·
     <a href="https://github.com/vishal1995srinivas/Infinity/issues">Request Feature</a>
   </p>
@@ -71,7 +71,7 @@
 Infinity helps API development easy. Manage and test your API's at one place in one go. This is just a basic version and a lot more to come soon.
 Tutorial on development is coming soon.
 
-Infinity is inspired from [Postman](https://www.postman.com/).
+Infinity is inspired from [📮 👨 ](https://www.postman.com/).
 
 
 ### Built With
@@ -159,9 +159,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - vishal1995srinivas
+[Vishal Srinivas](https://github.com/vishal1995srinivas)
 
-Project Link: [https://github.com/vishal1995srinivas/Infinity](https://github.com/vishal1995srinivas/Infinity)
+Project Link:  [Infinity ](https://github.com/vishal1995srinivas/Infinity)
 
 
 
