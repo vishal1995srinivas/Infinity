@@ -1,0 +1,67 @@
+{
+  "name": "p3",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.8.3",
+    "@material-ui/icons": "^4.5.1",
+    "@material/react-select": "^0.15.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "deep-diff": "^1.0.2",
+    "diff": "^4.0.2",
+    "firebase": "^7.8.0",
+    "json-diff": "^0.5.4",
+    "jsondiffpatch": "^0.4.1",
+    "lodash": "^4.17.15",
+    "lowdb": "^1.0.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "mdbreact": "^4.24.0",
+    "muicss": "^0.10.0",
+    "prismjs": "^1.19.0",
+    "react": "^16.12.0",
+    "react-alert": "^6.0.0",
+    "react-alert-template-basic": "^1.0.0",
+    "react-alert-template-oldschool-dark": "^1.0.1",
+    "react-diff": "0.0.7",
+    "react-diff-viewer": "^3.0.2",
+    "react-dom": "^16.12.0",
+    "react-json-editor-ajrm": "^2.5.9",
+    "react-json-view": "^1.19.1",
+    "react-loader-spinner": "^3.1.5",
+    "react-lodash": "^0.1.2",
+    "react-materialize": "^3.5.8",
+    "react-router": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "react-visual-diff": "^0.4.3",
+    "semantic-ui-react": "^0.88.2",
+    "valid-url": "^1.0.9"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^5.6.3",
+    "@semantic-ui-react/craco-less": "^1.2.1",
+    "semantic-ui-less": "^2.4.1"
+  }
+}
