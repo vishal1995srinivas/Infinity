@@ -1,68 +1,182 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!--
 
-## Available Scripts
+*** To avoid retyping too much info. Do a search and replace for the following:
+*** vishal1995srinivas, Infinity, twitter_handle, vishal1995srinivas
+-->
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+<!-- [![Contributors][contributors-shield]][contributors-url] -->
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!-- [![Stargazers][stars-shield]][stars-url]-->
+[![Issues][issues-shield]][issues-url] 
+[![MIT License][license-shield]][license-url]
+<!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/vishal1995srinivas/Infinity">
+    <img src="images/2.png" alt="Logo" width="100" height="100">
+  </a>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  <h3 align="center">INFINITY</h3>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  <p align="center">
+    Inspired from POSTMAN
+    <br />
+    <a href="https://github.com/vishal1995srinivas/Infinity"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="herokuLinkhere.com">View Demo</a>
+    ·
+    <a href="https://github.com/vishal1995srinivas/Infinity/issues">Infinityrt Bug</a>
+    ·
+    <a href="https://github.com/vishal1995srinivas/Infinity/issues">Request Feature</a>
+  </p>
+</p>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-## Learn More
+Infinity helps API development easy. Manage and test your API's at one place in one go. This is just a basic version and a lot more to come soon.
+Tutorial on development is coming soon.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Infinity is inspired from [Postman](https://www.postman.com/).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### Built With
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* [MongoDB](http://mongodb.com/)
+* [ExpressJS](https://expressjs.com/)
+* [ReactJS](https://reactjs.org/)
+* [NodeJS](https://nodejs.org/en/)
 
-### Analyzing the Bundle Size
+<!-- GETTING STARTED -->
+## Getting Started
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+To get a local copy up and running follow these simple steps.
 
-### Making a Progressive Web App
+### Prerequisites
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Following steps lead you to run the app in your local system.
+* npm
+```sh
+npm install npm@latest -g
+```
 
-### Advanced Configuration
+### Installation
+ 
+1. Clone the Infinity
+```sh
+git clone https://github.com/vishal1995srinivas/Infinity.git
+```
+2. Install NPM packages
+```sh
+npm install
+```
+2. Install Mongo and start the Mongo server
+```sh
+mongod --dbpath ./mongodb --port 27018 && mongo
+```
+3. Start the server
+```sh
+nodemon server.js
+```
+4. Install NPM packages inside client
+```sh
+cd client && npm install
+```
+5. Start the client
+```sh
+npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+See the [open issues](https://github.com/vishal1995srinivas/Infinity/issues) for a list of proposed features (and known issues).
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Thanks for checking out this App. If you have a suggestion that would
+make this better, please fork the Infinity and create a pull request or simply open
+an issue with the tag "enhancement".
+
+Thanks again! Now go create something AMAZING! 😃.
+Any contributions you make are **greatly appreciated**.
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - vishal1995srinivas
+
+Project Link: [https://github.com/vishal1995srinivas/Infinity](https://github.com/vishal1995srinivas/Infinity)
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-url]: https://github.com/vishal1995srinivas/Infinity/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/scrnsht.png

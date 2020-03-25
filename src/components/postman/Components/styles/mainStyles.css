@@ -97,6 +97,7 @@ caption {
 
 .footer {
 	padding-top: 1.5vh;
+	font-size: 1rem;
 	color: white;
 	background-color: #1b1c1d;
 	grid-column: 1/11;
