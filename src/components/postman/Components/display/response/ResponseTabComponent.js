@@ -19,6 +19,7 @@ class ResponseComponent extends Component {
 			collectionName: null
 		};
 	}
+
 	async fetchfunction(method, headers, url, bodyFormOrUrlData) {
 		let myHeaders = null;
 		if (method == 'GET') {
@@ -35,6 +36,7 @@ class ResponseComponent extends Component {
 			}
 			this.GetData(`${newUrl}`, method, myHeaders)
 				.then((data) => {
+					this.props.SendLoadingSwitch();
 					this.setState({
 						JsonData: data,
 						urlString: url,
@@ -48,6 +50,7 @@ class ResponseComponent extends Component {
 					let errorJson = {
 						Error: `${error}, Message : ${error.message}`
 					};
+					this.props.SendLoadingSwitch();
 					this.setState({
 						JsonData: errorJson,
 						urlString: newUrl,
@@ -71,6 +74,7 @@ class ResponseComponent extends Component {
 			}
 			this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
 				.then((data) => {
+					this.props.SendLoadingSwitch();
 					this.setState({
 						JsonData: data,
 						urlString: url,
@@ -86,6 +90,7 @@ class ResponseComponent extends Component {
 					let errorJson = {
 						Error: `${error}, Message : ${error.message}`
 					};
+					this.props.SendLoadingSwitch();
 					this.setState({
 						JsonData: errorJson,
 						urlString: url,

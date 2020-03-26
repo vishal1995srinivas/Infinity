@@ -78,7 +78,7 @@ class SignIn extends Component {
 					];
 					localStorage.setItem('user-Details', JSON.stringify(userDetails));
 
-					this.props.history.push('/Postman');
+					this.props.history.push('/infinity');
 				}
 			})
 			.catch((err) => {
@@ -124,7 +124,7 @@ class SignIn extends Component {
 							<div>
 								{this.state.isLoading ? (
 									<div className="inputBox">
-										<input type="submit" value="Signing Up...." disabled />
+										<input type="submit" value="Signing In...." disabled />
 									</div>
 								) : (
 									<div className="inputBox">

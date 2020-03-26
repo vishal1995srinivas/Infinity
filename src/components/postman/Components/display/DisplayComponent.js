@@ -32,7 +32,8 @@ class DisplayComponent extends Component {
 			testCase: null,
 			sendSwitch: true,
 			title: '',
-			historyLoading: true
+			historyLoading: true,
+			sendLoading: false
 		};
 	}
 	handleTitle = (event) => {
@@ -117,7 +118,8 @@ class DisplayComponent extends Component {
 					ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
 					ToSideBarHistory: this.state.ToSideBarHistory,
 					testCase: testJson,
-					sendSwitch: true
+					sendSwitch: true,
+					sendLoading: true
 				});
 			} else {
 				if (this.state.SaveToCollectionName !== null && this.state.SaveToCollectionName !== '') {
@@ -172,7 +174,8 @@ class DisplayComponent extends Component {
 						ToResponseMethod: method,
 						ToResponseUrl: url,
 						ToResponseHeaders: [ { key: 'Content-Type', value: 'application/json' } ],
-						ToResponseBodyFormOrUrlData: bodyFormOrUrlData
+						ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
+						sendLoading: true
 					});
 				} else {
 					this.state.ToSideBarHistory.unshift({
@@ -210,7 +213,8 @@ class DisplayComponent extends Component {
 						ToResponseBodyFormOrUrlData: bodyFormOrUrlData,
 						ToSideBarHistory: this.state.ToSideBarHistory,
 						testCase: testJson,
-						sendSwitch: true
+						sendSwitch: true,
+						sendLoading: true
 					});
 				}
 			}
@@ -294,6 +298,9 @@ class DisplayComponent extends Component {
 	ToggleToPlayOff = () => {
 		this.setState({ ToPlay: null });
 	};
+	SendLoadingSwitch = () => {
+		this.setState({ sendLoading: false });
+	};
 
 	async componentDidMount() {
 		const jwt = getJwt();
@@ -322,6 +329,7 @@ class DisplayComponent extends Component {
 					collections={this.state.collections}
 					handleSaveToCollectionName={this.handleSaveToCollectionName}
 					SaveToCollectionName={this.SaveToCollectionName}
+					SendLoading={this.state.sendLoading}
 				/>
 				<SidebarComponent
 					historyLoading={this.state.historyLoading}
@@ -345,6 +353,7 @@ class DisplayComponent extends Component {
 					ToggleToPlayOff={this.ToggleToPlayOff}
 					testCase={this.state.testCase}
 					updateTestCaseToNull={this.updateTestCaseToNull}
+					SendLoadingSwitch={this.SendLoadingSwitch}
 				/>
 			</div>
 		);

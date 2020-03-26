@@ -19,6 +19,7 @@ class AllResponse extends Component {
 							url={this.props.url}
 							headers={this.props.headers}
 							bodyFormOrUrlData={this.props.bodyFormOrUrlData}
+							SendLoadingSwitch={this.props.SendLoadingSwitch}
 						/>
 					</div>
 				);
@@ -30,6 +31,7 @@ class AllResponse extends Component {
 							url={this.props.url}
 							headers={this.props.headers}
 							bodyFormOrUrlData={this.props.bodyFormOrUrlData}
+							SendLoadingSwitch={this.props.SendLoadingSwitch}
 						/>
 					</div>
 				);

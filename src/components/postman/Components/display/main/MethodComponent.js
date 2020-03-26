@@ -147,7 +147,7 @@ class MethodComponent extends Component {
 	}
 	render() {
 		let sendButton, saveButton;
-		console.log(this.props.url);
+		//console.log(this.props.url);
 		const { method, url } = this.props;
 		const options = [
 			{ key: 'get', value: 'GET', text: 'GET' },
@@ -184,36 +184,66 @@ class MethodComponent extends Component {
 			);
 		} else {
 			if (validUrl.isUri(this.props.url)) {
-				//console.log('Looks like an URI');
-
-				sendButton = (
-					<Button
-						primary
-						icon
-						labelPosition="right"
-						className="submitBtn"
-						size="medium"
-						onClick={this.SubmitHandler}
-					>
-						Send
-						<Icon name="send" />
-					</Button>
-				);
-				saveButton = (
-					<Dropdown
-						search
-						scrolling
-						closeOnEscape
-						clearable
-						options={collections}
-						selection
-						onChange={this.handleCollectionSelect}
-						value={this.props.SaveToCollectionName}
-						fluid
-						className="selectTag"
-						placeholder="Add To"
-					/>
-				);
+				if (this.props.sendLoading == true) {
+					sendButton = (
+						<Button
+							primary
+							icon
+							labelPosition="right"
+							className="submitBtn"
+							size="medium"
+							onClick={this.SubmitHandler}
+							disabled
+						>
+							Sending
+							<Icon name="send" />
+						</Button>
+					);
+					saveButton = (
+						<Dropdown
+							search
+							scrolling
+							closeOnEscape
+							clearable
+							options={collections}
+							selection
+							onChange={this.handleCollectionSelect}
+							value={this.props.SaveToCollectionName}
+							fluid
+							className="selectTag"
+							placeholder="Add To"
+						/>
+					);
+				} else {
+					sendButton = (
+						<Button
+							primary
+							icon
+							labelPosition="right"
+							className="submitBtn"
+							size="medium"
+							onClick={this.SubmitHandler}
+						>
+							Send
+							<Icon name="send" />
+						</Button>
+					);
+					saveButton = (
+						<Dropdown
+							search
+							scrolling
+							closeOnEscape
+							clearable
+							options={collections}
+							selection
+							onChange={this.handleCollectionSelect}
+							value={this.props.SaveToCollectionName}
+							fluid
+							className="selectTag"
+							placeholder="Add To"
+						/>
+					);
+				}
 			}
 		}
 		return (

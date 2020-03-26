@@ -16,13 +16,12 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route path="/Login" component={SignIn} />
-					<Route path="/Register" component={SignUp} />
-					<Route path="/Auth" component={AuthenticatedComponent} />
+					<Route path="/login" component={SignIn} />
+					<Route path="/register" component={SignUp} />
+					<Route path="/auth" component={AuthenticatedComponent} />
 					<Route path="/" exact component={SignIn} />
 					<AuthenticatedComponent>
-						{/* <Route path="/Protected" component={Protected} /> */}
-						<Route path="/Postman" component={Postman} />
+						<Route path="/infinity" component={Postman} />
 					</AuthenticatedComponent>
 				</Switch>
 			</BrowserRouter>

@@ -50,6 +50,7 @@ class Tests extends Component {
 							TestCase: 'Perfectly Matched',
 							Operation: 'Success'
 						};
+						this.props.SendLoadingSwitch();
 						this.setState({
 							JsonData: successJson,
 							urlString: url,
@@ -58,6 +59,7 @@ class Tests extends Component {
 							bodyFormOrUrlData: bodyFormOrUrlData
 						});
 					} else {
+						this.props.SendLoadingSwitch();
 						this.setState({
 							JsonData: changes,
 							urlString: url,
@@ -72,6 +74,7 @@ class Tests extends Component {
 					let errorJson = {
 						Error: `${error}, Message : ${error.message}`
 					};
+					this.props.SendLoadingSwitch();
 					this.setState({
 						JsonData: errorJson,
 						urlString: newUrl,
@@ -101,6 +104,7 @@ class Tests extends Component {
 							TestCase: 'Perfectly Matched',
 							Operation: 'Success'
 						};
+						this.props.SendLoadingSwitch();
 						this.setState({
 							JsonData: successJson,
 							urlString: url,
@@ -109,6 +113,7 @@ class Tests extends Component {
 							bodyFormOrUrlData: bodyFormOrUrlData
 						});
 					} else {
+						this.props.SendLoadingSwitch();
 						this.setState({
 							JsonData: changes,
 							urlString: url,
@@ -124,6 +129,7 @@ class Tests extends Component {
 					let errorJson = {
 						Error: `${error}, Message : ${error.message}`
 					};
+					this.props.SendLoadingSwitch();
 					this.setState({
 						JsonData: errorJson,
 						error: true,
@@ -199,9 +205,6 @@ class Tests extends Component {
 						<ReactJson src={JsonData} theme="monokai" sortKeys />
 					</div>
 				);
-			}
-
-			{
 			}
 		}
 	}

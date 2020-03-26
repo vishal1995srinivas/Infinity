@@ -36,7 +36,7 @@ class Login extends Component {
 				];
 				localStorage.setItem('user-Details', JSON.stringify(userDetails));
 
-				this.props.history.push('/Postman');
+				this.props.history.push('/Infinity');
 			})
 			.catch((err) => {
 				console.log(err);
