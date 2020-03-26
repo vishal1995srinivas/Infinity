@@ -10,7 +10,6 @@ var Diff = require('diff');
 
 // var diff = require('deep-diff').diff;
 var jsondiffpatch = require('jsondiffpatch');
-require('colors');
 
 class Tests extends Component {
 	constructor(props) {
