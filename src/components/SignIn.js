@@ -59,7 +59,7 @@ class SignIn extends Component {
 			isLoading: true
 		});
 		axios
-			.post('https://infinity-dark-mode-api.herokuapp.com/users/authenticate', {
+			.post('http://localhost:5000/users/authenticate', {
 				email: this.state.email,
 				password: this.state.password
 			})
@@ -115,7 +115,7 @@ class SignIn extends Component {
 								value={this.state.password}
 								onChange={this.handleUserInput}
 								name="password"
-								placeholder="*********"
+								placeholder="123456789"
 								required
 							/>
 						</div>

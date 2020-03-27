@@ -17,7 +17,7 @@ async function addRequest(url = '', data = {}, token) {
 	return await response.json(); // parses JSON response into native JavaScript objects
 }
 async function addRequestToCollection(request, token) {
-	let added = await addRequest('https://infinity-dark-mode-api.herokuapp.com/api/v1/collections', request, token);
+	let added = await addRequest('http://localhost:5000/api/v1/collections', request, token);
 	return added;
 }
 

@@ -43,8 +43,7 @@
 		"valid-url": "^1.0.9"
 	},
 	"scripts": {
-		"start": "node server.js",
-
+		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"

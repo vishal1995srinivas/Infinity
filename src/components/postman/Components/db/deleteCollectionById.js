@@ -19,7 +19,7 @@ async function getDataById(url = '', token) {
 async function DeleteCollectionById(token, collectionId) {
 	try {
 		let deleteCollection = await getDataById(
-			`https://infinity-dark-mode-api.herokuapp.com/api/v1/collections/${collectionId}`,
+			`http://localhost:5000/api/v1/collections/${collectionId}`,
 			token
 		);
 		console.log(deleteCollection);

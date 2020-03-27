@@ -21,7 +21,7 @@ class Login extends Component {
 		e.preventDefault();
 
 		axios
-			.post('https://infinity-dark-mode-api.herokuapp.com/users/authenticate', {
+			.post('http://localhost:5000/users/authenticate', {
 				email: this.state.email,
 				password: this.state.password
 			})

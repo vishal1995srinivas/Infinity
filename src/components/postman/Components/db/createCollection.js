@@ -21,7 +21,7 @@ async function createCollection(userId, token, collectionName) {
 		collectionName: `${collectionName}`,
 		userId: `${userId}`
 	};
-	let created = await create('https://infinity-dark-mode-api.herokuapp.com/api/v1/collections', bodyData, token);
+	let created = await create('http://localhost:5000/api/v1/collections', bodyData, token);
 	console.log(created);
 }
 

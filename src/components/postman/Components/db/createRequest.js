@@ -17,7 +17,7 @@ async function create(url = '', data = {}, token) {
 	return await response.json(); // parses JSON response into native JavaScript objects
 }
 async function createRequest(token, bodyData) {
-	let created = await create('https://infinity-dark-mode-api.herokuapp.com/api/v1/requests', bodyData, token);
+	let created = await create('http://localhost:5000/api/v1/requests', bodyData, token);
 	return created;
 }
 
