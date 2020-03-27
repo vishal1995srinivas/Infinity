@@ -77,7 +77,7 @@ class Register extends Component {
 			isLoading: true
 		});
 		axios
-			.post('http://localhost:5000/users/register', {
+			.post('https://infinity-dark-mode-api.herokuapp.com//users/register', {
 				name: this.state.name,
 				email: this.state.email,
 				password: this.state.password
