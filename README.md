@@ -40,9 +40,9 @@
     <a href="https://github.com/vishal1995srinivas/Infinity"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="herokuLinkhere.com">View Demo</a>
+    <a href="https://infinity-darkmode.herokuapp.com/.com">View Demo</a>
     ·
-    <a href="https://github.com/vishal1995srinivas/Infinity/issues">Infinityrt Bug</a>
+    <a href="https://github.com/vishal1995srinivas/Infinity/issues">Infinity Bug</a>
     ·
     <a href="https://github.com/vishal1995srinivas/Infinity/issues">Request Feature</a>
   </p>
@@ -68,10 +68,10 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Infinity helps API development easy. Manage and test your API's at one place in one go. This is just a basic version and a lot more to come soon.
+Thanks for checking out my first MERN App Infinity. Infinity helps API development easy. Manage and test your API's at one place in one go. This is just a basic version and a lot more to come soon.
 Tutorial on development is coming soon.
 
-Infinity is inspired from [Postman](https://www.postman.com/).
+Infinity is inspired from [Postman](https://www.postman.com/). 
 
 
 ### Built With
