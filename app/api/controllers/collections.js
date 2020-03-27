@@ -1,6 +1,5 @@
 const collectionsModel = require('../models/collections');
 const requestsModel = require('../models/requests');
-
 const { body } = require('express-validator/check');
 const { validationResult } = require('express-validator/check');
 

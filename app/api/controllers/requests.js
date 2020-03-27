@@ -4,14 +4,39 @@ const { body } = require('express-validator/check');
 const { validationResult } = require('express-validator/check');
 
 module.exports = {
+	getById: function(req, res, next) {
+		if (req.params.requestId !== undefined) {
+			let id = req.params.requestId;
+			console.log(id);
+			requestsModel.findById(`${id}`, function(err, results) {
+				if (err) return console.error(err);
+				try {
+					res.json({
+						status: 'success',
+						message: 'request found.',
+						data: results
+					});
+					// console.log(results);
+				} catch (error) {
+					console.log('errror getting results');
+					console.log(error);
+				}
+			});
+		} else
+			res.json({
+				status: 'failure',
+				message: 'No collection Id found in params of request. Please provide!!!',
+				data: null
+			});
+	},
 	getAll: function(req, res, next) {
 		try {
-			const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+			// const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
 
-			if (!errors.isEmpty()) {
-				res.status(422).json({ errors: errors.array() });
-				return;
-			}
+			// if (!errors.isEmpty()) {
+			// 	res.status(422).json({ errors: errors.array() });
+			// 	return;
+			// }
 			let requestsList = [];
 			let id = req.query.userId;
 			console.log(id);

@@ -1,8 +1,8 @@
 //Set up mongoose connection
-console.log('in db config');
+//console.log('in db config');
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://localhost:27017/node_rest_api';
-mongoose.connect(mongoDB);
+mongoose.connect(process.env.MONGODB_URI || mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 module.exports = mongoose;
 /*const db = mongoose.connection;
