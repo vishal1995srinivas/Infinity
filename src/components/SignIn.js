@@ -59,7 +59,7 @@ class SignIn extends Component {
 			isLoading: true
 		});
 		axios
-			.post('https://infinity-dark-mode-api.herokuapp.com//users/authenticate', {
+			.post('https://infinity-dark-mode-api.herokuapp.com/users/authenticate', {
 				email: this.state.email,
 				password: this.state.password
 			})
@@ -91,7 +91,7 @@ class SignIn extends Component {
 		//console.log(this.state);
 		return (
 			<div>
-				<div className="form">
+				<div className="registerForm">
 					<div className="Loader">&#8734;</div>
 					<h2>Login</h2>
 

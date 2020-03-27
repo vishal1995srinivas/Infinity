@@ -17,7 +17,7 @@ async function getData(url = '', token) {
 	return await response.json(); // parses JSON response into native JavaScript objects
 }
 async function getHistory(userId, token) {
-	let url = `https://infinity-dark-mode-api.herokuapp.com//api/v1/requests?userId=${userId}`;
+	let url = `https://infinity-dark-mode-api.herokuapp.com/api/v1/requests?userId=${userId}`;
 	let RequestHistory = await getData(url, token);
 	return RequestHistory.data;
 }

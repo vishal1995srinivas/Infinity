@@ -35,7 +35,7 @@ async function getDataById(url = '', token) {
 	return await response.json(); // parses JSON response into native JavaScript objects
 }
 async function getCollections(userId, token) {
-	let url = `https://infinity-dark-mode-api.herokuapp.com//api/v1/collections?userId=${userId}`;
+	let url = `https://infinity-dark-mode-api.herokuapp.com/api/v1/collections?userId=${userId}`;
 	let Collections = await getData(url, token);
 	//console.log(Collections);
 	let TotalCollections = [];
@@ -50,7 +50,7 @@ async function getCollections(userId, token) {
 			};
 			for (let j = 0; j < Collections.data.collection[i].requests.length; j++) {
 				let request = await getDataById(
-					`https://infinity-dark-mode-api.herokuapp.com//api/v1/requests/${Collections.data.collection[i]
+					`https://infinity-dark-mode-api.herokuapp.com/api/v1/requests/${Collections.data.collection[i]
 						.requests[j]}`,
 					token
 				);
