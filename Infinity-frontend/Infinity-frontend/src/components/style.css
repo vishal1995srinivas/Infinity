@@ -1,0 +1,147 @@
+@import 'https://fonts.googleapis.com/css?family=Poppins:400, 500, 600, 700, 800, 900&display=swap';
+* {
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #131419;
+}
+.registerForm {
+	position: relative;
+	width: 350px;
+	padding: 40px 40px 60px;
+
+	/* border-radius: 10px; */
+	text-align: center;
+	border-radius: 15px;
+	background: #131419;
+	box-shadow: 5px 5px 10px #09090c, -5px -5px 10px #1d1f26;
+	/* box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), -5px -5px 15px rgba(0, 0, 0, 0.5); */
+}
+.registerForm h2 {
+	color: #c7c7c7;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-size: 2rem;
+}
+.registerForm .input {
+	text-align: left;
+	margin-top: 40px;
+}
+.registerForm .input .inputBox {
+	margin-top: 20px;
+}
+.registerForm .input .inputBox label {
+	display: block;
+	color: #868886;
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+.registerForm .input .inputBox input {
+	width: 100%;
+	height: 50px;
+	background: #131419;
+	border: none;
+	outline: none;
+	border-radius: 40px;
+	padding: 5px 15px;
+	color: #fff;
+	font-size: 18px;
+	color: #03a9f4;
+	box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.1), inset -2px -2px 6px rgba(0, 0, 0, 0.8);
+}
+.registerForm .input .inputBox input[type="submit"] {
+	margin-top: 20px;
+	box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.1), -2px -2px 6px rgba(0, 0, 0, 0.8);
+}
+.registerForm .input .inputBox input[type="submit"]:active {
+	color: #006c9c;
+	margin-top: 20px;
+	box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.1), inset 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+.registerForm .input .inputBox input::placeholder {
+	color: #555555;
+	font-size: 18px;
+}
+.forget a {
+	color: #ff0047;
+}
+.forget {
+	margin-top: 10px;
+	color: #555555;
+}
+.errorField {
+	color: #ff0047;
+	font-size: 14px;
+}
+.panel {
+	margin-top: 25px;
+}
+.error {
+	color: #ff0047;
+	font-size: 14px;
+}
+
+/*************************/
+.Loader {
+	text-align: center;
+	/* margin: 20px 0 20px 0; */
+	text-decoration: none;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+	color: #fff;
+	font-size: 7rem;
+	font-family: Monoton;
+	-webkit-animation: neon1 0.5s ease-in-out infinite alternate;
+	-moz-animation: neon1 0.5s ease-in-out infinite alternate;
+	animation: neon1 0.5s ease-in-out infinite alternate;
+}
+.Loader:hover {
+	color: #228dff;
+	-webkit-animation: none;
+	-moz-animation: none;
+	animation: none;
+}
+/*glow for webkit*/
+@-webkit-keyframes neon1 {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff, 0 0 70px #228dff, 0 0 80px #228dff,
+			0 0 100px #228dff, 0 0 150px #228dff;
+	}
+	to {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff, 0 0 35px #228dff, 0 0 40px #228dff,
+			0 0 50px #228dff, 0 0 75px #228dff;
+	}
+}
+/*glow for mozilla*/
+
+@-moz-keyframes neon1 {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff, 0 0 70px #228dff, 0 0 80px #228dff,
+			0 0 100px #228dff, 0 0 150px #228dff;
+	}
+	to {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff, 0 0 35px #228dff, 0 0 40px #228dff,
+			0 0 50px #228dff, 0 0 75px #228dff;
+	}
+}
+/*glow*/
+
+@keyframes neon1 {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff, 0 0 70px #228dff, 0 0 80px #228dff,
+			0 0 100px #228dff, 0 0 150px #228dff;
+	}
+	to {
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff, 0 0 35px #228dff, 0 0 40px #228dff,
+			0 0 50px #228dff, 0 0 75px #228dff;
+	}
+}
