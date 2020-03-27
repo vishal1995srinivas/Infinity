@@ -1,3 +1,5 @@
 //TODO
 
 1. Send button showing 'SENDING' disabled after the click
+Replace localhost to infinity
+replace start: node server.js in package.json

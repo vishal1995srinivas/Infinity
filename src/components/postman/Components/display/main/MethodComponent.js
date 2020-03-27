@@ -146,6 +146,7 @@ class MethodComponent extends Component {
 		}
 	}
 	render() {
+		// console.log(this.props.sendLoading);
 		let sendButton, saveButton;
 		//console.log(this.props.url);
 		const { method, url } = this.props;

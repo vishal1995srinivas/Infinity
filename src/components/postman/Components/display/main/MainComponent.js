@@ -20,7 +20,7 @@ class MainComponent extends Component {
 					collections={this.props.collections}
 					handleSaveToCollectionName={this.props.handleSaveToCollectionName}
 					SaveToCollectionName={this.props.SaveToCollectionName}
-					sendLoading={this.props.sendLoading}
+					sendLoading={this.props.SendLoading}
 				/>
 			</div>
 		);

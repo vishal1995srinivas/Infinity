@@ -239,7 +239,6 @@ class DisplayComponent extends Component {
 	};
 	handleCreateCollection = (event) => {
 		let collectionExist = false;
-
 		if (this.state.collectionName !== '') {
 			this.state.collections.map((collection) => {
 				if (collection.collectionName == this.state.collectionName) {
