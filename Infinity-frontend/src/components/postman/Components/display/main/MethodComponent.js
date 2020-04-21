@@ -162,27 +162,8 @@ class MethodComponent extends Component {
 		if (this.props.loading == true) {
 		}
 		if (this.props.url == '') {
-			sendButton = (
-				<div />
-				// <Button primary icon labelPosition="right" className="submitBtn" onClick={this.SubmitHandler} disabled>
-				// 	Send
-				// 	<Icon name="send" />
-				// </Button>
-			);
-			saveButton = (
-				<div />
-				// <Dropdown
-				// 	clearable
-				// 	options={collections}
-				// 	selection
-				// 	onChange={this.handleCollectionSelect}
-				// 	value={this.props.SaveToCollectionName}
-				// 	fluid
-				// 	className="selectTag"
-				// 	placeholder="Add To"
-				// 	disabled
-				// />
-			);
+			sendButton = <div />;
+			saveButton = <div />;
 		} else {
 			if (validUrl.isUri(this.props.url)) {
 				if (this.props.sendLoading == true) {

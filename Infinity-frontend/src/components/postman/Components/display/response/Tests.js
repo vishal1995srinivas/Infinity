@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import ReactJson from 'react-json-view';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
-import ReactDiffViewer from 'react-diff-viewer';
-import JsDiff from 'diff';
-import VisualDiff from 'react-visual-diff';
-import { diffString, diff } from 'json-diff';
-var Diff = require('diff');
 
-// var diff = require('deep-diff').diff;
-var jsondiffpatch = require('jsondiffpatch');
+import { diff } from 'json-diff';
 
 class Tests extends Component {
 	constructor(props) {

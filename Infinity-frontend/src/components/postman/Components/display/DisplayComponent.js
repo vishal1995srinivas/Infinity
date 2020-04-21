@@ -44,7 +44,7 @@ class DisplayComponent extends Component {
 	};
 	updateStateFromSubmit = async (method, url, headers, bodyFormOrUrlData, testJson) => {
 		if (url !== '') {
-			console.log(method, url, headers, bodyFormOrUrlData, testJson);
+			//console.log(method, url, headers, bodyFormOrUrlData, testJson);
 			if (headers.length > 0) {
 				if (this.state.SaveToCollectionName !== null) {
 					this.state.collections.map(async (collection) => {
@@ -183,7 +183,6 @@ class DisplayComponent extends Component {
 						method: method,
 						url: url
 					});
-
 					/******************************************* */
 					const jwt = getJwt();
 					let userId = jwt.userId;

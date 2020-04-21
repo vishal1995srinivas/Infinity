@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ReactJson from 'react-json-view';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
-import CollectionsResponseComponent from './CollectionsResponseComponent';
+import CollectionsResponseComponent from '../unwanted/CollectionsResponseComponent';
 
-class ResponseComponent extends Component {
+class ResponseTabComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -165,4 +165,4 @@ class ResponseComponent extends Component {
 		}
 	}
 }
-export default ResponseComponent;
+export default ResponseTabComponent;

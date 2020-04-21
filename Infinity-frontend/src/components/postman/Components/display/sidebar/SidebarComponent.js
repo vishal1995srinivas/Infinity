@@ -9,7 +9,6 @@ class SidebarComponent extends Component {
 
 		this.state = {};
 	}
-
 	render() {
 		const panes = [
 			{

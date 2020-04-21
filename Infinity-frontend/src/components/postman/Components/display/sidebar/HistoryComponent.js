@@ -6,15 +6,7 @@ class HistoryComponent extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			allrequests: [
-				{ method: 'GET', url: 'www.google.com' },
-				{ method: 'POST', url: 'www.facebook.com' },
-				{ method: 'PUT', url: 'www.facebook.com' },
-				{ method: 'DELETE', url: 'www.facebook.com' },
-				{ method: 'DELETE', url: 'www.facebook.com' }
-			]
-		}; //This is also a stateless component
+		this.state = {}; //This is also a stateless component
 	} //To be completed
 	handleLabelSelect = (event, url, method, title, data, headers, testJson) => {
 		this.props.handleHistoryClick(url, method, title);
@@ -54,17 +46,6 @@ class HistoryComponent extends Component {
 										<div className="example">{title}</div>
 									</List.Item>
 								</List>
-								{/* <Label
-								as="a"
-								color="green"
-								size="mini"
-								onClick={(e) => {
-									this.handleLabelSelect(e, `${requests.url}`, `${requests.method}`, `${title}`);
-								}}
-							>
-								{title}
-								<Label.Detail>{requests.method}</Label.Detail>
-							</Label> */}
 							</div>
 						);
 					} else if (requests.method == 'POST') {
@@ -90,17 +71,6 @@ class HistoryComponent extends Component {
 										<div className="example">{title}</div>
 									</List.Item>
 								</List>
-								{/* <Label
-								as="a"
-								color="yellow"
-								size="mini"
-								onClick={(e) => {
-									this.handleLabelSelect(e, `${requests.url}`, `${requests.method}`, `${title}`);
-								}}
-							>
-								{title}
-								<Label.Detail>{requests.method}</Label.Detail>
-							</Label> */}
 							</div>
 						);
 					} else if (requests.method == 'PUT') {
@@ -126,17 +96,6 @@ class HistoryComponent extends Component {
 										<div className="example">{title}</div>
 									</List.Item>
 								</List>
-								{/* <Label
-								as="a"
-								color="blue"
-								size="mini"
-								onClick={(e) => {
-									this.handleLabelSelect(e, `${requests.url}`, `${requests.method}`, `${title}`);
-								}}
-							>
-								{title}
-								<Label.Detail>{requests.method}</Label.Detail>
-							</Label> */}
 							</div>
 						);
 					} else if (requests.method == 'DELETE') {
@@ -162,17 +121,6 @@ class HistoryComponent extends Component {
 										<div className="example">{title}</div>
 									</List.Item>
 								</List>
-								{/* <Label
-								as="a"
-								color="red"
-								size="mini"
-								onClick={(e) => {
-									this.handleLabelSelect(e, `${requests.url}`, `${requests.method}`, `${title}`);
-								}}
-							>
-								{title}
-								<Label.Detail>{requests.method}</Label.Detail>
-							</Label> */}
 							</div>
 						);
 					}
