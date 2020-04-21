@@ -178,7 +178,7 @@ class MethodComponent extends Component {
 				value={this.props.SaveToCollectionName}
 				fluid
 				className="selectTag"
-				placeholder="Add To"
+				placeholder="Add"
 			/>
 		);
 		return (

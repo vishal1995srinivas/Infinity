@@ -103,6 +103,9 @@ caption {
 	grid-column: 1/11;
 	grid-row: 15/16;
 }
+.counter {
+	color: white;
+}
 .main {
 	grid-column: 3/11;
 	grid-row: 1/9;
@@ -124,14 +127,19 @@ caption {
 	overflow-x: scroll;
 	overflow-y: scroll;
 	color: white;
+	scrollbar-width: thin;
+	scrollbar-color: #1b1c1d #282828;
 }
 
 .sidebar {
 	background-color: #282828;
 	font-size: 2vh;
 	grid-column: 1/3;
+	margin-top: 5px;
 	grid-row: 1/16;
 	overflow-x: scroll;
+	scrollbar-width: thin;
+	scrollbar-color: #1b1c1d #282828;
 }
 .example {
 	color: white;
@@ -230,6 +238,8 @@ caption {
 	padding-left: 1.5vw;
 	overflow-x: scroll;
 	display: grid;
+	scrollbar-width: thin;
+	scrollbar-color: #1b1c1d #282828;
 	grid-template-columns: repeat(10, 1fr);
 	grid-template-rows: repeat(6, 1fr);
 }
@@ -243,6 +253,8 @@ caption {
 	grid-column: 1/11;
 	grid-row: 1/9;
 	overflow-x: scroll;
+	scrollbar-width: thin;
+	scrollbar-color: #1b1c1d #282828;
 	grid-template-columns: repeat(10, 1fr);
 	grid-template-rows: repeat(6, 1fr);
 }
