@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 
 export class FooterComponent extends Component {
 	render() {
-		return <div className="footer">Created with 💝 by Vishal Srinivas</div>;
+		return (
+			<div className="footer">
+				Liked! Thanks for your time. Give me a 🌟 {' '}
+				<a href="https://github.com/vishal1995srinivas/Infinity">
+					<u>here.</u>
+				</a>
+			</div>
+		);
 	}
 }
 
