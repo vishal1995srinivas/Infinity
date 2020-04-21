@@ -65,22 +65,27 @@ caption {
 	background: #282828;
 	color: white;
 }
+
 .header {
 	font-size: 45px;
 	height: 7vh;
 	width: 100vw;
-	background: #444444;
-
+	background: white;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(15, 1fr);
 }
-.title {
-	text-align: center;
-	background-color: white;
-	grid-column: 3/4;
+
+.out {
+	text-align: left;
+	padding-left: 20px;
+	margin-top: 1vh;
+	font-size: 20px;
+	height: 7vh;
+	grid-column: 1/2;
 	grid-row: 1/2;
 }
+
 .logout {
 	text-align: center;
 	margin-top: 1vh;
@@ -92,14 +97,17 @@ caption {
 
 /*Neon*/
 .AppName {
-	text-align: center;
+	text-align: left;
+	line-height: 30px;
 	font-size: 3rem;
+	margin-left: 20px;
 	/* margin: 20px 0 20px 0; */
 	text-decoration: none;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 	color: #fff;
+
 	/* font-size: 3rem; */
 	font-family: Monoton;
 	-webkit-animation: neon1 0.5s ease-in-out infinite alternate;
