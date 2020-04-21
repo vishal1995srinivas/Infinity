@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/header.css';
 import { getJwt } from '../../../../helpers/jwt';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class HeaderComponent extends Component {
@@ -26,6 +26,7 @@ class HeaderComponent extends Component {
 					</div>
 					{/* Refactor this logout to sparate compo */}
 					<div className="logout">
+						<Icon name="user" />
 						<Dropdown text={letter}>
 							<Dropdown.Menu>
 								<Dropdown.Item text="Logout" onClick={this.logOutHandler} />
