@@ -89,55 +89,46 @@ class MethodComponent extends Component {
 		}
 	};
 	SubmitHandler = () => {
-		if (this.props.url !== null || this.props.url !== '') {
-			let headers = [ ...this.state.headers ];
-			let headersLength = headers.length;
-			let newHeaders = headers.slice(0, headersLength - 1);
-			if (this.props.method == 'GET') {
-				this.props.updateStateFromSubmit(this.props.method, this.props.url, newHeaders, null, this.state.obj);
-			} else {
-				let bodyFormData = [ ...this.state.bodyFormData ];
-				let bodyFormDataLength = bodyFormData.length;
-				let newBodyFormData = bodyFormData.slice(0, bodyFormDataLength - 1);
-				if (this.state.valueOfBody == 'form-data') {
-					newHeaders.push({
-						key: 'Content-Type',
-						value: 'multipart/form-data'
-					});
-					this.props.updateStateFromSubmit(
-						this.props.method,
-						this.props.url,
-						newHeaders,
-						newBodyFormData,
-						this.state.obj
-					);
-				} else if (this.state.valueOfBody == 'Form-url-encoded') {
-					newHeaders.push({
-						key: 'Content-Type',
-						value: 'application/x-www-form-urlencoded'
-					});
-					let bodyFormUrlData = [ ...this.state.bodyFormUrlData ];
-					let bodyFormUrlDataLength = bodyFormUrlData.length;
-					let newBodyFormUrlData = bodyFormUrlData.slice(0, bodyFormUrlDataLength - 1);
-					this.props.updateStateFromSubmit(
-						this.props.method,
-						this.props.url,
-						newHeaders,
-						newBodyFormUrlData,
-						this.state.obj
-					);
-				} else {
-					this.props.updateStateFromSubmit(
-						this.props.method,
-						this.props.url,
-						newHeaders,
-						null,
-						this.state.obj
-					);
-				}
-			}
+		if (this.props.url == null || this.props.url == '') return this.props.alert.error('URL cannot be empty');
+		let headers = [ ...this.state.headers ];
+		let headersLength = headers.length;
+		let newHeaders = headers.slice(0, headersLength - 1);
+		if (this.props.method == 'GET') {
+			this.props.updateStateFromSubmit(this.props.method, this.props.url, newHeaders, null, this.state.obj);
 		} else {
-			this.props.alert.error('URL cannot be empty');
+			let bodyFormData = [ ...this.state.bodyFormData ];
+			let bodyFormDataLength = bodyFormData.length;
+			let newBodyFormData = bodyFormData.slice(0, bodyFormDataLength - 1);
+			if (this.state.valueOfBody == 'form-data') {
+				newHeaders.push({
+					key: 'Content-Type',
+					value: 'multipart/form-data'
+				});
+				this.props.updateStateFromSubmit(
+					this.props.method,
+					this.props.url,
+					newHeaders,
+					newBodyFormData,
+					this.state.obj
+				);
+			} else if (this.state.valueOfBody == 'Form-url-encoded') {
+				newHeaders.push({
+					key: 'Content-Type',
+					value: 'application/x-www-form-urlencoded'
+				});
+				let bodyFormUrlData = [ ...this.state.bodyFormUrlData ];
+				let bodyFormUrlDataLength = bodyFormUrlData.length;
+				let newBodyFormUrlData = bodyFormUrlData.slice(0, bodyFormUrlDataLength - 1);
+				this.props.updateStateFromSubmit(
+					this.props.method,
+					this.props.url,
+					newHeaders,
+					newBodyFormUrlData,
+					this.state.obj
+				);
+			} else {
+				this.props.updateStateFromSubmit(this.props.method, this.props.url, newHeaders, null, this.state.obj);
+			}
 		}
 	};
 	objUpdate(arg) {
@@ -146,9 +137,9 @@ class MethodComponent extends Component {
 		}
 	}
 	render() {
-		// console.log(this.props.sendLoading);
-		let sendButton, saveButton;
-		//console.log(this.props.url);
+		let sendButton = <div />;
+		let saveButton = <div />;
+
 		const { method, url } = this.props;
 		const options = [
 			{ key: 'get', value: 'GET', text: 'GET' },
@@ -159,78 +150,39 @@ class MethodComponent extends Component {
 		const collections = this.props.collections.map((collection, index) => {
 			return { key: collection._id, text: collection.collectionName, value: collection.collectionName };
 		});
-		if (this.props.loading == true) {
-		}
-		if (this.props.url == '') {
-			sendButton = <div />;
-			saveButton = <div />;
-		} else {
-			if (validUrl.isUri(this.props.url)) {
-				if (this.props.sendLoading == true) {
-					sendButton = (
-						<Button
-							primary
-							icon
-							labelPosition="right"
-							className="submitBtn"
-							size="medium"
-							onClick={this.SubmitHandler}
-							disabled
-						>
-							Sending
-							<Icon name="send" />
-						</Button>
-					);
-					saveButton = (
-						<Dropdown
-							search
-							scrolling
-							closeOnEscape
-							clearable
-							options={collections}
-							selection
-							onChange={this.handleCollectionSelect}
-							value={this.props.SaveToCollectionName}
-							fluid
-							className="selectTag"
-							placeholder="Add To"
-						/>
-					);
-				} else {
-					sendButton = (
-						<Button
-							primary
-							icon
-							labelPosition="right"
-							className="submitBtn"
-							size="medium"
-							onClick={this.SubmitHandler}
-						>
-							Send
-							<Icon name="send" />
-						</Button>
-					);
-					saveButton = (
-						<Dropdown
-							search
-							scrolling
-							closeOnEscape
-							clearable
-							options={collections}
-							selection
-							onChange={this.handleCollectionSelect}
-							value={this.props.SaveToCollectionName}
-							fluid
-							className="selectTag"
-							placeholder="Add To"
-						/>
-					);
-				}
-			}
-		}
+		sendButton = (
+			<Button
+				primary
+				loading={this.props.sendLoading}
+				icon
+				labelPosition="right"
+				className="submitBtn"
+				size="medium"
+				onClick={this.SubmitHandler}
+				disabled={!validUrl.isUri(this.props.url)}
+			>
+				Send
+				<Icon name="send" />
+			</Button>
+		);
+		saveButton = (
+			<Dropdown
+				disabled={this.props.sendLoading || !validUrl.isUri(this.props.url)}
+				search
+				scrolling
+				closeOnEscape
+				clearable
+				options={collections}
+				selection
+				onChange={this.handleCollectionSelect}
+				value={this.props.SaveToCollectionName}
+				fluid
+				className="selectTag"
+				placeholder="Add To"
+			/>
+		);
 		return (
 			//This has to be refactored-> create a new component for only method,url,submit and save buttons
-
 			<div className="urlComponent">
 				<div className="method">
 					<Select fluid value={method} options={options} className="selectTag" onChange={this.handleSelect} />
@@ -250,7 +202,6 @@ class MethodComponent extends Component {
 				</div>
 				<div className="sendButton">{sendButton}</div>
 				<div className="saveButton">{saveButton}</div>
-
 				<div className="tabsComponent">
 					<TabsComponent
 						headers={this.state.headers}

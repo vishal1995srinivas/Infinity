@@ -44,6 +44,7 @@ class DisplayComponent extends Component {
 	};
 	updateStateFromSubmit = async (method, url, headers, bodyFormOrUrlData, testJson) => {
 		if (url !== '') {
+			this.setState({ sendLoading: true }); //To start the loader first / fast
 			//console.log(method, url, headers, bodyFormOrUrlData, testJson);
 			if (headers.length > 0) {
 				if (this.state.SaveToCollectionName !== null) {
@@ -110,7 +111,6 @@ class DisplayComponent extends Component {
 				} catch (error) {
 					this.props.alert.error(`Error Saving to  Database`);
 				}
-				/********************************************************** */
 				this.setState({
 					ToResponseMethod: method,
 					ToResponseUrl: url,
@@ -121,6 +121,7 @@ class DisplayComponent extends Component {
 					sendSwitch: true,
 					sendLoading: true
 				});
+				/********************************************************** */
 			} else {
 				if (this.state.SaveToCollectionName !== null && this.state.SaveToCollectionName !== '') {
 					let newHeaders = [ { key: 'Content-Type', value: 'application/json' } ];

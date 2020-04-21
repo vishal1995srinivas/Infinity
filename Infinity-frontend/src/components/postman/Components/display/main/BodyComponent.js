@@ -6,14 +6,12 @@ import NoneComponent from './NoneComponent';
 class BodyComponent extends Component {
 	constructor(props) {
 		super(props);
-
 		this.state = { value: 'none' };
 	}
 	handleChange = (e, { value }) => {
 		this.props.handleChangeValueOfBody(value);
 		this.setState({ value });
 	};
-
 	render() {
 		if (this.props.method !== 'GET') {
 			const { value } = this.state;

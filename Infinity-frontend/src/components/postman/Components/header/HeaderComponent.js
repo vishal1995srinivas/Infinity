@@ -21,9 +21,10 @@ class HeaderComponent extends Component {
 			<div className="logo">
 				<div className="header">
 					<div className="title" />
-					<div className="out" onClick={this.logOutHandler}>
+					<div className="out">
 						<div className="AppName">&#8734;</div>
 					</div>
+					{/* Refactor this logout to sparate compo */}
 					<div className="logout">
 						<Dropdown text={letter}>
 							<Dropdown.Menu>
