@@ -131,6 +131,17 @@ caption {
 	scrollbar-color: #1b1c1d #282828;
 }
 
+.response_tests {
+	background-color: #282828;
+	font-size: 2vh;
+
+	color: white;
+	overflow-x: scroll;
+	overflow-y: scroll;
+	scrollbar-width: 10px;
+	scrollbar-color: #1b1c1d #282828;
+}
+
 .sidebar {
 	background-color: #282828;
 	font-size: 2vh;

@@ -46,10 +46,10 @@ class Display extends Component {
 			);
 		}
 		async function HandleRequests() {
-			let newResult = [];
+			let newResult = [ ...this.state.result ];
 			for (let i = 0; i < this.props.ToPlay.requests.length; i++) {
 				try {
-					console.log(this.props.ToPlay.requests[i]);
+					//console.log(this.props.ToPlay.requests[i]);
 					let result = await Response(this.props.ToPlay.requests[i]);
 					// console.log(result);
 					if (this.props.ToPlay.requests[i].testCase !== null) {
@@ -152,7 +152,7 @@ class Display extends Component {
 		) {
 			this.ClickHandler();
 			return (
-				<div className="response">
+				<div className="response_tests">
 					<div className="Loader">&#8734;</div>
 
 					{/* <Button onClick={this.ClickHandler} secondary>
@@ -166,7 +166,7 @@ class Display extends Component {
 			if (this.state.loading) {
 				let loading = this.state.result.map((result, index) => {
 					return (
-						<div className="response" key={index} align="left">
+						<div className="response_tests" key={index} align="left">
 							{result}
 						</div>
 					);
