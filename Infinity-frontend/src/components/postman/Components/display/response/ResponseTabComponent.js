@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactJson from 'react-json-view';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
-import CollectionsResponseComponent from '../unwanted/CollectionsResponseComponent';
 
 class ResponseTabComponent extends Component {
 	constructor(props) {
@@ -19,7 +17,6 @@ class ResponseTabComponent extends Component {
 			collectionName: null
 		};
 	}
-
 	async fetchfunction(method, headers, url, bodyFormOrUrlData) {
 		let myHeaders = null;
 		if (method == 'GET') {

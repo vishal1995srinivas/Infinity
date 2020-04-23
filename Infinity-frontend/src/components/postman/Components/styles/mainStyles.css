@@ -81,6 +81,7 @@ caption {
 	background-color: #1b1c1d;
 	grid-column: 1/11;
 	grid-row: 1/2;
+	margin-right: 10px;
 }
 
 .display {
@@ -91,8 +92,6 @@ caption {
 	grid-template-columns: repeat(10, 1fr);
 	grid-template-rows: repeat(15, 1fr);
 	grid-gap: 5px;
-	overflow-x: visible;
-	overflow-y: visible;
 }
 
 .footer {
@@ -110,8 +109,8 @@ caption {
 	grid-column: 3/11;
 	grid-row: 1/9;
 	background-color: #1b1c1d;
-	overflow-x: visible;
-	overflow-y: hidden;
+	margin-right: 30px;
+
 	display: grid;
 	grid-template-columns: repeat(10, 1fr);
 	grid-template-rows: repeat(10, 5vh);
@@ -121,13 +120,14 @@ caption {
 .response {
 	background-color: #282828;
 	font-size: 2vh;
-
+	margin-right: 30px;
 	grid-column: 3/11;
 	grid-row: 9/16;
+
+	color: white;
 	overflow-x: scroll;
 	overflow-y: scroll;
-	color: white;
-	scrollbar-width: thin;
+	scrollbar-width: 10px;
 	scrollbar-color: #1b1c1d #282828;
 }
 
@@ -138,6 +138,7 @@ caption {
 	margin-top: 5px;
 	grid-row: 1/16;
 	overflow-x: scroll;
+	overflow-y: scroll;
 	scrollbar-width: thin;
 	scrollbar-color: #1b1c1d #282828;
 }
@@ -252,9 +253,7 @@ caption {
 	background-color: #282828;
 	grid-column: 1/11;
 	grid-row: 1/9;
-	overflow-x: scroll;
-	scrollbar-width: thin;
-	scrollbar-color: #1b1c1d #282828;
+
 	grid-template-columns: repeat(10, 1fr);
 	grid-template-rows: repeat(6, 1fr);
 }

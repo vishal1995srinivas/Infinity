@@ -13,7 +13,7 @@ class HeaderComponent extends Component {
 		localStorage.removeItem('user-Details');
 		this.props.history.push('/login');
 	};
-	render() {
+	render() {						
 		const jwt = getJwt();
 		let username = jwt.userName;
 		let letter = username.charAt(0).toUpperCase();
