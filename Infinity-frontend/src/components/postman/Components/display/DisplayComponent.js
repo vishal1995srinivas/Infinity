@@ -104,13 +104,6 @@ class DisplayComponent extends Component {
 					headers: headers,
 					testJson: testJson
 				};
-				try {
-					let requestAdded = await createRequest(userToken, request);
-					console.log(requestAdded);
-					this.props.alert.success(`Successfully saved to Requests`);
-				} catch (error) {
-					this.props.alert.error(`Error Saving to  Database`);
-				}
 				this.setState({
 					ToResponseMethod: method,
 					ToResponseUrl: url,
@@ -121,6 +114,13 @@ class DisplayComponent extends Component {
 					sendSwitch: true,
 					sendLoading: true
 				});
+				try {
+					let requestAdded = await createRequest(userToken, request);
+					console.log(requestAdded);
+					this.props.alert.success(`Successfully saved to Requests`);
+				} catch (error) {
+					this.props.alert.error(`Error Saving to  Database`);
+				}
 				/********************************************************** */
 			} else {
 				if (this.state.SaveToCollectionName !== null && this.state.SaveToCollectionName !== '') {
@@ -197,15 +197,6 @@ class DisplayComponent extends Component {
 						headers: headers,
 						testJson: testJson
 					};
-					try {
-						let requestAdded = await createRequest(userToken, request);
-						console.log(requestAdded);
-						this.props.alert.success(`Successfully saved to Requests`);
-					} catch (error) {
-						this.props.alert.error(`Error Saving to  Database`);
-					}
-					/*********************************************************** */
-
 					this.setState({
 						ToResponseMethod: method,
 						ToResponseUrl: url,
@@ -216,6 +207,14 @@ class DisplayComponent extends Component {
 						sendSwitch: true,
 						sendLoading: true
 					});
+					try {
+						let requestAdded = await createRequest(userToken, request);
+						//console.log(requestAdded);
+						this.props.alert.success(`Successfully saved to Requests`);
+					} catch (error) {
+						this.props.alert.error(`Error Saving to  Database`);
+					}
+					/*********************************************************** */
 				}
 			}
 		} else {

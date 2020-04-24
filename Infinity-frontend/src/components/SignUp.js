@@ -92,9 +92,6 @@ class SignUp extends Component {
 				console.log(error);
 			});
 	}
-	// handleLoginClick() {
-	// 	this.props.history.push('/login');
-	// }
 
 	render() {
 		//console.log(this.state.formErrors);
@@ -113,7 +110,7 @@ class SignUp extends Component {
 								value={this.state.name}
 								onChange={this.handleUserInput}
 								required
-								placeholder="Sundar Pichai"
+								placeholder="Your Name"
 								autoComplete="off"
 							/>
 						</div>
@@ -124,7 +121,7 @@ class SignUp extends Component {
 								value={this.state.email}
 								onChange={this.handleUserInput}
 								name="email"
-								placeholder="sundar@gmail.com"
+								placeholder="abc@xyz.com"
 								required
 								autoComplete="off"
 							/>
