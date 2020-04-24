@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Label, List } from 'semantic-ui-react';
-import Loader from 'react-loader-spinner';
+import Skeleton from 'react-skeleton-loader';
 
 class HistoryComponent extends Component {
 	constructor(props) {
@@ -136,8 +136,10 @@ class HistoryComponent extends Component {
 		} else {
 			return (
 				<div>
-					<div className="Loader">&#8734;</div>
-					{/* <Loader type="ThreeDots" color="black" height={100} width={100} /> */}
+					<div>
+						<Skeleton count={50} color="#1b1c1d" width="100%" />
+					</div>
+					{/* <div className="Loader">&#8734;</div> */}
 				</div>
 			);
 		}

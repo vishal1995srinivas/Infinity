@@ -41,6 +41,7 @@
 		"react-materialize": "^3.5.8",
 		"react-router": "^5.1.2",
 		"react-scripts": "3.3.0",
+		"react-skeleton-loader": "^1.0.4",
 		"react-visual-diff": "^0.4.3",
 		"semantic-ui-react": "^0.88.2",
 		"valid-url": "^1.0.9"
@@ -55,8 +56,16 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [ ">0.2%", "not dead", "not op_mini all" ],
-		"development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"devDependencies": {
 		"@craco/craco": "^5.6.3",
