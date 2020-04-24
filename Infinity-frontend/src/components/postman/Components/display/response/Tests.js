@@ -3,11 +3,9 @@ import ReactJson from 'react-json-view';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Skeleton from 'react-skeleton-loader';
 import { theme } from '../../Utils';
-
 import { diff } from 'json-diff';
 import GetData from './testCollection/GetData';
 import fetchData from './testCollection/FetchData';
-
 class Tests extends Component {
 	constructor(props) {
 		super(props);
@@ -138,10 +136,7 @@ class Tests extends Component {
 				});
 		}
 	}
-
 	render() {
-		console.log(this.state.JsonData);
-
 		const { url } = this.props;
 		const { isLoading, error, JsonData, urlString, method, headers, bodyFormOrUrlData } = this.state;
 		if (
@@ -159,8 +154,6 @@ class Tests extends Component {
 			return (
 				<div>
 					<Skeleton count={50} color="#1b1c1d" width="100%" />
-					{/* <div className="Loader">&#8734;</div> */}
-					{/* <Loader type="ThreeDots" color="black" height={100} width={100} /> */}
 				</div>
 			);
 		} else if (this.state.JsonData) {
