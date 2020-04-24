@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import ReactJson from 'react-json-view';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Skeleton from 'react-skeleton-loader';
+import { theme } from '../../Utils';
+import GetData from './testCollection/GetData';
+import fetchData from './testCollection/FetchData';
 
 class ResponseTabComponent extends Component {
 	constructor(props) {
@@ -31,7 +35,7 @@ class ResponseTabComponent extends Component {
 			if (url.search('https://') == -1) {
 				newUrl = `https://${this.props.url}`;
 			}
-			this.GetData(`${newUrl}`, method, myHeaders)
+			GetData(`${newUrl}`, method, myHeaders)
 				.then((data) => {
 					this.props.SendLoadingSwitch();
 					this.setState({
@@ -69,7 +73,7 @@ class ResponseTabComponent extends Component {
 			if (url.search('https://') == -1) {
 				newUrl = `https://${url}`;
 			}
-			this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
+			fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
 				.then((data) => {
 					this.props.SendLoadingSwitch();
 					this.setState({
@@ -149,34 +153,14 @@ class ResponseTabComponent extends Component {
 			);
 			return (
 				<div>
-					<div className="Loader">&#8734;</div>
+					<Skeleton count={50} color="#1b1c1d" width="100%" />
 					{/* <Loader type="ThreeDots" color="black" height={100} width={100} /> */}
 				</div>
 			);
 		} else if (this.state.JsonData) {
 			return (
 				<div className="responseContent" align="left">
-					<ReactJson
-						src={JsonData}
-						theme={{
-							base00: '272822',
-							base01: '383830',
-							base02: '49483e',
-							base03: '75715e',
-							base04: 'a59f85',
-							base05: 'f8f8f2',
-							base06: 'f5f4f1',
-							base07: 'f9f8f5',
-							base08: 'f92672 ',
-							base09: 'fd971f',
-							base0A: 'f4bf75 ',
-							base0B: 'a6e22e',
-							base0C: 'a1efe4 ',
-							base0D: '66d9ef ',
-							base0E: 'ae81ff ',
-							base0F: 'cc6633 '
-						}}
-					/>
+					<ReactJson src={JsonData} theme={theme} />
 				</div>
 			);
 		}

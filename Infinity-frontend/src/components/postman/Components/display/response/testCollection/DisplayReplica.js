@@ -4,6 +4,8 @@ import ReactJson from 'react-json-view';
 import { Icon, Button } from 'semantic-ui-react';
 import { withAlert } from 'react-alert';
 import { diff } from 'json-diff';
+import Skeleton from 'react-skeleton-loader';
+import { theme } from '../../../Utils';
 
 class Display extends Component {
 	constructor(props) {
@@ -59,54 +61,10 @@ class Display extends Component {
 								TestCase: 'Matched',
 								Operation: 'Success'
 							};
-							newResult[i] = (
-								<ReactJson
-									src={successJson}
-									theme={{
-										base00: '272822',
-										base01: '383830',
-										base02: '49483e',
-										base03: '75715e',
-										base04: 'a59f85',
-										base05: 'f8f8f2',
-										base06: 'f5f4f1',
-										base07: 'f9f8f5',
-										base08: 'f92672 ',
-										base09: 'fd971f',
-										base0A: 'f4bf75 ',
-										base0B: 'a6e22e',
-										base0C: 'a1efe4 ',
-										base0D: '66d9ef ',
-										base0E: 'ae81ff ',
-										base0F: 'cc6633 '
-									}}
-								/>
-							);
+							newResult[i] = <ReactJson src={successJson} theme={theme} />;
 							console.log(newResult);
 						} else {
-							newResult[i] = (
-								<ReactJson
-									src={changes}
-									theme={{
-										base00: '272822',
-										base01: '383830',
-										base02: '49483e',
-										base03: '75715e',
-										base04: 'a59f85',
-										base05: 'f8f8f2',
-										base06: 'f5f4f1',
-										base07: 'f9f8f5',
-										base08: 'f92672 ',
-										base09: 'fd971f',
-										base0A: 'f4bf75 ',
-										base0B: 'a6e22e',
-										base0C: 'a1efe4 ',
-										base0D: '66d9ef ',
-										base0E: 'ae81ff ',
-										base0F: 'cc6633 '
-									}}
-								/>
-							);
+							newResult[i] = <ReactJson src={changes} theme={theme} />;
 							console.log(newResult);
 						}
 						this.setState({ result: newResult });
@@ -116,29 +74,7 @@ class Display extends Component {
 					let errorJson = {
 						Error: `${error}, Message : ${error.message}`
 					};
-					newResult[i] = (
-						<ReactJson
-							src={errorJson}
-							theme={{
-								base00: '272822',
-								base01: '383830',
-								base02: '49483e',
-								base03: '75715e',
-								base04: 'a59f85',
-								base05: 'f8f8f2',
-								base06: 'f5f4f1',
-								base07: 'f9f8f5',
-								base08: 'f92672 ',
-								base09: 'fd971f',
-								base0A: 'f4bf75 ',
-								base0B: 'a6e22e',
-								base0C: 'a1efe4 ',
-								base0D: '66d9ef ',
-								base0E: 'ae81ff ',
-								base0F: 'cc6633 '
-							}}
-						/>
-					);
+					newResult[i] = <ReactJson src={errorJson} theme={theme} />;
 					this.setState({ result: newResult });
 				}
 			}
@@ -153,7 +89,8 @@ class Display extends Component {
 			this.ClickHandler();
 			return (
 				<div className="response_tests">
-					<div className="Loader">&#8734;</div>
+					<Skeleton count={50} color="#1b1c1d" width="100%" />
+					{/* <div className="Loader">&#8734;</div> */}
 
 					{/* <Button onClick={this.ClickHandler} secondary>
 						Click Here to get Test Results
@@ -189,27 +126,7 @@ class Display extends Component {
 						<div className="instructions">
 							Test Results are as follows: <br>__new: TestCase data, __old: Fetched data</br>
 						</div>
-						<ReactJson
-							src={loading}
-							theme={{
-								base00: '272822',
-								base01: '383830',
-								base02: '49483e',
-								base03: '75715e',
-								base04: 'a59f85',
-								base05: 'f8f8f2',
-								base06: 'f5f4f1',
-								base07: 'f9f8f5',
-								base08: 'f92672 ',
-								base09: 'fd971f',
-								base0A: 'f4bf75 ',
-								base0B: 'a6e22e',
-								base0C: 'a1efe4 ',
-								base0D: '66d9ef ',
-								base0E: 'ae81ff ',
-								base0F: 'cc6633 '
-							}}
-						/>
+						<ReactJson src={loading} theme={theme} />
 					</div>
 				);
 			}
