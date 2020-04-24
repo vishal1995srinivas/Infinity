@@ -117,7 +117,7 @@ class DisplayComponent extends Component {
 				try {
 					let requestAdded = await createRequest(userToken, request);
 					console.log(requestAdded);
-					this.props.alert.success(`Successfully saved to Requests`);
+					//this.props.alert.success(`Successfully saved to Requests`);
 				} catch (error) {
 					this.props.alert.error(`Error Saving to  Database`);
 				}
@@ -210,7 +210,7 @@ class DisplayComponent extends Component {
 					try {
 						let requestAdded = await createRequest(userToken, request);
 						//console.log(requestAdded);
-						this.props.alert.success(`Successfully saved to Requests`);
+						//this.props.alert.success(`Successfully saved to Requests`);
 					} catch (error) {
 						this.props.alert.error(`Error Saving to  Database`);
 					}
