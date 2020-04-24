@@ -5,6 +5,8 @@ import Skeleton from 'react-skeleton-loader';
 import { theme } from '../../Utils';
 
 import { diff } from 'json-diff';
+import GetData from './testCollection/GetData';
+import fetchData from './testCollection/FetchData';
 
 class Tests extends Component {
 	constructor(props) {
@@ -35,7 +37,7 @@ class Tests extends Component {
 			if (url.search('https://') == -1) {
 				newUrl = `https://${this.props.url}`;
 			}
-			this.GetData(`${newUrl}`, method, myHeaders)
+			GetData(`${newUrl}`, method, myHeaders)
 				.then(async (data) => {
 					//console.log(data);
 					//console.log(this.props.testCase);
@@ -91,7 +93,7 @@ class Tests extends Component {
 			if (url.search('https://') == -1) {
 				newUrl = `https://${url}`;
 			}
-			this.fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
+			fetchData(`${newUrl}`, bodyFormOrUrlData, method, myHeaders)
 				.then((data) => {
 					let changes = diff(data, this.props.testCase);
 					if (changes == undefined) {
@@ -136,33 +138,7 @@ class Tests extends Component {
 				});
 		}
 	}
-	async fetchData(url = '', data = {}, method, myHeaders) {
-		// Default options are marked with *
-		const response = await fetch(url, {
-			method: method, // *GET, POST, PUT, DELETE, etc.
-			mode: 'cors', // no-cors, *cors, same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: myHeaders,
-			redirect: 'follow', // manual, *follow, error
-			referrerPolicy: 'no-referrer', // no-referrer, *client
-			body: JSON.stringify(data) // body data type must match "Content-Type" header
-		});
-		return await response.json(); // parses JSON response into native JavaScript objects
-	}
-	async GetData(url = '', method, myHeaders) {
-		// Default options are marked with *
-		const response = await fetch(url, {
-			method: method, // *GET, POST, PUT, DELETE, etc.
-			mode: 'cors', // no-cors, *cors, same-origin
-			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-			credentials: 'same-origin', // include, *same-origin, omit
-			headers: myHeaders,
-			redirect: 'follow', // manual, *follow, error
-			referrerPolicy: 'no-referrer' // no-referrer, *client
-		});
-		return await response.json(); // parses JSON response into native JavaScript objects
-	}
+
 	render() {
 		console.log(this.state.JsonData);
 
