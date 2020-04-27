@@ -66,7 +66,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](http://infinity-darkmode.herokuapp.com)
 
 Thanks for checking out my first MERN App Infinity. Infinity helps API development easy. Manage and test your API's at one place in one go. This is just a basic version and a lot more to come soon.
 Tutorial on development is coming soon.
